@@ -1,0 +1,121 @@
+import { Callout } from 'nextra/components';
+
+# Convars
+
+Below is a list of convars used within qbx_core.
+The value shown in the example is the default value for each convar.
+
+## qbx:enablebridge
+
+Enables or disables the qb-core bridge for compatibility with QBCore resources.
+
+```lua
+setr qbx:enablebridge true
+```
+
+Type: `boolean`
+
+## qbx:discordlink
+
+Sets the Discord link for kick messages.
+
+<Callout type='warning'>
+  This convar is only used by the qb-core bridge, and the deprecated `utils` module.
+</Callout>
+
+```lua
+set qbx:discordlink 'discord.gg/qbox'
+```
+
+Type: `string`
+
+## qbx:bucketlockdownmode
+
+Sets entity lockdown mode for bucket 0.
+See [`SET_ROUTING_BUCKET_ENTITY_LOCKDOWN_MODE`](https://docs.fivem.net/natives/?_0xA0F2201F) for more information.
+
+```lua
+set qbx:bucketlockdownmode inactive
+```
+
+Type: `'inactive' | 'relaxed' | 'strict'`
+
+## qbx:max_jobs_per_player
+
+Sets the maximum number of jobs a player can have with the built-in multijob.
+
+```lua
+set qbx:max_jobs_per_player 1
+```
+
+Type: `integer`
+
+## qbx:max_gangs_per_player
+
+Sets the maximum number of gangs a player can have with the built-in multigang.
+
+```lua
+set qbx:max_gangs_per_player 1
+```
+
+Type: `integer`
+
+## qbx:setjob_replaces
+
+Controls if the `/setjob` command replaces or adds a job to a player.
+
+```lua
+set qbx:setjob_replaces true
+```
+
+Type: `boolean`
+
+## qbx:setgang_replaces
+
+Controls if the `/setgang` command replaces or adds a gang to a player.
+
+```lua
+set qbx:setgang_replaces true
+```
+
+Type: `boolean`
+
+## qbx:enablequeue
+
+Enables or disables the built-in qbx_core queuing system.
+
+```lua
+set qbx:enablequeue true
+```
+
+Type: `boolean`
+
+## qbx:cleanPlayerGroups
+
+Controls if the `player_groups` SQL table is automatically cleaned of invalid groups (jobs/gangs) on startup.
+
+```lua
+set qbx:cleanPlayerGroups true
+```
+
+Type: `boolean`
+
+## qbx:allowmethodoverrides
+
+Enables or disables the ability of resources to override existing methods in player object.
+
+```lua
+set qbx:allowmethodoverrides true
+```
+
+Type: `boolean`
+
+## qbx:disableoverridewarning
+
+Enables or disables warning from resources overriding existing methods in player object.
+
+```lua
+set qbx:disableoverridewarning true
+```
+
+Type: `boolean`

@@ -1,0 +1,118 @@
+import { Callout } from "nextra/components";
+
+# Server Events
+
+<Callout type="warning">
+  These events **MUST NOT** be triggered by any other scripts.
+</Callout>
+
+<Callout type='info'>
+  Some of these events use custom types.
+  You can learn more about those in the Types section of this resource.
+</Callout>
+
+## Non-Networked Events
+
+### QBCore:Server:OnPlayerUnload
+
+Triggered when aplayer begins the process of logging out. \
+There is no guarantee that the player still exists in qbx_core's memory at the time this event is triggered.
+
+```lua
+AddEventHandler('QBCore:Server:OnPlayerUnload', function(source) end)
+```
+
+- source: `integer`
+
+### QBCore:Server:OnPermissionUpdate
+
+Triggered when the player's permissions are updated. \
+Only applies to permissions created through QB permission functions.
+
+```lua
+AddEventHandler('QBCore:Server:OnPermissionUpdate', function(source) end)
+```
+
+- source: `integer`
+
+### QBCore:Server:OnJobUpdate
+
+Triggered when a player's job updates.
+
+```lua
+AddEventHandler('QBCore:Server:OnJobUpdate', function(source, job) end)
+```
+
+- source: `integer`
+- job: `Job`
+
+### QBCore:Server:OnGangUpdate
+
+Triggered when a player's gang updates.
+
+```lua
+AddEventHandler('QBCore:Server:OnGangUpdate', function(source, gang) end)
+```
+
+- source: `integer`
+- gang: `Gang`
+
+### QBCore:Server:SetDuty
+
+Triggered when a player's job duty updates.
+
+```lua
+AddEventHandler('QBCore:Server:SetDuty', function(source, onDuty) end)
+```
+
+- source: `integer`
+- onDuty: `boolean`
+
+### qbx_core:server:onGroupUpdate
+
+Triggered when the player's groups are updated. If grade is nil then group was removed otherwise group was added
+
+```lua
+AddEventHandler('qbx_core:server:onGroupUpdate', function(source, groupName, groupGrade) end)
+```
+
+- source: `integer`
+- groupName: `string`
+- groupGrade: `number?`
+
+### QBCore:Server:OnMoneyChange
+
+Triggered when a player's cash/bank balance updates.
+
+```lua
+AddEventHandler('QBCore:Server:OnMoneyChange', function(source, moneyType, amount, operation, reason) end)
+```
+
+- source: `integer`
+- moneyType: `'cash' | 'bank' | 'crypto'`
+- amount: `number`
+- operation: `'add' | 'remove' | 'set'`
+- reason: `string`
+
+## Networked Events
+
+### QBCore:Server:OnPlayerLoaded
+
+Triggered when a player has finished loading.
+
+```lua
+RegisterNetEvent('QBCore:Server:OnPlayerLoaded', function() end)
+```
+
+### qbx_core:server:onSetMetaData
+
+Triggered when player.Functions.setMetaData() is used.
+
+```lua
+RegisterNetEvent('qbx_core:server:onSetMetaData', function(key, oldValue, newValue, source) end)
+```
+
+- key: `string`
+- oldValue: `any`
+- newValue: `any`
+- source: `number`
