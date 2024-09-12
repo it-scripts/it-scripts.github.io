@@ -2,17 +2,16 @@ import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
-// https://github.com/overextended/overextended.github.io/blob/main/theme.config.tsx#L6-L37
 function useHead() {
   const { asPath } = useRouter();
   const { frontMatter, title } = useConfig();
-  const url = `https://qbox-project.github.io${asPath}`;
-  const description = frontMatter.description || "Documentation for the Qbox Project";
+  const url = `https://it-scripts.github.io${asPath}`;
+  const description = frontMatter.description || "Documentation for all it-scripts projects";
 
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/x-icon" href="/qbox-duck.ico" />
+      <link rel="icon" type="image/x-icon" href="/it-logo.ico" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="description" content={description} />
       <meta name="og:title" content={title} />
@@ -25,7 +24,7 @@ function useHead() {
 function useNextSeoProps() {
   const { asPath } = useRouter();
   const arr = asPath.replace(/[-_]/g, " ").split("/");
-  const category = (arr[1][0] !== "#" && arr[1]) || "Qbox";
+  const category = (arr[1][0] !== "#" && arr[1]) || "it-scripts";
   const rawTitle = arr[arr.length - 1];
   const title = /[a-z]/.test(rawTitle) && /[A-Z]/.test(rawTitle) ? rawTitle : "%s";
 
@@ -42,25 +41,32 @@ const config: DocsThemeConfig = {
       style={{
         paddingLeft: "50px",
         lineHeight: "38px",
-        background: "url(/qbox-duck.png) no-repeat left",
+        background: "url(/it-logo.png) no-repeat left",
         backgroundSize: "38px",
         fontWeight: 550,
       }}
     >
-      Qbox
+      it-scripts
     </div>
   ),
   project: {
-    link: "https://github.com/Qbox-project",
+    link: "https://github.com/it-scripts",
   },
   chat: {
-    link: "https://discord.gg/qbox",
+    link: "https://discord.it-scripts.com",
   },
-  docsRepositoryBase: "https://github.com/Qbox-project/qbox-project.github.io/blob/main",
+  docsRepositoryBase: "https://github.com/it-scripts/it-scripts.github.io/blob/main",
   footer: {
-    text: "Qbox Project",
+    text: "it-scripts © 2024",
   },
-  primaryHue: { dark: 200, light: 200 },
+  primaryHue: { dark: 169, light: 169 },
+  primarySaturation: { dark: 100, light: 50},
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+  },
+  toc: {
+    backToTop: true,
+  },
   head: useHead,
   useNextSeoProps: useNextSeoProps,
 };
