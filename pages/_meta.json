@@ -1,10 +1,30 @@
 {
-  "index": "Introduction",
-  "installation": "Installation",
-  "resources": "Resources",
-  "converting": "Converting from QBCore",
-  "contributors": "Contributing",
-  "developers": "Developer's Guide",
-  "release": "Release Readiness",
-  "faq": "FAQ"
+    "index": {
+        "title": "it-scripts Documentation",
+        "theme": {
+            "footer": false
+        }
+    },    
+    "--": {
+        "type": "separator",
+        "title": "General Information"
+    },
+    "how-to-update": {
+        "title": "How to update your asset",
+        "theme": {
+            "footer": false
+        }
+    },
+    "fivem-escrow-system": {
+        "title": "FiveM Escrow System",
+        "theme": {
+            "footer": false
+        }
+    },
+    "---": {
+        "type": "separator",
+        "title": "Scripts"
+    },
+    "it-drugs": "🌱・it-drugs"
 }
+  
