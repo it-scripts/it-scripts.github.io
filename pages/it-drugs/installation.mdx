@@ -1,0 +1,574 @@
+import { Cards, Card, Tabs} from 'nextra/components'
+import { Callout } from '../../components/Callout'
+import Accordion from '../../components/Accordion'
+import AccordionGroup from '../../components/AccordionGroup'
+import { IconBrandGithub, IconBrandDiscord, IconCode, IconTag } from '@tabler/icons-react';
+
+# Installation
+Welcome to the **it-drugs** installation guide, here you can learn how to completely install our asset, 
+following each step we will achieve a clean and fluid installa.tion where you will not find any problems, 
+as long as the documentation has been completed in full
+
+<Callout type="error">
+  If you do not have programming experience, we recommend that you read each step completely without skipping any lines, since all documentation is important and should not be ignored under any circumstances. 
+  If you have a trusted developer, you can install this quickly, easily and safely if you complete this documentation step by step.
+</Callout>
+
+<Callout type="info">
+  If at the end of this documentation you still have any problems, review each step again, after having checked that everything is correct, 
+  you can obtain more information about common errors in the Common Problems section within this same documentation to seek help independently.
+</Callout>
+
+## Asset download
+You can download the latest version of the script for free on the it-script GitHub Account.
+<Cards>
+  <Card icon={<IconBrandGithub />} title="GitHub" href="https://github.com/it-scripts/it-drugs" />
+  <Card icon={<IconTag />} title="Releases" href="https://github.com/it-scripts/it-drugs/releases" />
+</Cards>
+
+<Callout type="warning">
+  If you have downloaded the script from another site, there is no guarantee that the script will actually work. Please download it again from the it-Github page.
+</Callout>
+
+<Callout type="error">
+  If you have paid money for this script, it is a **SCAM**. The **it-drugs** script is and will always remain free. Please report the page to us on the Discord server.
+</Callout>
+
+## Asset dependencies
+| Dependencies | Links |
+| --- | --- |
+| ox_lib | https://github.com/overextended/ox_lib/releases |
+| oxmysql | https://github.com/overextended/oxmysql |
+| **Target System** |  |
+| ESX (ox_target) | https://github.com/overextended/ox_target |
+| QbCore (qb-target) | https://github.com/qbcore-framework/qb-target |
+
+<Callout type="error">
+  You can also you ox_target on your QbCore Server but only if you are using ox_target with version 1.16.0 or older!
+</Callout>
+
+## Asset positioning
+<Callout type="error">
+  Correctly position the assets by following this step, if something goes wrong you will probably get errors about exports not found, do not skip this step.
+</Callout>
+
+For the execution of this asset, we will respect the respective order mentioned below.
+
+```lua
+-- First we will start the Database
+ensure oxmysql
+
+-- Then we will start the cores, never below
+ensure es_extended or qb-core
+
+-- Your inventory system, always on top
+ensure [inventory]
+
+Then we start all the dependencies
+ensure [dependencies]
+
+-- Run it-drugs here along with its dependencies
+ensure [it-drugs] 
+```
+
+## Database
+<Callout type="info">
+  Our drug script includes two databases, befor the first start of the script you should check if the tables allready exists in your Database and delete them if they exists. 
+  If you just update the script you dont have to do this.
+</Callout>
+
+```sql copy
+-- Check for the drug_plants table
+DROP TABLE IF EXISTS `drug_plants`;
+-- Check for the drug
+DROP TABLE IF EXISTS `drug_processing`;
+```
+
+<Callout type="success">
+  The Script will automaticly install and update the database but if you want you still can intall the database manually with this commands:
+</Callout>
+
+<AccordionGroup>
+  <Accordion title="Install Database manually">
+    ```sql copy
+      -- Install the drug_plants table
+      CREATE TABLE IF NOT EXISTS drug_plants (
+          id VARCHAR(11) NOT NULL, PRIMARY KEY(id),
+          owner LONGTEXT DEFAULT NULL,
+          coords LONGTEXT NOT NULL,
+          time INT(255) NOT NULL,
+          type VARCHAR(100) NOT NULL,
+          health DOUBLE NOT NULL DEFAULT 100,
+          fertilizer DOUBLE NOT NULL DEFAULT 0,
+          water DOUBLE NOT NULL DEFAULT 0,
+          growtime INT(11) NOT NULL
+      );
+
+      -- Install the drug_processing table
+      CREATE TABLE IF NOT EXISTS drug_processing (
+          id VARCHAR(11) NOT NULL, PRIMARY KEY(id),
+          coords LONGTEXT NOT NULL,
+          rotation DOUBLE NOT NULL,
+          owner LONGTEXT NOT NULL,
+          type VARCHAR(100) NOT NULL
+      );
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Items for it-drugs
+<Callout type="info">
+  This guid is only for the scripts default items, but you can add new items after the same shemata.
+</Callout>
+<Callout type="warning">
+  If you use qbcore + ox_inventory, you must add the items inside ox_inventory for the items using to work.
+</Callout>
+Here you will find a series of selected items in different extensions for different inventories, select the option that suits your server, remember to check if your inventory works with this script!
+
+<Tabs items={["esx_inventory", "qb-inventory", "ox_inventory", "m-inventory", "inventory"]}>
+  <Tabs.Tab>
+  ```sql copy
+    INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
+    ('watering_can', 'Watering Can', 500, 0, 1),
+    ('fertilizer', 'fertilizer', 500, 0, 1),
+    ('advanced_fertilizer', 'Advanced Fertilizer', 500, 0, 1),
+    ('liquid_fertilizer', 'Liquid Fertilizer', 200, 0, 1),
+    ('weed_lemonhaze_seed', 'Weed Lemonhaze Seed', 20, 0, 1),
+    ('weed_lemonhaze', 'Weed Lemonhaze', 20, 0, 1),
+    ('coca_seed', 'Coca Seed', 20, 0, 1),
+    ('coca', 'Coca', 20, 0, 1),
+    ('paper', 'Paper', 20, 0, 1),
+    ('nitrous', 'nitrous', 20, 0, 1),
+    ('cocaine', 'cocaine', 20, 0, 1),
+    ('joint', 'joint', 20, 0, 1),
+    ('weed_processing_table', 'weed_processing_table', 1000, 0, 1),
+    ('cocaine_processing_table', 'cocaine_processing_table', 1000, 0, 1)
+  ;
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```lua
+      watering_can = {
+        name = "watering_can",
+        label = 'Watering can',
+        weight = 500,
+        type = 'item',
+        image = "watering_can.png",
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'simple watering can'
+    },
+
+    fertilizer = {
+        name = 'fertilizer',
+        label = 'fertilizer',
+        weight = 500,
+        type = 'item',
+        image = 'fertilizer.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'fertilizer'
+    },
+
+    advanced_fertilizer = {
+        name = 'advanced_fertilizer',
+        label = 'Advanced Fertilizer',
+        weight = 500,
+        type = 'item',
+        image = 'advanced_fertilizer.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Fertilizer with the litte extra'
+    },
+
+    liquid_fertilizer = {
+        name = "liquid_fertilizer",
+        label = 'Liquid Fertilizer',
+        weight = 200,
+        type = 'item',
+        image = "liquid_fertilizer.png",
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Basicly Water with nutrations'
+    },
+
+    weed_lemonhaze_seed = {
+        name = 'weed_lemonhaze_seed',
+        label = 'Weed Lemonhaze Seed',
+        weight = 20,
+        type = 'item', 		
+        image = 'weed_lemonhaze_seed.png', 		
+        unique = false, 	
+        useable = true, 	
+        shouldClose = true,	    
+        combinable = nil,   
+        description = 'Weed Lemonhaze Seed'
+    },
+
+    weed_lemonhaze = {
+        name = 'weed_lemonhaze',
+        label = 'weed lemonhaze',
+        weight = 20,
+        type = 'item',
+        image = 'weed_lemonhaze.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Weed Lemonhaze'
+    },
+
+    coca_seed = {
+        name = 'coca_seed',
+        label = 'coca seed',
+        weight = 20,
+        type = 'item',
+        image = 'coca_seed.png',
+        unique = false,
+        useable = true,
+        shouldClose = true,
+        combinable = nil,
+        description = 'Coca Seed'
+    },
+
+    coca = {
+        name = 'coca',
+        label = 'coca',
+        weight = 20,
+        type = 'item',
+        image = 'coca.png',
+        unique = false,
+        useable = false,
+        shouldClose = true,
+        combinable = nil,
+        description = 'Coca'
+    },
+
+    paper = {
+        name = 'paper',
+        label = 'paper',
+        weight = 50,
+        type = 'item',
+        image = 'paper.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Paper'
+    },
+
+    nitrous = {
+        name = 'nitrous',
+        label = 'nitrous',
+        weight = 500,
+        type = 'item',
+        image = 'nitrous.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'nitrous'
+        },
+
+    cocaine = {
+        name = 'cocaine',
+        label = 'cocaine',
+        weight = 20,
+        type = 'item',
+        image = 'cocaine.png',
+        unique = false,
+        useable = true,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Small bag of cocaine'
+        },
+
+    joint = {
+        name = 'joint',
+        label = 'joint',
+        weight = 10,
+        type = 'item',
+        image = 'joint.png',
+        unique = false,
+        useable = true,
+        shouldClose = true,
+        combinable = nil,
+        description = 'joint'
+    },
+
+    weed_processing_table = {
+        name = 'weed_processing_table',
+        label = 'Weed processing table',
+        weight = 1000,
+        type = 'item',
+        image = 'weed_processing_table.png',
+        unique = false,
+        useable = true,
+        shouldClose = true,
+        combinable = nil,
+        description = 'Process some weed'
+    },
+
+    cocaine_processing_table = {
+        name = 'cocaine_processing_table',
+        label = 'cocaine processing table',
+        weight = 1000,
+        type = 'item',
+        image = 'cocaine_processing_table.png',
+        unique = false,
+        useable = true,
+        shouldClose = true,
+        combinable = nil,
+        description = 'Process some cocaine'
+    },
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```lua
+    ["watering_can"] = {
+      label = "Watering can",
+      weight = 500,
+      stack = false,
+      close = false,
+      description = "Simple watering can",
+      client = {
+          image = "watering_can.png",
+      }
+  },
+
+  ["fertilizer"] = {
+      label = "Fertilizer",
+      weight = 500,
+      stack = false,
+      close = false,
+      description = "Fertilizer",
+      client = {
+          image = "fertilizer.png",
+      }
+  },
+
+  ["advanced_fertilizer"] = {
+      label = "Advanced fertilizer",
+      weight = 500,
+      stack = false,
+      close = false,
+      description = "Fertilizer with the litte extra",
+      client = {
+          image = "advanced_fertilizer.png",
+      }
+  },
+
+  ["liquid_fertilizer"] = {
+      label = "Liquid Fertilizer",
+      weight = 200,
+      stack = false,
+      close = false,
+      description = "Basicly Water with nutrations",
+      client = {
+          image = "liquid_fertilizer.png",
+      }
+  },
+
+  ["weed_lemonhaze_seed"] = {
+      label = "Weed Lemonhaze Seed",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Weed Lemonhaze Seed",
+      client = {
+          image = "weed_lemonhaze_seed.png",
+      }
+  },
+
+  ["weed_lemonhaze"] = {
+      label = "Weed Lemonhaze",
+      weight = 20,
+      stack = true,
+      close = false,
+      description = "Weed Lemonhaze",
+      client = {
+          image = "weed_lemonhaze.png",
+      }
+  },
+
+  ["coca_seed"] = {
+      label = "Coca Seed",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Coca Seed",
+      client = {
+          image = "coca_seed.png",
+      }
+  },
+
+  ["coca"] = {
+      label = "Coca",
+      weight = 20,
+      stack = true,
+      close = false,
+      description = "Coca",
+      client = {
+          image = "coca.png",
+      }
+  },
+
+  ["paper"] = {
+      label = "Paper",
+      weight = 50,
+      stack = true,
+      close = false,
+      description = "Paper",
+      client = {
+          image = "paper.png",
+      }
+  },
+
+  ["nitrous"] = {
+      label = "Nitrous",
+      weight = 500,
+      stack = false,
+      close = false,
+      description = "Nitrous",
+      client = {
+          image = "nitrous.png",
+      }
+  },
+
+  ["cocaine"] = {
+      label = "Cocaine",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Small bag of cocaine",
+      client = {
+          image = "cocaine.png",
+      }
+  },
+
+  ["joint"] = {
+      label = "Joint",
+      weight = 10,
+      stack = true,
+      close = true,
+      description = "Joint",
+      client = {
+          image = "joint.png",
+      }
+  },
+
+  ["weed_processing_table"] = {
+      label = "Weed Processing Table",
+      weight = 1000,
+      stack = false,
+      close = true,
+      description = "Process some weed",
+      client = {
+          image = "weed_processing_table.png",
+      }
+  },
+
+  ["cocaine_processing_table"] = {
+      label = "Cocaine Processing Table",
+      weight = 1000,
+      stack = false,
+      close = true,
+      description = "Process some cocaine",
+      client = {
+          image = "cocaine_processing_table.png",
+      }
+  }
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```lua
+  -- First we will start the Database
+  ensure oxmysql
+
+  -- Then we will start the cores, never below
+  ensure es_extended or qb-core
+
+  -- Your inventory system, always on top
+  ensure [inventory]
+
+  Then we start all the dependencies
+  ensure [dependencies]
+
+  -- Run it-drugs here along with its dependencies
+  ensure [it-drugs] 
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```lua
+  -- First we will start the Database
+  ensure oxmysql
+
+  -- Then we will start the cores, never below
+  ensure es_extended or qb-core
+
+  -- Your inventory system, always on top
+  ensure [inventory]
+
+  Then we start all the dependencies
+  ensure [dependencies]
+
+  -- Run it-drugs here along with its dependencies
+  ensure [it-drugs] 
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```lua
+  -- First we will start the Database
+  ensure oxmysql
+
+  -- Then we will start the cores, never below
+  ensure es_extended or qb-core
+
+  -- Your inventory system, always on top
+  ensure [inventory]
+
+  Then we start all the dependencies
+  ensure [dependencies]
+
+  -- Run it-drugs here along with its dependencies
+  ensure [it-drugs] 
+  ```
+  </Tabs.Tab>
+</Tabs>
+
+## Use Webhooks
+You want to log the different actions of the script on your discord server? Then take a look at this.
+<Cards>
+  <Card icon={<IconBrandDiscord />} title="Setup Webhook" href="https://github.com/it-scripts/it-drugs" />
+</Cards>
+
+## Basic asset configuration
+<Callout type="info">
+  We do not recommend editing frameworks unnecessarily, since almost all assets depend exclusively on your framework and exports on the name of your framework. 
+  Otherwise and if you edited your framework, read these steps carefully.
+</Callout>
+
+Please expand each part to see information about the configuration of the asset, this way you will understand the general operation of the asset on the framework and editable files side.
+
+<AccordionGroup>
+  <Accordion title="Basic framework configuration">
+    The asset will work automatically if your framework is called es_extended or qb-core, it will automatically detect if any of them are started.
+  </Accordion>
+
+  <Accordion title="Advanced framework configuration">
+   If your framework is completely modified, both in events and name, you should access the bridge folder to adapt the native events of your framework to the codes you have created. 
+   If this step doesn't work, we ask that you ask your framework modifier or trusted developer for help.
+  </Accordion>
+
+  <Accordion title="Edit the Script">
+    Fell free to edit the complete. If you made some changes and think others can use them, feel free to open a pull request on GitHub, and we maybe adapt your changes to the script.
+  </Accordion>
+</AccordionGroup>
