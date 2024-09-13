@@ -11,19 +11,19 @@ var TypeToEmoji = {
 };
 var classes = {
   default: cn(
-    "border border-orange-100 bg-orange-50 text-orange-800 dark:border-orange-400/20 dark:bg-orange-400/20 dark:text-orange-300"
+    "border border-orange-100 bg-orange-50 text-orange-800 dark:border-0 dark:bg-orange-400/20 dark:text-orange-300"
   ),
   success: cn(
-    "border border-green-50 bg-green-50 text-green-900 dark:border-green-900/30 dark:bg-green-900/30 dark:text-green-200"
+    "border border-green-50 bg-green-50 text-green-900 dark:border-0 dark:bg-green-900/30 dark:text-green-200"
   ),
   error: cn(
-    "border border-red-100 bg-red-100 text-red-900 dark:border-red-900/30 dark:bg-red-900/30 dark:text-red-200"
+    "border border-red-100 bg-red-100 text-red-900 dark:border-0 dark:bg-red-900/30 dark:text-red-200"
   ),
   info: cn(
-    "border border-blue-100 bg-blue-100 text-blue-900 dark:border-blue-900/30 dark:bg-blue-900/30 dark:text-blue-200"
+    "border border-blue-100 bg-blue-100 text-blue-900 dark:border-0 dark:bg-blue-900/30 dark:text-blue-200"
   ),
   warning: cn(
-    "border border-yellow-50 bg-yellow-50 text-yellow-900 dark:border-yellow-700/30 dark:bg-yellow-700/30 dark:text-yellow-200"
+    "border border-yellow-50 bg-yellow-50 text-yellow-900 dark:border-0 dark:bg-yellow-700/30 dark:text-yellow-200"
   )
 };
 function Callout({
