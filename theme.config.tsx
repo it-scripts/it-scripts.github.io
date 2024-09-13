@@ -17,6 +17,7 @@ function useHead() {
       <meta name="og:title" content={title} />
       <meta name="og:description" content={description} />
       <meta name="og:url" content={url} />
+      <meta property="og:image" content="https://i.imgur.com/RMGXDiN.png" />
     </>
   );
 }
