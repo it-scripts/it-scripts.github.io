@@ -1,0 +1,175 @@
+import { Callout } from '../../../components/Callout'
+import Accordion from '../../../components/Accordion'
+import AccordionGroup from '../../../components/AccordionGroup'
+
+# 🌱・Plants
+<Callout type="warning">
+  All growth related configurations have significant impacts on the plant growth system. 
+  Making any changes to the growth system requires thorough testing and debugging. 
+  We strongly recommend any changes are made carefully and methodically as any changes can have unintended consequences.
+</Callout>
+Now we can look at the configuration of the individual plants.
+
+## Allowed Grounds
+### Config.OnlyAllowedGrounds
+
+Config.OnlyAllowedGrounds is used to set whether a plant may only be planted on permitted grounds. 
+If Config.OnlyAllowedGrounds is set to true, the player can only plant on grounds set in Config.AllowedGrounds.
+
+### Config.AllowedGrounds
+A list of ground hashes, if a desired ground is not included, the ground hash can be displayed when planting if Config.Debug is true, this can then simply be added to the list.
+
+## Decay
+The decay settings can be used to set how many percent of water or fertilizer a plant should lose per minute.
+
+## Threshold
+The threshold value is the percentage value at which a plant begins to lose life. 
+As soon as the values of the plant are below Config.FertilizerThreshold or Config.WaterThreshold, the plant starts to lose life.
+
+The rate at which the plant should lose life can be set with Config.HealthBaseDecay. 
+The first value is the minimum and the second value is the maximum. 
+A value between these two values is determined every minute. The plant loses this value of life.
+
+## Config.Items
+```lua
+['liquid_fertilizer'] = {
+    water = 15,
+    fertilizer = 15,
+    itemBack = nil,
+},
+```
+You can always set 3 values for each item.\
+`water` this value determines the percentage of water this item adds to the plant. \
+`fertilizer` this value determines the percentage of fertilizer this item adds to the plant. \
+`itemBack` here you can specify another item that the player should get back after using the item.
+
+## Config.PlantTypes
+Here you can set the items that can be used to fertilize and/or water the plant.
+
+```lua
+["plant1"] = {
+    [1] = {"bkr_prop_weed_01_small_01a", -0.5},
+    [2] = {"bkr_prop_weed_med_01a", -0.5},
+    [3] = {"bkr_prop_weed_lrg_01a", -0.5},
+},
+```
+```lua
+["plant1"]
+```
+This is the unique name of the plant type. The name must not contain any special characters or spaces. 
+
+This will be used later to give a plant a type.
+
+---
+
+```lua
+[1] = {"bkr_prop_weed_01_small_01a", -0.5},
+[2] = {"bkr_prop_weed_med_01a", -0.5},
+[3] = {"bkr_prop_weed_lrg_01a", -0.5},
+```
+Each plant type consists of three sizes. 
+A separate prop can be set for each size. 
+A value can also be added for each prop. 
+This value is then subtracted from or added to the z-coordinate of the plant.
+
+```lua
+[stage] = {"prop", z-value},
+```
+
+## Config.Plants
+```lua
+['weed_lemonhaze_seed'] = {
+    label = 'Lemon Haze', -- Label for the plant
+    plantType = 'plant1', -- Choose plant types from (plant1, plant2, small_plant)
+    growthTime = false, -- Cutsom growth time in minutes false if you want to use the global growth time
+    onlyZone = false, -- Set to zone id if you want to plant this seed only in a specific zone 
+    zones = {'weed_zone_one', 'weed_zone_two'}, -- Zones where the seed can be planted
+    products = { -- Item the plant is going to produce when harvested with the max amount
+        ['weed_lemonhaze'] = {min = 1, max = 4},  
+        --['other_item'] = {min = 1, max = 2}
+    },
+    seed = {
+        chance = 50, -- Percent of getting back the seed
+        min = 1, -- Min amount of seeds
+        max = 2 -- Max amount of seeds
+    },
+    time = 3000, -- Time it takes to plant/harvest in miliseconds
+},
+```
+```lua
+['weed_lemonhaze_seed']
+```
+We start with the plant id, this specifies the name of the plant, the name is only relevant for the script.
+The plant id must not contain any special characters or spaces and must be unique.
+
+---
+
+```lua
+growthTime = 45
+```
+Here you can specify a custom growthtime for the plant, which overwrites the global growthtime and must be specified in minutes.
+
+---
+
+```lua
+label = 'Lemon Haze
+```
+The label of the plant, this is used to display the name of the plant in all menus.
+
+---
+
+```lua
+plantType = 'plant1'
+```
+The plant type is defined here; you can choose from any of the types defined in `Config.PlantTypes`.
+
+---
+
+```lua
+products = {
+    ['weed_lemonhaze'] = {min = 1, max = 4},
+    --['other_item'] = {min = 1, max = 2}
+},
+```
+
+---
+
+```lua
+seed = {
+    chance = 50, -- Percent of getting back the seed
+    min = 1, -- Min amount of seeds
+    max = 2 -- Max amount of seeds
+},
+```
+
+---
+
+```lua
+time = 3000 -- Time it takes to plant/harvest in miliseconds
+```
+
+---
+
+<AccordionGroup>
+  <Accordion title="Plant configuration template">
+    ```lua copy
+    ['weed_lemonhaze_seed'] = {
+        label = 'Lemon Haze', -- Label for the plant
+        plantType = 'plant1', -- Choose plant types from (plant1, plant2, small_plant)
+        growthTime = false, -- Cutsom growth time in minutes false if you want to use the global growth time
+        onlyZone = false, -- Set to zone id if you want to plant this seed only in a specific zone 
+        zones = {'weed_zone_one', 'weed_zone_two'}, -- Zones where the seed can be planted
+        products = { -- Item the plant is going to produce when harvested with the max amount
+            ['weed_lemonhaze'] = {min = 1, max = 4},  
+            --['other_item'] = {min = 1, max = 2}
+        },
+        seed = {
+            chance = 50, -- Percent of getting back the seed
+            min = 1, -- Min amount of seeds
+            max = 2 -- Max amount of seeds
+        },
+        time = 3000, -- Time it takes to plant/harvest in miliseconds
+    },
+    ```
+  </Accordion>
+</AccordionGroup>

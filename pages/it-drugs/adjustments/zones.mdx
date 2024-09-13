@@ -1,0 +1,138 @@
+import { Callout } from '../../../components/Callout'
+import Accordion from '../../../components/Accordion'
+import AccordionGroup from '../../../components/AccordionGroup'
+
+# 🗺️・Zones
+
+<Callout type="warning">
+  All growth related configurations have significant impacts on the plant growth system. 
+  Making any changes to the growth system requires thorough testing and debugging. 
+  We strongly recommend any changes are made carefully and methodically as any changes can have unintended consequences.
+</Callout>
+
+First, let's take a look at zone management. 
+Here, it is possible to create zones that can have an effect on the growth speed of certain plants.
+
+## Config.GlobalGrowTime
+This variable defines the growth rate in minutes for the plants and is taken as the base value for all future modifications.
+
+## Config.OnlyZones
+<Callout type="warning">
+  **Deprecated:** From version **1.3.0** you can make this setting for each plant individually
+</Callout>
+
+To use the different zone settings, this variable must be set to true. 
+As long as it is set to false, any modification in the zones will not be used.
+
+## Config.Zones
+The individual zones can be created and edited here. 
+We will now take a closer look at one zone and explain what the individual values mean and what they change.
+
+```lua
+['weed_zone_one'] = { -- Zone id (Musst be unique)
+    points = {
+        vec3(2031.0, 4853.0, 43.0),
+        vec3(2007.0, 4877.0, 43.0),
+        vec3(1981.0, 4903.0, 43.0),
+        vec3(2006.0, 4929.0, 43.0),
+        vec3(2032.0, 4903.0, 43.0),
+        vec3(2057.0, 4878.0, 43.0),
+    },
+    thickness = 4.0,
+    growMultiplier = 2, -- GlobalGrowTime / growMultiplier = Time in minutes for a plant to grow in this zone
+    
+    blip = {
+        display = true, -- Display blip on map
+        sprite = 469, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+        displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+        displayText = 'Weed Zone',
+    },
+},
+```
+
+---
+
+```lua
+['weed_zone_one']
+```
+We start with the zone id, this specifies the name of the zone, the name is only relevant for the script. 
+The zone id must not contain any special characters or spaces and must be unique.
+
+---
+
+```lua
+points = {
+    vec3(2031.0, 4853.0, 43.0),
+    vec3(2007.0, 4877.0, 43.0),
+    vec3(1981.0, 4903.0, 43.0),
+    vec3(2006.0, 4929.0, 43.0),
+    vec3(2032.0, 4903.0, 43.0),
+    vec3(2057.0, 4878.0, 43.0),
+},
+thickness = 4.0,
+```
+<Callout type="warning">
+**Make sure that all z coordinates (laste number) are the same, otherwise the zone will not be created.**
+</Callout>
+
+The points define the area of the zone. 
+A straight line is drawn between two consecutive `vec3() or vec()` to define the edge of the zone. 
+A line is also automatically drawn between the last and `first vec3()`.
+
+The thickness can be left at 4 if the zone is created manually. 
+However, since the script now uses ox_lib for the zones, this can also be created more easily. 
+You can find more information here:
+
+As soon as a player plants a plant in such a zone, it is affected by the zone settings.
+
+---
+
+```lua
+growMultiplier = 2,
+```
+The time it takes a plant to grow is divided by this value to calculate the new time. 
+So with a 2, the growth is twice as fast as normal.
+
+---
+
+```lua
+blip = {
+    display = true, -- If true blip will be displayed
+    sprite = 469, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+    displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+    displayText = 'Weed Zone', -- Name that will displayed on the map
+},
+```
+The blip fie zone can be set here. 
+The blip is always displayed in the middle of the zone.
+
+---
+
+<AccordionGroup>
+  <Accordion title="Zone configuration template">
+    ```lua copy
+      ['uniqe_zone_name'] = { -- Zone id (No Spaces)
+        coords = {
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            -- You can add as many vector3 as you want
+        },
+        thickness = 4.0,
+        growMultiplier = 2, -- GlobalGrowTime / growMultiplier = Time in minutes for a plant to grow in this zone
+        
+        blip = {
+            display = true, -- Display blip on map
+            sprite = 469, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+            displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+            displayText = 'Weed Zone',
+        },
+        exclusive = {'seed_one_name', 'seed_two_name'} -- You can add as many seeds as you want
+    },
+    ```
+  </Accordion>
+</AccordionGroup>
+
+
+

@@ -1,0 +1,158 @@
+import Accordion from '../../../components/Accordion'
+import AccordionGroup from '../../../components/AccordionGroup'
+
+# 👨‍⚕️・Dealers
+The dealer was added to it-drugs with version **v1.2.4** and could sell items, with version **v1.3.0** the dealer also got the function to buy items from the player.
+
+To be able to use this feature, `Config.EnableDealers` must be set to **true** in the Config!
+
+## Config.DrugDealers
+To be able to use this feature, Config.EnableDealers must be set to true in the Config!
+
+```lua
+['seed_dealer'] = { -- Dealer id (Musst be unique)
+    label = 'Seed Dealer', -- Dealer name
+    locations = { -- Dealer will spawn at one of these locations
+        vector4(-462.8489, 1101.5592, 326.6819, 166.9773),
+        vector4(-49.4244, 1903.6714, 194.3613, 95.7213),
+        vector4(2414.2463, 5003.8462, 45.6655, 40.8932),
+    },
+    ped = 's_m_y_dealer_01', -- Ped model
+    blip = {
+        display = false, -- Display blip on map
+        sprite = 140, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+        displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+        displayText = 'Seed Dealer',
+    },
+    items = {
+        ['buying'] = { -- Items the dealer buys from you
+            ['weed_lemonhaze'] = {min = 100, max = 200, moneyType = 'black_money'}, -- min/max price
+        },
+        ['selling'] = { -- Items the dealer sells to you
+            ['weed_lemonhaze_seed'] = {min = 100, max = 200, moneyType = 'black_money'}, -- min/max price
+            ['coca_seed'] = {min = 100, max = 300, moneyType = 'black_money'},
+        },
+    },
+},
+```
+
+```lua
+['seed_dealer']
+```
+We start with the dealer id, this specifies the name of the dealer, the name is only relevant for the script.
+The dealer id must not contain any special characters or spaces and must be unique.
+
+---
+
+```lua
+label = 'Seed Dealer', -- Dealer name
+```
+The label is the name of the dealer and is used when the player addresses the dealer or if blips are activated for the dealer, the label is also used for the blip.
+
+---
+
+```lua
+locations = { -- Dealer will spawn at one of these locations
+    --           x          y          z     heading/w
+    vector4(-462.8489, 1101.5592, 326.6819, 166.9773),
+    vector4(-49.4244, 1903.6714, 194.3613, 95.7213),
+    vector4(2414.2463, 5003.8462, 45.6655, 40.8932),
+},
+```
+A list of `vector4()` coordinates can be created here. 
+Each time the script is restarted, the dealer will spawn at a random location defined here. 
+If the dealer should only spawn at one location at a time, only one `vector4()` coordinate can be specified here.
+
+---
+
+```lua
+ped = 's_m_y_dealer_01', -- Ped model
+```
+The ped is the model that is used when the dealer ped is spawned. Any of these Peds can be used:
+
+---
+
+```lua
+blip = {
+    display = false, -- Display blip on map
+    sprite = 140, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+    displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+    displayText = 'Seed Dealer',
+},
+```
+The blip for the dealer can be set here. The blip is only displayed if `display = true`.
+
+---
+
+```lua
+items = {
+    ['buying'] = { -- Items the dealer buys from you
+        ['weed_lemonhaze'] = {min = 100, max = 200, moneyType = 'black_money'}, -- min/max price
+    },
+    ['selling'] = { -- Items the dealer sells to you
+        ['weed_lemonhaze_seed'] = {min = 100, max = 200, moneyType = 'black_money'}, -- min/max price
+        ['coca_seed'] = {min = 100, max = 300, moneyType = 'black_money'},
+    },
+},
+```
+Here you can set which items the dealer sells and buys. A min and max price can be set for each item. Each time the script is restarted, a new random price is set for the item.
+
+<AccordionGroup>
+  <Accordion title="Available Money Types">
+    - cash (Money in the players inventory)
+    - bank (Money in the players bank accout)
+    - black_money (Black Money)
+
+    **Please keep in mind `black_money` is no default account on qb-core!**
+
+    ```lua
+    ['cash'] = {
+        ['qbcore'] = 'cash',
+        ['esx'] = 'money',
+        ['ND_Core'] = 'cash'
+    },
+    ['bank'] = {
+        ['qbcore'] = 'bank',
+        ['esx'] = 'bank',
+        ['ND_Core'] = 'bank'
+    },
+    ['black_money'] = {
+        ['qbcore'] = 'black_money',
+        ['esx'] = 'black_money',
+        ['ND_Core'] = nil -- Will be added soon
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<AccordionGroup>
+  <Accordion title="Dealer configuration template">
+    ```lua copy
+    ['uniqe_dealer_id'] = { -- Dealer id (Musst be unique)
+        label = 'Dealer Name', -- Dealer name
+        locations = { -- Dealer will spawn at one of these locations
+            vector4(coordinate x value, coordinate y value, coordinate z value, coordinate w value),
+            vector4(coordinate x value, coordinate y value, coordinate z value, coordinate w value),
+            vector4(coordinate x value, coordinate y value, coordinate z value, coordinate w value),
+        },
+        ped = 's_m_y_dealer_01', -- Ped model
+        blip = {
+            display = true, -- Display blip on map
+            sprite = 140, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+            displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+        },
+        items = {
+            ['buying'] = { -- Items the dealer buys from you
+                ['weed_lemonhaze'] = {min = 100, max = 200}, -- min/max price
+            },
+            ['selling'] = { -- Items the dealer sells to you
+                ['weed_lemonhaze_seed'] = {min = 100, max = 200}, -- min/max price
+                ['coca_seed'] = {min = 100, max = 300},
+            },
+        },
+    },
+    ```
+  </Accordion>
+</AccordionGroup>
