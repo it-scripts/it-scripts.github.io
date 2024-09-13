@@ -13,11 +13,21 @@ function useHead() {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/x-icon" href="/it-logo.ico" />
       <meta httpEquiv="Content-Language" content="en" />
+
+      <meta name="title" content={title} />
       <meta name="description" content={description} />
-      <meta name="og:title" content={title} />
-      <meta name="og:description" content={description} />
-      <meta name="og:url" content={url} />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={url} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
       <meta property="og:image" content="https://i.imgur.com/RMGXDiN.png" />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={url} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:image" content="https://i.imgur.com/RMGXDiN.png" />
     </>
   );
 }
@@ -30,7 +40,7 @@ function useNextSeoProps() {
   const title = /[a-z]/.test(rawTitle) && /[A-Z]/.test(rawTitle) ? rawTitle : "%s";
 
   return {
-    titleTemplate: `${title} - ${
+    titleTemplate: `${title} | ${
       rawTitle === category ? "Documentation" : category.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())
     }`,
   };
