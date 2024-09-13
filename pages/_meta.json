@@ -1,5 +1,10 @@
 {
-    "index": "it-scripts Documentation",  
+    "index": {
+        "title": "it-scripts Documentation",
+        "theme": {
+            "footer": false
+        }
+    },    
     "--": {
         "type": "separator",
         "title": "General Information"
