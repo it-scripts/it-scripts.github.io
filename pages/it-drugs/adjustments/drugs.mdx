@@ -25,9 +25,28 @@ With the script, it is also possible to create your own consumable drugs directl
     cooldown = 360, -- Cooldown in seconds until you can use this drug again
 },
 ```
-
 <Callout type="info">
 The cooldown is added to the normal effect time of the drug, in this case the cooldown is 80 + 360.
+</Callout>
+
+<Callout type="warning">
+If you use the ox_inventory, please use the following template to add the drugs to your items.lua:
+```lua
+["item_name"] = {
+		label = "Item Label",
+		weight = 20,
+		stack = true,
+		close = true,
+		description = "Item Description",
+		server = {
+			export = "it-drugs.item_name"
+		},
+		client = {
+			image = "item_name.png",
+		}
+	},
+```
+**Each `item_name` must be replaced with the actual item name**
 </Callout>
 
 <AccordionGroup>

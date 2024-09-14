@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `drug_processing`;
 </Callout>
 Here you will find a series of selected items in different extensions for different inventories, select the option that suits your server, remember to check if your inventory works with this script!
 
-<Tabs items={["esx_inventory", "qb-inventory", "ox_inventory", "m-inventory", "inventory"]}>
+<Tabs items={["esx_inventory", "qb-inventory", "ox_inventory", "codem-inventory", "origen_inventory"]}>
   <Tabs.Tab>
   ```sql copy
     INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
@@ -454,6 +454,9 @@ Here you will find a series of selected items in different extensions for differ
       stack = true,
       close = true,
       description = "Small bag of cocaine",
+      server = {
+			  export = "it-drugs.cocaine"
+		  },
       client = {
           image = "cocaine.png",
       }
@@ -465,6 +468,9 @@ Here you will find a series of selected items in different extensions for differ
       stack = true,
       close = true,
       description = "Joint",
+      server = {
+			  export = "it-drugs.joint"
+		  },
       client = {
           image = "joint.png",
       }
@@ -494,58 +500,13 @@ Here you will find a series of selected items in different extensions for differ
   ```
   </Tabs.Tab>
   <Tabs.Tab>
-  ```lua
-  -- First we will start the Database
-  ensure oxmysql
-
-  -- Then we will start the cores, never below
-  ensure es_extended or qb-core
-
-  -- Your inventory system, always on top
-  ensure [inventory]
-
-  Then we start all the dependencies
-  ensure [dependencies]
-
-  -- Run it-drugs here along with its dependencies
-  ensure [it-drugs] 
-  ```
+    Soon...
   </Tabs.Tab>
   <Tabs.Tab>
-  ```lua
-  -- First we will start the Database
-  ensure oxmysql
-
-  -- Then we will start the cores, never below
-  ensure es_extended or qb-core
-
-  -- Your inventory system, always on top
-  ensure [inventory]
-
-  Then we start all the dependencies
-  ensure [dependencies]
-
-  -- Run it-drugs here along with its dependencies
-  ensure [it-drugs] 
-  ```
+    Soon...
   </Tabs.Tab>
   <Tabs.Tab>
-  ```lua
-  -- First we will start the Database
-  ensure oxmysql
-
-  -- Then we will start the cores, never below
-  ensure es_extended or qb-core
-
-  -- Your inventory system, always on top
-  ensure [inventory]
-
-  Then we start all the dependencies
-  ensure [dependencies]
-
-  -- Run it-drugs here along with its dependencies
-  ensure [it-drugs] 
-  ```
+    Soon...
   </Tabs.Tab>
 </Tabs>
 
