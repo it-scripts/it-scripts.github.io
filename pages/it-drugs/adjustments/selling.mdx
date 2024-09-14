@@ -1,0 +1,120 @@
+---
+title: it-drugs - Selling
+description: With the update v1.1.0 it is now also possible to sell drugs to NPCs in certain zones with the script.
+---
+
+import {Tabs} from 'nextra/components'
+import {Callout} from '@components/Callout'
+import ExternLink from '@components/ExternLink'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+
+# 💵・Selling
+With the update v1.1.0 it is now also possible to sell drugs to NPCs in certain zones with the script.
+
+To be able to use this feature, `Config.EnableSelling` must be set to **true** in the Config!
+
+## Config.SellSettings
+Here you will find the most important settings for selling. These settings apply to all zones.
+
+## Config.SellZones
+The individual zones can be created and edited here. We will now take a closer look at one zone and explain what the individual values mean and what they change.
+
+```lua
+['groove'] = {
+    points = {
+        vec3(-154.0, -1778.0, 30.0),
+        vec3(48.0, -1690.0, 30.0),
+        vec3(250.0, -1860.0, 30.0),
+        vec3(142.0, -1993.0, 30.0),
+        vec3(130.0, -2029.0, 30.0),
+    },
+    thickness = 27,
+    drugs = {
+        { item = 'cocaine', price = math.random(100, 200), moneyType = 'cash'},
+        { item = 'joint', price = math.random(50, 100) = moneyType = 'bank'},
+        { item = 'weed_lemonhaze', price = math.random(50, 100), = 'black_money'}
+    }
+},
+```
+
+---
+
+```lua
+['groove']
+```
+We start with the zone id, this specifies the name of the zone, the name is only relevant for the script. The zone id must not contain any special characters or spaces and must be unique
+
+---
+
+```lua
+points = {
+    vec3(-154.0, -1778.0, 30.0),
+    vec3(48.0, -1690.0, 30.0),
+    vec3(250.0, -1860.0, 30.0),
+    vec3(142.0, -1993.0, 30.0),
+    vec3(130.0, -2029.0, 30.0),
+},
+thickness = 27,
+```
+
+<Callout type="warning">
+**Make sure that all z coordinates (laste number) are the same, otherwise the zone will not be created.**
+</Callout>
+
+The points define the area of the zone. A straight line is drawn between two consecutive `vec3()` or `vec()` to define the edge of the zone.
+A line is also automatically drawn between the last and first `vec3()`.
+
+The thickness can be left at 4 if the zone is created manually. 
+However, since the script now uses ox_lib for the zones, this can also be created more easily.
+You can find more information here:
+
+<ExternLink href="https://help.it-scripts.com/scripts/it-drugs/tipps-and-tricks/easy-zone-creation" />
+
+As soon as a player enters this zone he has the possibility to sell items to the NPCs.
+
+---
+
+```lua
+drugs = {
+    { item = 'cocaine', price = math.random(100, 200), moneyType = 'cash'},
+    { item = 'joint', price = math.random(50, 100) = moneyType = 'bank'},
+    { item = 'weed_lemonhaze', price = math.random(50, 100), = 'black_money'}
+}
+```
+
+Here you can specify which drugs can be sold in the zone. 
+Theoretically, an infinite number of items can be added. For many items it is recommended to set Config.asdasd to true.
+
+**Schemata for new items:**
+```lua copy
+{ item = 'item_name', price = math.random(min_price, max_price), moneyType = 'cash/bank/black_money'},
+```
+
+<AccordionGroup>
+  <Accordion title="Available Money Types">
+    - cash (Money in the players inventory)
+    - bank (Money in the players bank accout)
+    - black_money (Black Money)
+
+    **Please keep in mind `black_money` is no default account on qb-core!**
+
+    ```lua
+    ['cash'] = {
+        ['qbcore'] = 'cash',
+        ['esx'] = 'money',
+        ['ND_Core'] = 'cash'
+    },
+    ['bank'] = {
+        ['qbcore'] = 'bank',
+        ['esx'] = 'bank',
+        ['ND_Core'] = 'bank'
+    },
+    ['black_money'] = {
+        ['qbcore'] = 'black_money',
+        ['esx'] = 'black_money',
+        ['ND_Core'] = nil -- Will be added soon
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
