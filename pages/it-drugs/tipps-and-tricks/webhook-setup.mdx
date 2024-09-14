@@ -1,0 +1,57 @@
+---
+title: it-drugs - Webhook Setup
+description: With the script, it is also possible to create your own consumable drugs directly.
+---
+
+import ExternLink from '@components/ExternLink'
+import { Callout } from '@components/Callout'
+import {IconBrandDiscord} from '@tabler/icons-react'
+
+# Webhook Setup
+With version `1.3.0` of it-drugs the creation of webhooks is changing. From now on the webhooks are set entirely in the file `server/sv_webhooks`.
+
+```lua
+local webhookSettings = {
+    ['active'] = false, -- Set to true to enable the webhook
+    ['name'] = 'it-drugs', -- Name for the webhook
+    ['avatar'] = 'https://i.imgur.com/KvZZn88.png', -- Avatar for the webhook
+    ['urls'] = {
+        ['plant'] = nil, --'', -- Webhook URL for plant actions
+        ['table'] = nil, --'', -- Webhook URL for table actions
+        ['sell'] = nil, --'', -- Webhook URL for sell actions
+        ['message'] = nil, --'', -- Webhook URL for messages
+    }
+}
+```
+
+It is now possible to use your own webhook links for the various individual actions of the user.
+
+If a valid webhook id is entered and the attribute active is set to true, a webhook message is sent for the corresponding category.
+
+```lua
+local webhookSettings = {
+    ['active'] = true, -- Set to true to enable the webhook
+    ['name'] = 'it-drugs', -- Name for the webhook
+    ['avatar'] = 'https://i.imgur.com/KvZZn88.png', -- Avatar for the webhook
+    ['urls'] = {
+        ['plant'] = 'https://discord.com/api/webhooks/**************/*************************', -- Webhook URL for plant actions
+        ['table'] = nil, --'', -- Webhook URL for table actions
+        ['sell'] = nil, --'', -- Webhook URL for sell actions
+        ['message'] = nil, --'', -- Webhook URL for messages
+    }
+}
+```
+In this example now the script only sends webhook messages when a user interacts with a plant.
+
+<Callout type="info">
+Please note that only messages with in the sell and message area will be sent immediately. 
+The messages for plants and tables are sent every minute all together to prevent Discord from rate limiting your Discord server
+</Callout>
+
+You don't know how to create Discord webhooks no problem check this article from Discord.
+
+<ExternLink 
+    href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks"
+    manualTitle="Intro to Webhooks"
+    icon = {IconBrandDiscord}
+/>
