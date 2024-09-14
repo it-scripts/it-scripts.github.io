@@ -1,0 +1,73 @@
+---
+title: it-drugs - Drugs
+description: With the script, it is also possible to create your own consumable drugs directly.
+---
+
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+import { Callout } from '@components/Callout'
+
+# 💊・Drugs
+With the script, it is also possible to create your own consumable drugs directly. For these to be active in the game, `Config.EnableDrugs` must be set to **true**.
+
+## Config.Drugs
+```lua
+['joint'] = { -- item that can be used in game
+    label = 'Joint',
+    animation = 'smoke', -- Animations: blunt, sniff, pill
+    time = 80, -- Time in seconds of the Effects
+    effects = { -- list of effects the drug have
+        'intenseEffect',
+        'healthRegen',
+        'moreStrength',
+        'drunkWalk'
+    },
+    cooldown = 360, -- Cooldown in seconds until you can use this drug again
+},
+```
+
+<Callout type="info">
+The cooldown is added to the normal effect time of the drug, in this case the cooldown is 80 + 360.
+</Callout>
+
+<AccordionGroup>
+  <Accordion title="All possible Drug Effects">
+    - runningSpeedIncrease
+    - infinateStamina
+    - moreStrength
+    - healthRegen
+    - foodRegen
+    - drunkWalk
+    - psycoWalk
+    - outOfBody
+    - cameraShake
+    - fogEffect
+    - confusionEffect
+    - whiteoutEffect
+    - intenseEffect
+    - focusEffect
+    - superJump
+    - swimming 
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<AccordionGroup>
+  <Accordion title="Drug configuration template">
+    ```lua copy
+    ['item_name'] = { -- item that can be used in game
+        label = 'Drug Label',
+        animation = 'smoke', -- Animations: blunt, sniff, pill
+        time = 80, -- Time in seconds of the Effects
+        effects = { -- list of effects the drug have
+            'intenseEffect',
+            'healthRegen',
+            'moreStrength',
+            'drunkWalk',
+        },
+        cooldown = 360, -- Cooldown in seconds until you can use this drug again
+    },
+    ```
+  </Accordion>
+</AccordionGroup>
