@@ -5,6 +5,7 @@ description: Now we can look at the configuration of the individual plants.
 
 
 import { Callout } from '@components/Callout'
+import ExternLink from '@components/ExternLink'
 import Accordion from '@components/Accordion'
 import AccordionGroup from '@components/AccordionGroup'
 
@@ -88,7 +89,7 @@ This value is then subtracted from or added to the z-coordinate of the plant.
     label = 'Lemon Haze', -- Label for the plant
     plantType = 'plant1', -- Choose plant types from (plant1, plant2, small_plant)
     growthTime = false, -- Cutsom growth time in minutes false if you want to use the global growth time
-    onlyZone = false, -- Set to zone id if you want to plant this seed only in a specific zone 
+    onlyZone = false, -- Set to true if you want to plant this seed only in specific zones
     zones = {'weed_zone_one', 'weed_zone_two'}, -- Zones where the seed can be planted
     products = { -- Item the plant is going to produce when harvested with the max amount
         ['weed_lemonhaze'] = {min = 1, max = 4},  
@@ -128,6 +129,17 @@ The label of the plant, this is used to display the name of the plant in all men
 plantType = 'plant1'
 ```
 The plant type is defined here; you can choose from any of the types defined in `Config.PlantTypes`.
+
+---
+
+```lua
+onlyZone = false, -- Set to true if you want to plant this seed only in specific zones
+zones = {'weed_zone_one', 'weed_zone_two'}, -- Zones where the seed can be planted
+```
+If `onlyZones` is **true**, the seed can only be planted in the specified `zones` in `zones`. The id of each previously created zone can be entered in the `zones` list
+<ExternLink 
+  href="https://docs.it-scripts.com/it-drugs/adjustments/zones"
+/>
 
 ---
 
