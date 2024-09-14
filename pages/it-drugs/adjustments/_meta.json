@@ -1,9 +1,38 @@
 {
-    "zones": "🗺️・Zones",
-    "plants": "🌱・Plants",
-    "processing-tables": "⚗️・Processing Tables",
-    "drugs": "💊・Drugs",
-    "dealers": "👨‍⚕️・Dealers",
-    "selling": "💵・Selling"
+  "zones": {
+    "title": "🗺️・Zones",
+    "theme": {
+      "footer": false
+    }
+  },
+  "plants": {
+    "title": "🌱・Plants",
+    "theme": {
+      "footer": false
+    }
+  },
+  "processing-tables": {
+    "title": "⚗️・Processing Tables",
+    "theme": {
+      "footer": false
+    }
+  },
+  "drugs": {
+    "title": "💊・Drugs",
+    "theme": {
+      "footer": false
+    }
+  },
+  "dealers": {
+    "title": "👨‍⚕️・Dealers",
+    "theme": {
+      "footer": false
+    }
+  },
+  "selling": {
+    "title": "💵・Selling",
+    "theme": {
+      "footer": false
+    }
   }
-  
+}
