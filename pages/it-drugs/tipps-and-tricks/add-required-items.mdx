@@ -1,0 +1,65 @@
+---
+title: it-drugs - Required Items
+description: A guide explaining how to add required items to a plant.
+---
+
+import { Callout } from '@components/Callout'
+
+# Add required items
+A desired feature is that items are required when an item is planted or harvested, this feature is now available with version <span style={{color: "green"}}>**v1.3.0**</span> but not active by default in the Config.lua. 
+To add the feature the following code must be added to each plant.
+
+```lua copy
+reqItems = { -- Items required to plant the seed
+    ["planting"] = {
+    },
+    ["harvesting"] = {
+    }
+},
+```
+In each of the 2 categories you can add as many items as you want, the schema you have to use is as follows:
+
+```lua copy
+['item_amount'] = {amount = number, remove = true or false},
+```
+
+**Example:**
+```lua
+['watering_can'] = {amount = 1, remove = true},
+```
+
+<Callout type="warning">
+Please remember to register all the items you list here in your inventory!
+</Callout>
+
+## Full example
+
+```lua
+['weed_lemonhaze_seed'] = {
+    label = 'Lemon Haze', -- Label for the plant
+    plantType = 'plant1', -- Choose plant types from (plant1, plant2, small_plant)
+    growthTime = 2, -- Cutsom growth time in minutes false if you want to use the global growth time
+    onlyZone = false, -- Set to zone id if you want to plant this seed only in a specific zone 
+    zones = {'weed_zone_one', 'weed_zone_two'}, -- Zones where the seed can be planted
+    products = { -- Item the plant is going to produce when harvested with the max amount
+        ['weed_lemonhaze'] = {min = 1, max = 4},  
+        --['other_item'] = {min = 1, max = 2}
+    },
+    seed = {
+        chance = 50, -- Percent of getting back the seed
+        min = 1, -- Min amount of seeds
+        max = 2 -- Max amount of seeds
+    },
+    time = 3000, -- Time it takes to plant/harvest in miliseconds
+    reqItems = { -- Items required to plant the seed
+        ["planting"] = {
+            ['watering_can'] = {amount = 1, remove = true},
+            ['shovel'] = {amount = 1, remove = false},
+        },
+        ["harvesting"] = {
+            ['watering_can'] = {amount = 1, remove = true},
+            ['shovel'] = {amount = 1, remove = false},
+        }
+    }
+},
+```
