@@ -1,0 +1,20 @@
+{
+    "add-required-items": {
+        "title": "Add Required Items",
+        "theme": {
+        "footer": false
+        }
+    },
+    "webhook-setup": {
+        "title": "Webhook Setup",
+        "theme": {
+        "footer": false
+        }
+    },
+    "easy-zone-creation": {
+        "title": "Easy Zone Creation",
+        "theme": {
+        "footer": false
+        }
+    }
+}

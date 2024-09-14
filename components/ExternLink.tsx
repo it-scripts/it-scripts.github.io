@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {IconChevronRight, Icon as TablerIcon} from '@tabler/icons-react'
+import { channel } from 'diagnostics_channel';
 
 interface ExternLinkProps {
   href: string;
@@ -12,6 +13,7 @@ interface LinkMetaData {
   description: string;
   icon: string;
 }
+
 
 const fetchMetaData = async (url: string): Promise<LinkMetaData> => {
   try {
