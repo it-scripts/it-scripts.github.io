@@ -1,11 +1,11 @@
 {
-    "installation": {
-      "title": "📥・Installation",
-      "theme": {
-        "footer": false
-      }
-    },
-    "adjustments": "⚙️・Adjustments",
-    "tipps-and-tricks": "😀・Tipps and Tricks"
-  }
+  "installation": {
+    "title": "📥・Installation",
+    "theme": {
+      "footer": false
+    }
+  },
+  "adjustments": "⚙️・Adjustments",
+  "tipps-and-tricks": "😀・Tipps and Tricks"
+}
   
