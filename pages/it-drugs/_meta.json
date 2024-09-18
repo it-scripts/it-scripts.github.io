@@ -6,6 +6,12 @@
     }
   },
   "adjustments": "⚙️・Adjustments",
-  "tipps-and-tricks": "😀・Tipps and Tricks"
+  "tipps-and-tricks": "😀・Tipps and Tricks",
+  "update": {
+    "title": "📡・Update",
+    "theme": {
+      "footer": false
+    }
+  }
 }
   

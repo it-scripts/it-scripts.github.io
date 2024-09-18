@@ -1,0 +1,58 @@
+---
+title: it-drugs - Update
+description: How to update the it-drugs scripts
+---
+
+import { Steps } from 'nextra/components'
+import ExternLink from '@components/ExternLink'
+import { Callout } from '@components/Callout'
+import { IconBrandGithub } from '@tabler/icons-react'
+
+## v.1.2.4 to 1.3.x
+
+<Callout type="info">
+If you have already added custom items to the script, it is worth making a backup of these and adapting them to the new version later.
+</Callout>
+
+<Steps>
+### Stop your server
+
+### Delete Files
+
+Delete all it-drugs files and inventory items from your server.
+
+### Execute SQL Statement
+```sql
+-- Delete the drug_plants table
+DROP TABLE IF EXISTS drug_plants;
+-- Delete the drug_processing table
+DROP TABLE IF EXISTS drug_processing;
+```
+
+### Follow the install guide
+<ExternLink href="https://docs.it-scripts.com/it-drugs/installation"></ExternLink>
+
+
+</Steps>
+
+## v1.3.x to 1.3.x
+<Steps>
+### Stop your server
+
+### Replace files
+
+Replace all files on your server except for config.lua with the new script files. If you have not edited the config.lua you can also replace this file
+
+### Check Config.lua changes
+<ExternLink href="https://github.com/it-scripts/it-drugs/compare/v1.3.0beta5...v1.3.0beta6" manualTitle="Github | Comparing changes" icon={<IconBrandGithub />} ></ExternLink>
+
+<Callout type="info">
+![Github Comparing changes](/github_comparing_changes.png)
+When comparing, please make sure that the two correct versions are selected: <br/>
+**Left:** Your version <br/>
+**Right:** The version you want to update to
+
+Then simply search with config.lua and adapt your config file to the latest one
+</Callout>
+
+</Steps>
