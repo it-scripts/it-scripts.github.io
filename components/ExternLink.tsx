@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {IconChevronRight, Icon as TablerIcon} from '@tabler/icons-react'
-import { channel } from 'diagnostics_channel';
+import { IconChevronRight, Icon as TablerIcon } from '@tabler/icons-react';
 
 interface ExternLinkProps {
   href: string;
@@ -14,7 +13,6 @@ interface LinkMetaData {
   icon: string;
 }
 
-
 const fetchMetaData = async (url: string): Promise<LinkMetaData> => {
   try {
     const response = await fetch(url);
@@ -26,14 +24,14 @@ const fetchMetaData = async (url: string): Promise<LinkMetaData> => {
     const doc = parser.parseFromString(text, 'text/html');
 
     const title = doc.querySelector('meta[property="og:title"]')?.getAttribute('content') ||
-                  doc.querySelector('title')?.textContent ||
-                  'No title';
+      doc.querySelector('title')?.textContent ||
+      'No title';
     const description = doc.querySelector('meta[property="og:description"]')?.getAttribute('content') ||
-                        doc.querySelector('meta[name="description"]')?.getAttribute('content') ||
-                        'No description';
+      doc.querySelector('meta[name="description"]')?.getAttribute('content') ||
+      'No description';
     const icon = doc.querySelector('link[rel="icon"]')?.getAttribute('href') ||
-                 doc.querySelector('link[rel="shortcut icon"]')?.getAttribute('href') ||
-                 'https://example.com/default-icon.png';
+      doc.querySelector('link[rel="shortcut icon"]')?.getAttribute('href') ||
+      'https://example.com/default-icon.png';
 
     return { title, description, icon: new URL(icon, url).href };
   } catch (error) {
@@ -45,7 +43,7 @@ const fetchMetaData = async (url: string): Promise<LinkMetaData> => {
     };
   }
 };
-  
+
 const ExternLink: React.FC<ExternLinkProps> = ({ href, icon, manualTitle }) => {
   const [metaData, setMetaData] = useState<LinkMetaData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -70,10 +68,18 @@ const ExternLink: React.FC<ExternLinkProps> = ({ href, icon, manualTitle }) => {
     return <div>Loading...</div>; // Display a loading state while fetching metadata
   }
 
+  // Funktion zur Kürzung der Beschreibung
+  const truncateDescription = (description: string, maxLength: number) => {
+    if (description.length <= maxLength) {
+      return description;
+    }
+    return description.substring(0, maxLength) + '...'; // Kürzen und '...' hinzufügen
+  };
+
   return (
     <a
       href={href}
-      className="w-full border border-gray-200 shadow-sm hover:shadow-md dark:border-neutral-700 dark:hover:border-neutral-600 transition-all duration-200 dark:bg-neutral-900 bg-white rounded-lg overflow-hidden flex flex-col justify-start relative"
+      className="w-full my-5 border border-gray-200 shadow-sm hover:shadow-md dark:border-neutral-700 dark:hover:border-neutral-600 transition-all duration-200 dark:bg-neutral-900 bg-white rounded-lg overflow-hidden flex flex-col justify-start relative"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -98,7 +104,7 @@ const ExternLink: React.FC<ExternLinkProps> = ({ href, icon, manualTitle }) => {
             {metaData?.title}
           </span>
           <span className="text-sm text-gray-500 dark:text-gray-300">
-            {metaData?.description}
+            {metaData?.description && truncateDescription(metaData.description, 100)} {/* Hier wird die Beschreibung gekürzt */}
           </span>
         </div>
         {/* Arrow Icon */}
