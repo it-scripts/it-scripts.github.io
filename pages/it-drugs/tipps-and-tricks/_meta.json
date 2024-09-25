@@ -5,6 +5,12 @@
         "footer": false
         }
     },
+    "add-custom-dispatch": {
+        "title": "Change Dispatch",
+        "theme": {
+        "footer": false
+        }
+    },
     "webhook-setup": {
         "title": "Webhook Setup",
         "theme": {

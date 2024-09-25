@@ -1,0 +1,71 @@
+---
+title: it-drugs - Change Dispatch System
+description: A guide explaining how to change the disptach System to it-drugs.
+---
+
+import { Tabs, Steps } from 'nextra/components'
+
+# Change Dispatch System
+
+<Tabs items = {["ps-disptach"]}>
+<Tabs.Tab>
+
+## Connect it-drugs with ps-dispatch
+
+<Steps>
+
+### Create new Alert
+Add this to the `alerts.lua` in the ps-dispatch resource:
+
+```lua copy
+local function itDrugsAlert()
+    local coords = GetEntityCoords(cache.ped)
+
+    local dispatchData = {
+        message = "The Message you want to display", -- Edit this!
+        codeName = 'itDrugsAlert',
+        code = 'Your Code', -- - Edit this!
+        icon = 'fas fa-joint',
+        priority = 2,
+        coords = coords,
+        street = GetStreetAndZone(coords),
+        gender = GetPlayerGender(),
+        jobs = { 'leo' } -- Add all jobs you want to notify
+    }
+
+    TriggerServerEvent('ps-dispatch:server:notify', dispatchData)
+end
+exports('itDrugsAlert', itDrugsAlert)
+```
+
+### Register Blip Data
+Add codeName in `config.lua` for the particular robbery to display the blip ["itDrugsAlert"] is the codename you passed with the TriggerServerEvent in step 1
+You can change every parameter to your liking
+```lua copy
+['itDrugsAlert'] = {
+    radius = 0,
+    sprite = 119,
+    color = 1,
+    scale = 1.5,
+    length = 2,
+    sound = 'Lose_1st',
+    sound2 = 'GTAO_FM_Events_Soundset',
+    offset = false,
+    flash = false
+},
+```
+
+### Edit SendPoliceAlert function
+Change the `SendPoliceAlert` function in it-drugs to following:
+```lua copy
+function SendPoliceAlert(coords)
+    -- Add You own police alert system here
+   exports['ps-dispatch']:itDrugsAlert()
+end
+```
+
+### Restart
+Restart ps-dispatch and it-drugs to make the changes work.
+</Steps>
+</Tabs.Tab>
+</Tabs>
