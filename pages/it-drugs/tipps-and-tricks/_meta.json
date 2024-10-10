@@ -1,6 +1,12 @@
 {
-    "add-required-items": {
-        "title": "Add Required Items",
+    "additional-plant-settings": {
+        "title": "Additional Plant Settings",
+        "theme": {
+        "footer": false
+        }
+    },
+    "additional-processing-settings": {
+        "title": "Additional Processing Settings",
         "theme": {
         "footer": false
         }

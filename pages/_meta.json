@@ -25,6 +25,11 @@
         "type": "separator",
         "title": "Scripts"
     },
-    "it-drugs": "🌱・it-drugs"
+    "it-drugs": {
+        "title": "🌱・it-drugs",
+        "theme": {
+            "footer": false
+        }
+    }
 }
   

@@ -1,0 +1,51 @@
+---
+title: it-drugs - Common Errors
+description: Common errors and their solutions
+---
+
+import { Callout } from '@components/Callout'
+import { Steps } from 'nextra/components'
+import ExternLink from '@components/ExternLink'
+
+# Common Errors
+Here you will find common errors and their solutions. If you have any further questions, please feel free to ask in the [Discord](https://discord.it-scripts.com).
+
+<Callout type="info">
+This page is still under construction.
+If you have any errors that are not listed here, please let us know in the [Discord](https://discord.it-scripts.com).
+</Callout>
+
+## General Errors
+
+```ansi
+[1m [31mattempt to index a nil value (global 'lib')[39m[22m
+```
+If you get this error you either don't have [ox_lib](https://github.com/overextended/ox_lib) installed on your server or you start it after the it-drugs script.
+Make sure to start the ox_lib script before the it-drugs script.
+
+## Database Errors
+
+
+## Animation Error
+
+```ansi
+[1m [31mattempt to index a nil value (field 'animation')
+```
+
+If you get this error that means you are using **1.2.4** of the script. 
+We would recommend updating to the latest version of the script. This will fix the error.
+<ExternLink href="https://docs.it-scripts.com/it-drugs/update#v124-to-13x"></ExternLink>
+
+However, if you want to fix it manually, you can do the following:
+
+<Steps>
+### Open the `config.lua` file.
+### Search for `Config.ProcessingTables`.
+### Add the following lines to every recipe in every processing tables:
+```lua
+animation = {
+    dict = 'anim@gangops@facility@servers@bodysearch@',
+    anim = 'player_search',
+},
+```
+</Steps>

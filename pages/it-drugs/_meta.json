@@ -12,6 +12,12 @@
     "theme": {
       "footer": false
     }
+  },
+  "common-errors": {
+    "title": "❓・Common Errors",
+    "theme": {
+      "footer": false
+    }
   }
 }
   
