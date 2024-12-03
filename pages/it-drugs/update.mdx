@@ -8,7 +8,7 @@ import ExternLink from '@components/ExternLink'
 import { Callout } from '@components/Callout'
 import { IconBrandGithub } from '@tabler/icons-react'
 
-## v.1.2.4 to 1.3.x
+## v.1.2.4 to v.1.3.x
 
 <Callout type="info">
 If you have already added custom items to the script, it is worth making a backup of these and adapting them to the new version later.
@@ -31,11 +31,9 @@ DROP TABLE IF EXISTS drug_processing;
 
 ### Follow the install guide
 <ExternLink href="https://docs.it-scripts.com/it-drugs/installation"></ExternLink>
-
-
 </Steps>
 
-## v1.3.x to 1.3.x
+## v1.3.betaX to 1.3.0
 <Steps>
 ### Stop your server
 
@@ -43,8 +41,14 @@ DROP TABLE IF EXISTS drug_processing;
 
 Replace all files on your server except for config.lua with the new script files. If you have not edited the config.lua you can also replace this file
 
+<Callout type="warning">
+Also make sure to reimport the items from the script to your inventory. You can find the items here:
+https://docs.it-scripts.com/it-drugs/installation#items-for-it-drugs
+</Callout>
+
+
 ### Check Config.lua changes
-<ExternLink href="https://github.com/it-scripts/it-drugs/compare/v1.3.0beta5...v1.3.0beta6" manualTitle="Github | Comparing changes" icon={<IconBrandGithub />} ></ExternLink>
+<ExternLink href="https://github.com/it-scripts/it-drugs/compare/v1.3.0beta7...v1.3.0" manualTitle="Github | Comparing changes" icon={<IconBrandGithub />} ></ExternLink>
 
 <Callout type="info">
 ![Github Comparing changes](/github_comparing_changes.png)
