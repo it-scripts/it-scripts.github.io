@@ -1,0 +1,67 @@
+---
+title: it-drugs - Plant Types
+description: A list of all default plant types that can be used in the script.
+---
+
+import { Callout } from '@components/Callout'
+
+### Plant Types
+<Callout type="warning">
+This list is for the new version of it-drugs (1.3.0) and may not work with older versions of the script.
+We would recommend updating to the latest version. [How to update](https://docs.it-scripts.com/it-drugs/update)
+</Callout>
+
+Here you can find a list of all default plant types that are available in the script. You can use these plant types to create your own plants in the script.
+If you want to use a plant type, you can simply copy the name and paste it into the config below `Config.PlantTypes` to the other plant types.
+
+<Callout type="success">
+Keep in mind that you can also create your own plant types. The script works with every prop that is available in the game.
+</Callout>
+
+
+#### Weed Lemon Haze
+```lua copy
+    ["plantLemon"] = {
+        [1] = {"an_weed_yellow_01_small_01b", -0.5}, -- Set to -0.5 to make the plant grow in the ground
+        [2] = {"an_weed_yellow_med_01b", -0.5},
+        [3] = {"an_weed_yellow_lrg_01b", -0.5},
+    },
+```
+
+#### Weed Og
+```lua copy
+    ["plantOg"] = {
+        [1] = {"bkr_prop_weed_01_small_01a", -0.5}, -- Set to -0.5 to make the plant grow in the ground
+        [2] = {"bkr_prop_weed_med_01a", -0.5},
+        [3] = {"bkr_prop_weed_lrg_01a", -0.5},
+    },
+```
+
+#### Weed Purple Haze
+```lua copy
+    ["plantPurple"] = {
+        [1] = {"an_weed_purple_01_small_01b", -0.5},
+        [2] = {"an_weed_purple_med_01b",-0.5},
+        [3] = {"an_weed_purple_lrg_01b", -0.5},
+    },
+```
+
+#### Weed White Widow
+```lua copy
+    ["plantWhite"] = {
+        [1] = {"an_weed_white_01_small_01b", -0.5},
+        [2] = {"an_weed_white_med_01b",-0.5},
+        [3] = {"an_weed_white_lrg_01b", -0.5},
+    },
+```
+
+#### Weed Blueberry
+```lua copy
+    ["plantBlue"] = {
+        [1] = {"an_weed_blue_01_small_01b", -0.5},
+        [2] = {"an_weed_blue_med_01b",-0.5},
+        [3] = {"an_weed_blue_lrg_01b", -0.5},
+    },
+```
+
+Thanks to [Turnpoint](https://github.com/Realturnpoint) for providing the plant types.

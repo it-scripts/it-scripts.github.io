@@ -1,4 +1,10 @@
 {
+    "plant_types": {
+        "title": "All Plant Types",
+        "theme": {
+        "footer": false
+        }
+    },
     "additional-plant-settings": {
         "title": "Additional Plant Settings",
         "theme": {
