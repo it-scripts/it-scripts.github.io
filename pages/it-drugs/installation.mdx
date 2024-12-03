@@ -130,40 +130,48 @@ DROP TABLE IF EXISTS `drug_processing`;
 </Callout>
 Here you will find a series of selected items in different extensions for different inventories, select the option that suits your server, remember to check if your inventory works with this script!
 
-<Tabs items={["esx_inventory", "qb-inventory", "ox_inventory", "codem-inventory", "origen_inventory"]}>
+<Tabs items={["es_extended", "qb-inventory", "ox_inventory", "qs-inventory", "codem-inventory", "origen_inventory"]}>
   <Tabs.Tab>
   ```sql copy
-    INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
-    ('watering_can', 'Watering Can', 500, 0, 1),
-    ('fertilizer', 'fertilizer', 500, 0, 1),
-    ('advanced_fertilizer', 'Advanced Fertilizer', 500, 0, 1),
-    ('liquid_fertilizer', 'Liquid Fertilizer', 200, 0, 1),
-    ('weed_lemonhaze_seed', 'Weed Lemonhaze Seed', 20, 0, 1),
-    ('weed_lemonhaze', 'Weed Lemonhaze', 20, 0, 1),
-    ('coca_seed', 'Coca Seed', 20, 0, 1),
-    ('coca', 'Coca', 20, 0, 1),
-    ('paper', 'Paper', 20, 0, 1),
-    ('nitrous', 'nitrous', 20, 0, 1),
-    ('cocaine', 'cocaine', 20, 0, 1),
-    ('joint', 'joint', 20, 0, 1),
-    ('weed_processing_table', 'weed_processing_table', 1000, 0, 1),
-    ('cocaine_processing_table', 'cocaine_processing_table', 1000, 0, 1)
-  ;
+      INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
+        ('watering_can', 'Watering Can', 500, 0, 1),
+        ('fertilizer', 'fertilizer', 500, 0, 1),
+        ('advanced_fertilizer', 'Advanced Fertilizer', 500, 0, 1),
+        ('liquid_fertilizer', 'Liquid Fertilizer', 200, 0, 1),
+        ('weed_lemonhaze_seed', 'Weed Lemonhaze Seed', 20, 0, 1),
+        ('weed_lemonhaze', 'Weed Lemonhaze', 20, 0, 1),
+        ('weed_og_seed', 'Weed OG Seed', 20, 0, 1),
+        ('weed_og', 'weed Og', 20, 0, 1),
+        ('weed_purple_haze_seed', 'Weed Purple Haze Seed', 20, 0, 1),
+        ('weed_purple_haze', 'weed Purple Haze', 20, 0, 1),
+        ('weed_white_widow_seed', 'Weed White Widow Seed', 20, 0, 1),
+        ('weed_white_widow', 'weed White Widow', 20, 0, 1),
+        ('weed_blueberry_seed', 'Weed Blueberry Seed', 20, 0, 1),
+        ('weed_blueberry', 'weed Blueberry', 20, 0, 1),
+        ('coca_seed', 'Coca Seed', 20, 0, 1),
+        ('coca', 'Coca', 20, 0, 1),
+        ('paper', 'Paper', 20, 0, 1),
+        ('nitrous', 'nitrous', 20, 0, 1),
+        ('cocaine', 'cocaine', 20, 0, 1),
+        ('joint', 'joint', 20, 0, 1),
+        ('weed_processing_table', 'weed_processing_table', 1000, 0, 1),
+        ('cocaine_processing_table', 'cocaine_processing_table', 1000, 0, 1)
+      ;
   ```
   </Tabs.Tab>
   <Tabs.Tab>
   ```lua copy
       watering_can = {
-        name = "watering_can",
-        label = 'Watering can',
-        weight = 500,
-        type = 'item',
-        image = "watering_can.png",
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'simple watering can'
+      name = "watering_can",
+      label = 'Watering can',
+      weight = 500,
+      type = 'item',
+      image = "watering_can.png",
+      unique = false,
+      useable = false,
+      shouldClose = false,
+      combinable = nil,
+      description = 'simple watering can'
     },
 
     fertilizer = {
@@ -229,6 +237,110 @@ Here you will find a series of selected items in different extensions for differ
         shouldClose = false,
         combinable = nil,
         description = 'Weed Lemonhaze'
+    },
+
+    weed_og_seed = {
+        name = 'weed_og_seed',
+        label = 'Weed Og Seed',
+        weight = 20,
+        type = 'item', 		
+        image = 'weed_og_seed.png', 		
+        unique = false, 	
+        useable = true, 	
+        shouldClose = true,	    
+        combinable = nil,   
+        description = 'Weed Og Seed'
+    },
+
+    weed_og = {
+        name = 'weed_og',
+        label = 'weed Og',
+        weight = 20,
+        type = 'item',
+        image = 'weed_og.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Weed Og'
+    },
+
+    weed_purple_haze_seed = {
+        name = 'weed_purple_haze_seed',
+        label = 'Weed Purple Haze Seed',
+        weight = 20,
+        type = 'item', 		
+        image = 'weed_purple_haze_seed.png', 		
+        unique = false, 	
+        useable = true, 	
+        shouldClose = true,	    
+        combinable = nil,   
+        description = 'Weed Purple Haze Seed'
+    },
+
+    weed_purple_haze = {
+        name = 'weed_purple_haze',
+        label = 'weed Purple Haze',
+        weight = 20,
+        type = 'item',
+        image = 'weed_purple_haze.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Weed Purple Haze'
+    },
+
+    weed_white_widow_seed = {
+        name = 'weed_white_widow_seed',
+        label = 'Weed White Widow Seed',
+        weight = 20,
+        type = 'item', 		
+        image = 'weed_white_widow_seed.png', 		
+        unique = false, 	
+        useable = true, 	
+        shouldClose = true,	    
+        combinable = nil,   
+        description = 'Weed White Widow Seed'
+    },
+
+    weed_white_widow = {
+        name = 'weed_white_widow',
+        label = 'weed White Widow',
+        weight = 20,
+        type = 'item',
+        image = 'weed_white_widow.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Weed white Widow'
+    },
+
+    weed_blueberry_seed = {
+        name = 'weed_blueberry_seed',
+        label = 'Weed Blueberry Seed',
+        weight = 20,
+        type = 'item', 		
+        image = 'weed_blueberry_seed.png', 		
+        unique = false, 	
+        useable = true, 	
+        shouldClose = true,	    
+        combinable = nil,   
+        description = 'Weed Blueberry Seed'
+    },
+
+    weed_blueberry = {
+        name = 'weed_blueberry',
+        label = 'weed Blueberry',
+        weight = 20,
+        type = 'item',
+        image = 'weed_blueberry.png',
+        unique = false,
+        useable = false,
+        shouldClose = false,
+        combinable = nil,
+        description = 'Weed Blueberry'
     },
 
     coca_seed = {
@@ -339,16 +451,16 @@ Here you will find a series of selected items in different extensions for differ
   <Tabs.Tab>
   ```lua copy
     ["watering_can"] = {
-      label = "Watering can",
-      weight = 500,
-      stack = false,
-      close = false,
-      description = "Simple watering can",
-      client = {
-          image = "watering_can.png",
-      }
+    label = "Watering can",
+    weight = 500,
+    stack = false,
+    close = false,
+    description = "Simple watering can",
+    client = {
+        image = "watering_can.png",
+    }
   },
-
+ 
   ["fertilizer"] = {
       label = "Fertilizer",
       weight = 500,
@@ -359,7 +471,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "fertilizer.png",
       }
   },
-
+  
   ["advanced_fertilizer"] = {
       label = "Advanced fertilizer",
       weight = 500,
@@ -370,7 +482,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "advanced_fertilizer.png",
       }
   },
-
+  
   ["liquid_fertilizer"] = {
       label = "Liquid Fertilizer",
       weight = 200,
@@ -381,7 +493,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "liquid_fertilizer.png",
       }
   },
-
+  
   ["weed_lemonhaze_seed"] = {
       label = "Weed Lemonhaze Seed",
       weight = 20,
@@ -392,7 +504,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "weed_lemonhaze_seed.png",
       }
   },
-
+  
   ["weed_lemonhaze"] = {
       label = "Weed Lemonhaze",
       weight = 20,
@@ -404,6 +516,94 @@ Here you will find a series of selected items in different extensions for differ
       }
   },
 
+  ["weed_og_seed"] = {
+      label = "Weed Og Seed",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Weed Og Seed",
+      client = {
+          image = "weed_og_seed.png",
+      }
+  },
+
+  ["weed_og"] = {
+      label = "weed Og",
+      weight = 20,
+      stack = true,
+      close = false,
+      description = "weed Og",
+      client = {
+          image = "weed_og.png",
+      }
+  },
+
+  ["weed_purple_haze_seed"] = {
+      label = "Weed Purple Haze Seed",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Weed Purple Haze Seed",
+      client = {
+          image = "weed_purple_haze_seed.png",
+      }
+  },
+
+  ["weed_purple_haze"] = {
+      label = "weed Purple Haze",
+      weight = 20,
+      stack = true,
+      close = false,
+      description = "weed Purple Haze",
+      client = {
+          image = "weed_purple_haze.png",
+      }
+  },
+
+  ["weed_white_widow_seed"] = {
+      label = "Weed White Widow Seed",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Weed White Widow Seed",
+      client = {
+          image = "weed_white_widow_seed.png",
+      }
+  },
+
+  ["weed_white_widow"] = {
+      label = "weed White Widow",
+      weight = 20,
+      stack = true,
+      close = false,
+      description = "weed White Widow",
+      client = {
+          image = "weed_white_widow.png",
+      }
+  },
+
+  ["weed_blueberry_seed"] = {
+      label = "Weed Blueberry Seed",
+      weight = 20,
+      stack = true,
+      close = true,
+      description = "Weed Blueberry Seed",
+      client = {
+          image = "weed_blueberry_seed.png",
+      }
+  },
+
+  ["weed_blueberry"] = {
+      label = "weed Blueberry",
+      weight = 20,
+      stack = true,
+      close = false,
+      description = "weed Blueberry",
+      client = {
+          image = "weed_blueberry.png",
+      }
+  },
+  
   ["coca_seed"] = {
       label = "Coca Seed",
       weight = 20,
@@ -414,7 +614,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "coca_seed.png",
       }
   },
-
+  
   ["coca"] = {
       label = "Coca",
       weight = 20,
@@ -425,7 +625,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "coca.png",
       }
   },
-
+  
   ["paper"] = {
       label = "Paper",
       weight = 50,
@@ -436,7 +636,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "paper.png",
       }
   },
-
+  
   ["nitrous"] = {
       label = "Nitrous",
       weight = 500,
@@ -447,7 +647,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "nitrous.png",
       }
   },
-
+  
   ["cocaine"] = {
       label = "Cocaine",
       weight = 20,
@@ -455,13 +655,13 @@ Here you will find a series of selected items in different extensions for differ
       close = true,
       description = "Small bag of cocaine",
       server = {
-			  export = "it-drugs.cocaine"
-		  },
+          export = "it-drugs.cocaine"
+        },
       client = {
           image = "cocaine.png",
       }
   },
-
+  
   ["joint"] = {
       label = "Joint",
       weight = 10,
@@ -469,13 +669,13 @@ Here you will find a series of selected items in different extensions for differ
       close = true,
       description = "Joint",
       server = {
-			  export = "it-drugs.joint"
-		  },
+          export = "it-drugs.joint"
+        },
       client = {
           image = "joint.png",
       }
   },
-
+  
   ["weed_processing_table"] = {
       label = "Weed Processing Table",
       weight = 1000,
@@ -486,7 +686,7 @@ Here you will find a series of selected items in different extensions for differ
           image = "weed_processing_table.png",
       }
   },
-
+  
   ["cocaine_processing_table"] = {
       label = "Cocaine Processing Table",
       weight = 1000,
@@ -496,17 +696,280 @@ Here you will find a series of selected items in different extensions for differ
       client = {
           image = "cocaine_processing_table.png",
       }
-  }
+  },
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```lua copy
+    ["watering_can"] = {
+    name = "watering_can",
+    label = "Watering can",
+    type = "item",
+    weight = 500,
+    unique = false,
+    shouldClose = false,
+    description = "Simple watering can",
+    image = "watering_can.png",
+  },
+ 
+  ["fertilizer"] = {
+      name = "fertilizer",
+      label = "Fertilizer",
+      type = "item",
+      weight = 500,
+      unique = false,
+      shouldClose = false,
+      description = "Fertilizer",
+      image = "fertilizer.png",
+  },
+  
+  ["advanced_fertilizer"] = {
+      name = "advanced_fertilizer",
+      label = "Advanced fertilizer",
+      type = "item",
+      weight = 500,
+      unique = false,
+      shouldClose = false,
+      description = "Fertilizer with the litte extra",
+      image = "advanced_fertilizer.png",
+  },
+  
+  ["liquid_fertilizer"] = {
+      name = "liquid_fertilizer",
+      label = "Liquid Fertilizer",
+      type = "item",
+      weight = 200,
+      unique = false,
+      shouldClose = false,
+      description = "Basicly Water with nutrations",
+      image = "liquid_fertilizer.png",
+  },
+  
+  ["weed_lemonhaze_seed"] = {
+      name = "weed_lemonhaze_seed",
+      label = "Weed Lemonhaze Seed",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Weed Lemonhaze Seed",
+      image = "weed_lemonhaze_seed.png",
+  },
+  
+  ["weed_lemonhaze"] = {
+      name = "weed_lemonhaze",
+      label = "Weed Lemonhaze",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = false,
+      description = "Weed Lemonhaze",
+      image = "weed_lemonhaze.png",
+  },
+
+  ["weed_og_seed"] = {
+      name = "weed_og_seed",
+      label = "Weed Og Seed",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Weed Og Seed",
+      image = "weed_og_seed.png",
+  },
+
+  ["weed_og"] = {
+      name = "weed_og",
+      label = "weed Og",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = false,
+      description = "weed Og",
+      image = "weed_og.png",
+  },
+
+  ["weed_purple_haze_seed"] = {
+      name = "weed_purple_haze_seed",
+      label = "Weed Purple Haze Seed",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Weed Purple Haze Seed",
+      image = "weed_purple_haze_seed.png",
+  },
+
+  ["weed_purple_haze"] = {
+      name = "weed_purple_haze",
+      label = "weed Purple Haze",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = false,
+      description = "weed Purple Haze",
+      image = "weed_purple_haze.png",
+  },
+
+  ["weed_white_widow_seed"] = {
+      name = "weed_white_widow_seed",
+      label = "Weed White Widow Seed",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Weed White Widow Seed",
+      image = "weed_white_widow_seed.png",
+  },
+
+  ["weed_white_widow"] = {
+      name = "weed_white_widow",
+      label = "weed White Widow",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = false,
+      description = "weed White Widow",
+      image = "weed_white_widow.png",
+  },
+
+  ["weed_blueberry_seed"] = {
+      name = "weed_blueberry_seed",
+      label = "Weed Blueberry Seed",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Weed Blueberry Seed",
+      image = "weed_blueberry_seed.png",
+  },
+
+  ["weed_blueberry"] = {
+      name = "weed_blueberry",
+      label = "weed Blueberry",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = false,
+      description = "weed Blueberry",
+      image = "weed_blueberry.png",
+  },
+  
+  ["coca_seed"] = {
+      name = "coca_seed",
+      label = "Coca Seed",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Coca Seed",
+      image = "coca_seed.png",
+  },
+  
+  ["coca"] = {
+      name = "coca",
+      label = "Coca",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = false,
+      description = "Coca",
+      image = "coca.png",
+  },
+  
+  ["paper"] = {
+      name = "paper",
+      label = "Paper",
+      type = "item",
+      weight = 50,
+      unique = false,
+      shouldClose = false,
+      description = "Paper",
+      image = "paper.png",
+  },
+  
+  ["nitrous"] = {
+      name = "nitrous",
+      label = "Nitrous",
+      type = "item",
+      weight = 500,
+      unique = false,
+      shouldClose = false,
+      description = "Nitrous",
+      image = "nitrous.png",
+  },
+  
+  ["cocaine"] = {
+      name = "cocaine",
+      label = "Cocaine",
+      type = "item",
+      weight = 20,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Small bag of cocaine",
+      image = "cocaine.png",
+  },
+  
+  ["joint"] = {
+      name = "joint",
+      label = "Joint",
+      type = "item",
+      weight = 10,
+      unique = false,
+      shouldClose = true,
+      useable = true,
+      description = "Joint",
+      image = "joint.png",
+  },
+  
+  ["weed_processing_table"] = {
+      name = "weed_processing_table",
+      label = "Weed Processing Table",
+      type = "item",
+      weight = 1000,
+      unique = true,
+      shouldClose = true,
+      useable = true,
+      description = "Process some weed",
+      image = "weed_processing_table.png",
+  },
+  
+  ["cocaine_processing_table"] = {
+      name = "cocaine_processing_table",
+      label = "Cocaine Processing Table",
+      type = "item",
+      weight = 1000,
+      unique = true,
+      shouldClose = true,
+      useable = true,
+      description = "Process some cocaine",
+      image = "cocaine_processing_table.png",
+  },
   ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```lua copy
-        watering_can                  = { name = 'watering_can', label = 'Watering Can', weight = 100, type = 'item', image = 'watering_can.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Simple watering can' },
+      watering_can                  = { name = 'watering_can', label = 'Watering Can', weight = 100, type = 'item', image = 'watering_can.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Simple watering can' },
       fertilizer                      = { name = 'fertilizer', label = 'Fertilizer', weight = 100, type = 'item', image = 'fertilizer.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Fertilizer' },
       advanced_fertilizer             = { name = 'advanced_fertilizer', label = 'Advanced Fertilizer', weight = 100, type = 'item', image = 'advanced_fertilizer.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Fertilizer with the litte extra' },
       liquid_fertilizer               = { name = 'liquid_fertilizer', label = 'Liquid Fertilizer', weight = 100, type = 'item', image = 'liquid_fertilizer.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Basicly Water with nutrations' },
       weed_lemonhaze_seed             = { name = 'weed_lemonhaze_seed', label = 'Weed Lemonhaze Seed', weight = 100, type = 'item', image = 'weed_lemonhaze_seed.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Lemonhaze Seed' },
       weed_lemonhaze                  = { name = 'weed_lemonhaze', label = 'Weed Lemonhaze', weight = 100, type = 'item', image = 'weed_lemonhaze.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Lemonhaze' },
+      weed_og_seed                    = { name = 'weed_og_seed', label = 'Weed Og Seed', weight = 100, type = 'item', image = 'weed_og_seed.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Og Seed' },
+      weed_og                         = { name = 'weed_og', label = 'Weed Og', weight = 100, type = 'item', image = 'weed_og.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Og' },
+      weed_purple_haze_seed           = { name = 'weed_purple_haze_seed', label = 'Weed Purple Haze Seed', weight = 100, type = 'item', image = 'weed_purple_haze_seed.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Purple Haze Seed' },
+      weed_purple_haze                = { name = 'weed_purple_haze', label = 'Weed Purple Haze', weight = 100, type = 'item', image = 'weed_purple_haze.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Purple Haze' },
+      weed_white_widow_seed           = { name = 'weed_white_widow_seed', label = 'Weed White Widow Seed', weight = 100, type = 'item', image = 'weed_white_widow_seed.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed White Widow Seed' },
+      weed_white_widow                = { name = 'weed_white_widow', label = 'Weed White Widow', weight = 100, type = 'item', image = 'weed_white_widow.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed White Widow' },
+      weed_blueberry_seed             = { name = 'weed_blueberry_seed', label = 'Weed Blueberry Seed', weight = 100, type = 'item', image = 'weed_blueberry_seed.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Blueberry Seed' },
+      weed_blueberry                  = { name = 'weed_blueberry', label = 'Weed Blueberry', weight = 100, type = 'item', image = 'weed_blueberry.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Weed Blueberry' },
       coca_seed                       = { name = 'coca_seed', label = 'Coca Seed', weight = 100, type = 'item', image = 'coca_seed.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Coca Seed' },
       coca                            = { name = 'coca', label = 'Coca', weight = 100, type = 'item', image = 'coca.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Coca' },
       paper                           = { name = 'paper', label = 'Paper', weight = 100, type = 'item', image = 'paper.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Use to roll some good stuff' },
