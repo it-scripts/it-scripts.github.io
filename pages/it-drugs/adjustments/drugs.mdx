@@ -39,7 +39,7 @@ If you use the ox_inventory, please use the following template to add the drugs 
 		close = true,
 		description = "Item Description",
 		server = {
-			export = "it-drugs.item_name"
+			export = "it-drugs.takeDrug"
 		},
 		client = {
 			image = "item_name.png",
@@ -66,7 +66,13 @@ If you use the ox_inventory, please use the following template to add the drugs 
     - intenseEffect
     - focusEffect
     - superJump
-    - swimming 
+    - swimming
+    - armor-20
+
+    <Callout type="info">
+      You can change the number of the armor effect to the desired value. For example, `armor-50` will give you 50 armor. The maximum value is 100.
+    </Callout>
+
   </Accordion>
 </AccordionGroup>
 

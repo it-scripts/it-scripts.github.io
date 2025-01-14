@@ -73,3 +73,20 @@ animation = {
 },
 ```
 </Steps>
+
+## Planting Errors
+
+```ansi
+[1m [31m[ERROR] [getPlantByNetId] - Plant with netId: 0 does not exists![39m[22m
+```
+
+If you get this error, it means that the script was unable to find the plant with the given netId.
+In most cases, this error occurs when a player try to interact with a plant that is not managed by the script.
+So in most cases you can ignore this error.
+
+## Selling Errors
+### Can't sell drugs to npc
+
+If yoo can't sell drugs to a NPC make sure your are in on of the zones that are defined in the `Config.SellZones` in the `config.lua` file.
+If you are in one of the zones and still can't sell drugs to the NPC, please make sure that you are using the latest version of the script.
+Also you can enable `Config.ManualZoneChecker` in the `config.lua` file to check the zones manually.

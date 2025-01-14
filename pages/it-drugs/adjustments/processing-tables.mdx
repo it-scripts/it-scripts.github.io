@@ -8,6 +8,7 @@ import ExternLink from '@components/ExternLink'
 import Accordion from '@components/Accordion'
 import AccordionGroup from '@components/AccordionGroup'
 import { IconExternalLink } from '@tabler/icons-react'; // Importiere das Tabler-Icon
+import { Callout } from '@components/Callout'
 
 # ⚗️・Processing Tables
 So let's start setting up the processing tables.
@@ -154,15 +155,37 @@ The chance in percent that the production of an item can go wrong, which means t
 
 ---
 
-<Accordion title="Processin table configuration template">
-```lua copy
-    ['uniqe_table_id'] = {
-        type = 'weed',
-        model = 'bkr_prop_weed_table_01a', -- Exanples: bkr_prop_weed_table_01a, bkr_prop_meth_table01a, bkr_prop_coke_table01a
-        recipes = {
-            -- Here you can add as many recipes as you want
-        }
-    }
+<Callout type="warning">
+If you use the ox_inventory, please use the following template to add the tables to your items.lua:
+```lua
+["item_name"] = {
+		label = "Item Label",
+		weight = 1000,
+		stack = false,
+		close = true,
+		description = "Item Description",
+		server = {
+			export = "it-drugs.placeProcessingTable"
+		},
+		client = {
+			image = "item_name.png",
+		}
+	},
 ```
-</Accordion>
+**Each `item_name` must be replaced with the actual item name**
+</Callout>
+
+<AccordionGroup>
+    <Accordion title="Processin table configuration template">
+    ```lua copy
+        ['uniqe_table_id'] = {
+            type = 'weed',
+            model = 'bkr_prop_weed_table_01a', -- Exanples: bkr_prop_weed_table_01a, bkr_prop_meth_table01a, bkr_prop_coke_table01a
+            recipes = {
+                -- Here you can add as many recipes as you want
+            }
+        }
+    ```
+    </Accordion>
+</AccordionGroup>
   

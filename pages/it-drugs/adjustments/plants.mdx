@@ -168,6 +168,26 @@ time = 3000 -- Time it takes to plant/harvest in miliseconds
 
 ---
 
+<Callout type="warning">
+If you use the ox_inventory, please use the following template to add the plants to your items.lua:
+```lua
+["item_name"] = {
+		label = "Item Label",
+		weight = 20,
+		stack = true,
+		close = true,
+		description = "Item Description",
+		server = {
+			export = "it-drugs.useSeed"
+		},
+		client = {
+			image = "item_name.png",
+		}
+	},
+```
+**Each `item_name` must be replaced with the actual item name**
+</Callout>
+
 <AccordionGroup>
   <Accordion title="Plant configuration template">
     ```lua copy
