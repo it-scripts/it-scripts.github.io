@@ -1,0 +1,159 @@
+---
+title: it-drugs - Recipe Settings
+description: How to add additional settings to the recipes.
+---
+
+import { Callout } from '@components/Callout'
+import { Steps } from 'nextra/components'
+import ExternLink from '@components/ExternLink'
+import { IconExternalLink } from '@tabler/icons-react'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+
+# Additional Recipe Settings
+
+## Add custom animation
+If you do not want to use the normal animation for a recipe in a recipe, you can also easily change this via the Config
+
+<Steps>
+### Get your animation
+A good resource to find animation is:
+<ExternLink 
+    href="https://forge.plebmasters.de/animations"
+    manualTitle="Pleb Masters: Forge - GTA V Animations List | Data Browser | Search and Preview Tool"
+    icon={IconExternalLink} >
+</ExternLink>
+
+### Add the animation to the Config
+Add the following code to the recipe you want to change the animation for:
+```lua copy
+animation = {
+    dict = 'you animation dict', -- Animation dict
+    anim = 'your animation name', -- Animation name
+}
+```
+
+**Example:**
+```lua
+animation = {
+    dict = 'anim@gangops@facility@servers@bodysearch@', -- Animation dict
+    anim = 'player_search', -- Animation name
+}
+```
+</Steps>
+
+<Accordion title="Full Example">
+```lua
+['lockpick'] = {
+    label = 'Lockpick',
+    ingrediants = {
+        ['scrapmetal'] = {amount = 3, remove = true},
+        ['WEAPON_HAMMER'] = {amount = 1, remove = false}
+    },
+    outputs = {
+        ['lockpick'] = 2
+    },
+    processTime = 15,
+    failChance = 15,
+    showIngrediants = false,
+    animation = {
+        dict = 'anim@amb@drug_processors@coke@female_a@idles',
+        anim = 'idle_a',
+    },
+    skillCheck = {
+        enabled = true,
+        difficulty = {'easy', 'easy', 'medium', 'easy'},
+        keys = {'w', 'a', 's', 'd'}
+    }
+},
+```
+</Accordion>
+
+## Add particles
+<Callout type="warning">
+    This feature is not fully implemented and tested yet and may not work as expected.
+</Callout>
+
+This features allows you to add particles to your recipes. This can be used to make the recipe more interactive.
+
+<Steps>
+### Get your particle
+A good resource to find particles is:
+<ExternLink
+    href="https://www.vespura.com/fivem/particle-list/"
+    manualTitle="Particles List"
+    icon= {IconExternalLink} >
+</ExternLink>
+
+### Add the particle to the Config
+Add the following code to the recipe you want to add the particle to:
+```lua copy
+    particlefx = {
+        dict = 'your dict name',
+        particle = 'your particle name',
+        color = {r = 255, g = 255, b = 255},
+        offset = {x = 0.0, y = 0, z = 0},
+        scale = 0.5,
+    },
+```
+
+---
+
+```lua
+color = {r = 255, g = 255, b = 255},
+```
+The color of the particle, each value can be between 0 and 255 and represents the RGB color space.
+
+---
+
+```lua
+offset = {x = 0.0, y = 0, z = 0},
+```
+
+The offset of the particle, this can be used to move the particle to a different position.
+Due to the fact that some particles are not centered, it is recommended to play around with the values.
+If you are using the default table props provided by the script, you can use the following values:
+
+
+```lua copy
+offset = {x = 0.0, y = -1.5, z = 1.0},
+```
+
+---
+
+```lua
+scale = 0.5,
+```
+The scale of the particle, this can be used to make the particle bigger or smaller.
+
+</Steps>
+
+<Accordion title="Full Example">
+```lua
+['lockpick'] = {
+        label = 'Lockpick',
+        ingrediants = {
+            ['scrapmetal'] = {amount = 3, remove = true},
+            ['WEAPON_HAMMER'] = {amount = 1, remove = false}
+        },
+        outputs = {
+            ['lockpick'] = 2
+        },
+        processTime = 15,
+        failChance = 15,
+        showIngrediants = false,
+        particlefx = {
+            dict = 'core',
+            particle = 'ent_amb_torch_fire',
+            color = {r = 255, g = 255, b = 255},
+            offset = {x = 0.0, y = -1.5, z = 1.0},
+            scale = 0.5,
+        },
+        skillCheck = {
+            enabled = true,
+            difficulty = {'easy', 'easy', 'medium', 'easy'},
+            keys = {'w', 'a', 's', 'd'}
+        }
+    },
+```
+</Accordion>
