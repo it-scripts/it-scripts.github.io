@@ -1,0 +1,162 @@
+---
+title: it-crafting - Recipes
+description: Now we can look at the configuration of the individual recipes.
+---
+
+import { Callout } from '@components/Callout'
+import ExternLink from '@components/ExternLink'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+import { Tabs } from 'nextra/components'
+import { IconExternalLink } from '@tabler/icons-react'; // Import the Tabler icon
+
+# 📜・Recipes
+Now we can look at the configuration of the individual recipes. YOu can add as many recipes as you want.
+
+### Config.Recipes
+```lua
+['lockpick'] = {
+    label = 'Lockpick',
+    ingrediants = {
+        ['scrapmetal'] = {amount = 3, remove = true},
+        ['WEAPON_HAMMER'] = {amount = 1, remove = false}
+    },
+    outputs = {
+        ['lockpick'] = 2
+    },
+    processTime = 15,
+    failChance = 15,
+    showIngrediants = false,
+    animation = {
+        dict = 'anim@amb@drug_processors@coke@female_a@idles',
+        anim = 'idle_a',
+    },
+    skillCheck = {
+        enabled = true,
+        difficulty = {'easy', 'easy', 'medium', 'easy'},
+        keys = {'w', 'a', 's', 'd'}
+    }
+},
+```
+
+```lua
+['lockpick']
+```
+This is the must be a unique identifier for the recipe. The identifier must not contain any special characters or spaces.
+The identifier is only relevant for the script. 
+
+---
+
+```lua
+label = 'Lockpick'
+```
+The label of the recipe, this is used to display the name of the recipe in all menus. The can contain special characters and spaces.
+
+---
+
+```lua
+ingrediants = {
+    ['scrapmetal'] = {amount = 3, remove = true},
+    ['WEAPON_HAMMER'] = {amount = 1, remove = false}
+},
+```
+This is the list of all ingredients that are required to craft the item. The key is the item name and the value is a table with the amount and if the item should be removed after crafting.
+- `amount` The amount of the item that is required to craft the item.
+- `remove` If the item should be removed after crafting.
+
+---
+
+```lua
+outputs = {
+    ['lockpick'] = 2
+},
+```
+This is the list of all items that are created after the crafting process. The key is the item name and the value is the amount of the item that is created.
+
+---
+
+```lua
+processTime = 15,
+```
+The time in seconds that is required to craft the item. If you dont use the skill check, the player has to wait this time to craft the item.
+
+---
+
+```lua
+failChance = 15,
+```
+The chance in percent that the crafting process fails. If the crafting process fails, the player looses the items and has to start the crafting process again.
+
+---
+
+```lua
+showIngrediants = false,
+```
+If this is set to `true`, the player can see the ingredients that are required to craft the item.
+<Tabs items={["showIngrediants = true", "showIngrediants = false"]}>
+    <Tabs.Tab>
+        ![Docs Banner](/processing_table_show.png)
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ![Docs Banner](/processing_table_hide.png)
+    </Tabs.Tab>
+</Tabs>
+
+---
+
+```lua
+animation = {
+    dict = 'anim@amb@drug_processors@coke@female_a@idles',
+    anim = 'idle_a',
+},
+```
+The animation that is played while the player is crafting the item. The `dict` is the animation dictionary and the `anim` is the animation name.#
+
+---
+
+```lua
+skillCheck = {
+    enabled = true,
+    difficulty = {'easy', 'easy', 'medium', 'easy'},
+    keys = {'w', 'a', 's', 'd'}
+}
+```
+If `enabled` is set to `true`, the player has to pass a skill check to craft the item. The `difficulty` is the difficulty of the skill check and the `keys` are the keys that the player has to press to pass the skill check.
+- `difficulty` The difficulty of the skill check. The difficulty can be `easy`, `medium` or `hard`.
+- `keys` The keys that the player has to press to pass the skill check. The keys can be `w`, `a`, `s` or `d`.
+
+If the skill check is deactivated, the player only has to wait a certain amount of time and then receives the item.
+
+More information about the skill check can be found here:
+<ExternLink 
+  href="https://overextended.dev/ox_lib/Modules/Interface/Client/skillcheck" 
+  icon={IconExternalLink}
+/>
+
+<AccordionGroup>
+    <Accordion title="Recipe configuration template">
+    ```lua copy
+        ['your_uniqe_id'] = {
+            label = 'Your Label',
+            ingrediants = {
+                -- Here you can add as many ingredients as you want
+            },
+            outputs = {
+                -- Here you can add as many outputs as you want
+            },
+            processTime = 15,
+            failChance = 15,
+            showIngrediants = true,
+            animation = {
+                dict = 'anim@amb@drug_processors@coke@female_a@idles',
+                anim = 'idle_a',
+            },
+            skillCheck = {
+                enabled = false,
+                difficulty = {'easy', 'easy', 'medium', 'easy'},
+                keys = {'w', 'a', 's', 'd'}
+            }
+        },
+    ```
+    </Accordion>
+</AccordionGroup>

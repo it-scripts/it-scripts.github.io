@@ -1,0 +1,131 @@
+---
+title: it-crafting - Crafting Points
+description: So let's start setting up the Crafting Tables.
+---
+
+import {Tabs} from 'nextra/components'
+import ExternLink from '@components/ExternLink'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+import { IconExternalLink } from '@tabler/icons-react'; // Importiere das Tabler-Icon
+import { Callout } from '@components/Callout'
+
+# 📍・Crafting Points
+So let's start setting up the crafting points. Crafting points are static points where the player can craft items.
+
+## Config.CraftingPoints
+The individual processing points can now be configured here:
+
+```lua
+['crafting_point_one'] = {
+        zone = vector3(2.0, 1.0, 2.0),
+        label = 'Crafting Point', -- Label for the table
+        model = 'v_res_tre_table2', -- Exanples: freeze_it-scripts_empty_table, freeze_it-scripts_weed_table, freeze_it-scripts_coke_table, freeze_it-scripts_meth_table
+        restricCrafting = {
+            ['onlyOnePlayer'] = true, -- Only one player can use the table at a time
+            ['onlyOwnerCraft'] = false, -- Only the owner of the table can use it
+            ['onlyOwnerRemove'] = true, -- Only the owner of the table can remove it
+            ['zones'] = {}, -- Zones where the table can be used
+            ['jobs'] = {}
+        },
+        blip = {
+            display = true, -- Display blip on map
+            sprite = 446, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+            displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+            displayText = 'Crafting Table',
+        },
+        recipes = {
+            -- Here you can add as many recipes as you want
+        }
+    }
+```
+
+```lua
+['crafting_point_one']
+```
+This is the name of the item to which this configuration is bound. The item can now be used to set up a table in the game.
+
+---
+
+```lua
+zone = vector3(2.0, 1.0, 2.0),
+```
+As soon as the player places the table, the script will create a zone around the table. The zone is used to interact with the table.
+The zone has to be defined as a vector3. The first value is the width, the second value is the length, and the third value is the height of the zone.
+
+```lua
+model = 'v_res_tre_table2'
+```
+The model of the processing table here can theoretically be used with any Fivem model.
+You also can set the model to `nil` if you dont want to use a model.
+Then the script will only create a zone at the position.
+
+---
+
+```lua
+restricCrafting = {
+    ['onlyOnePlayer'] = true, -- Only one player can use the table at a time
+    ['onlyOwnerCraft'] = false, -- Only the owner of the table can use it
+    ['onlyOwnerRemove'] = true, -- Only the owner of the table can remove it
+    ['jobs'] = {}
+},
+```
+
+- `onlyOnePlayer` - As the name suggests, only one player can use the table at a time.
+- `onlyOwnerCraft` - Only the owner of the table can use the table.
+- `onlyOwnerRemove` - Only the owner of the table can remove the table.
+- `jobs` - Jobs that can use the table.
+    - If you want to allow all jobs to use the table, you can leave the table empty.
+    - If you want to add a job, you can add the job name to the table like this: `['police'] = true`. Now only the police can use the table.
+    You also hove the option to add a job with a specific grade like this: `['police'] = {1, 2}`. Now only the police with the grade 1 and 2 can use the table.
+
+---
+
+```lua
+blip = {
+    display = true, -- Display blip on map
+    scale = 1.0, -- Blip scale
+    sprite = 446, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+    displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+    displayText = 'Crafting Point',
+},
+```
+The blip of the point can be set here. 
+If set to `true`, the blip will be displayed on the map to all players.
+
+
+### Recipes
+Each table can theoretically have an infinite number of recipes, how exactly a recipe must look is explained here
+<ExternLink 
+  href="https://docs.it-scripts.com/it-crafting/adjustments/recipes" 
+/>
+
+
+---
+<AccordionGroup>
+    <Accordion title="Crafting point configuration template">
+    ```lua copy
+        ['simple_crafting_point'] = {
+            zone = vector3(2.0, 1.0, 2.0),
+            label = 'Weed Processing Table', -- Label for the table
+            model = 'v_res_tre_table2', -- Exanples: freeze_it-scripts_empty_table, freeze_it-scripts_weed_table, freeze_it-scripts_coke_table, freeze_it-scripts_meth_table
+            restricCrafting = {
+                ['onlyOnePlayer'] = true, -- Only one player can use the table at a time
+                ['onlyOwnerCraft'] = false, -- Only the owner of the table can use it
+                ['onlyOwnerRemove'] = true, -- Only the owner of the table can remove it
+                ['jobs'] = {}
+            },
+            blip = {
+                display = true, -- Display blip on map
+                sprite = 446, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+                displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+                displayText = 'Crafting Table',
+            },
+            recipes = {
+                -- Here you can add as many recipes as you want
+            }
+        }
+    ```
+    </Accordion>
+</AccordionGroup>
+  

@@ -30,6 +30,12 @@
         "theme": {
             "footer": false
         }
+    },
+    "it-crafting": {
+        "title": "🛠️・it-crafting",
+        "theme": {
+            "footer": false
+        }
     }
 }
   

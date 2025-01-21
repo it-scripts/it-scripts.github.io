@@ -1,0 +1,26 @@
+{
+  "zones": {
+    "title": "🗺️・Zones",
+    "theme": {
+      "footer": false
+    }
+  },
+  "recipes": {
+    "title": "📜・Recipes",
+    "theme": {
+      "footer": false
+    }
+  },
+  "crafting-points": {
+    "title": "📍・Crafting Points",
+    "theme": {
+      "footer": false
+    }
+  },
+  "crafting-tables": {
+    "title": "⚙️・Crafting Tables",
+    "theme": {
+      "footer": false
+    }
+  }
+}

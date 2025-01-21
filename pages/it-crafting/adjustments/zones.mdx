@@ -1,0 +1,117 @@
+---
+title: it-crafting - Zones
+description: Here, it is possible to create zones that can have an effect on certain tables.
+---
+
+import { Callout } from '@components/Callout'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+
+# 🗺️・Zones
+First, let's take a look at zone management. 
+Here, it is possible to create zones that can have an effect on the growth speed of certain plants.
+
+## Config.Zones
+The individual zones can be created and edited here. 
+We will now take a closer look at one zone and explain what the individual values mean and what they change.
+
+```lua
+Config.Zones = {
+    ['crafting_zone_one'] = { -- Zone id (Musst be unique)
+        points = {
+            vec3(2031.0, 4853.0, 43.0),
+            vec3(2007.0, 4877.0, 43.0),
+            vec3(1981.0, 4903.0, 43.0),
+            vec3(2006.0, 4929.0, 43.0),
+            vec3(2032.0, 4903.0, 43.0),
+            vec3(2057.0, 4878.0, 43.0),
+        },
+        thickness = 4.0,
+        
+        blip = {
+            display = true, -- Display blip on map
+            scale = 1.0, -- Blip scale
+            sprite = 446, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+            displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+            displayText = 'Crafting Zone',
+        },
+    },
+}
+```
+
+---
+
+```lua
+['crafting_zone_one']
+```
+We start with the zone id, this specifies the name of the zone, the name is only relevant for the script. 
+The zone id must not contain any special characters or spaces and must be unique.
+
+---
+
+```lua
+points = {
+    vec3(2031.0, 4853.0, 43.0),
+    vec3(2007.0, 4877.0, 43.0),
+    vec3(1981.0, 4903.0, 43.0),
+    vec3(2006.0, 4929.0, 43.0),
+    vec3(2032.0, 4903.0, 43.0),
+    vec3(2057.0, 4878.0, 43.0),
+},
+thickness = 4.0,
+```
+<Callout type="warning">
+**Make sure that all z coordinates (laste number) are the same, otherwise the zone will not be created.**
+</Callout>
+
+The points define the area of the zone. 
+A straight line is drawn between two consecutive `vec3() or vec()` to define the edge of the zone. 
+A line is also automatically drawn between the last and `first vec3()`.
+
+The thickness can be left at 4 if the zone is created manually. 
+However, since the script now uses ox_lib for the zones, this can also be created more easily. 
+You can find more information here:
+
+---
+
+```lua
+blip = {
+    display = true, -- Display blip on map
+    scale = 1.0, -- Blip scale
+    sprite = 446, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+    displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+    displayText = 'Crafting Zone',
+},
+```
+The blip fie zone can be set here. 
+The blip is always displayed in the middle of the zone.
+
+---
+
+<AccordionGroup>
+  <Accordion title="Zone configuration template">
+    ```lua copy
+      ['uniqe_zone_name'] = { -- Zone id (No Spaces)
+        coords = {
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            vector3(coordinate x value, coordinate y value, coordinate z value),
+            -- You can add as many vector3 as you want
+        },
+        thickness = 4.0,
+        
+        blip = {
+            display = true, -- Display blip on map
+            scale = 1.0, -- Blip scale
+            sprite = 446, -- Select blip from (https://docs.fivem.net/docs/game-references/blips/)
+            displayColor = 2, -- Select blip color from (https://docs.fivem.net/docs/game-references/blips/)
+            displayText = 'Crafting Zone',
+        },
+      },
+    ```
+  </Accordion>
+</AccordionGroup>
+
+
+
