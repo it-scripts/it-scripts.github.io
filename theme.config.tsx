@@ -68,7 +68,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/it-scripts/it-scripts.github.io/blob/main",
   footer: {
-    text: "it-scripts © 2024",
+    text: "it-scripts © 2025",
   },
   primaryHue: { dark: 169, light: 169 },
   primarySaturation: { dark: 100, light: 50},
