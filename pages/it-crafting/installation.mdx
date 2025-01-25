@@ -53,7 +53,7 @@ You can download the latest version of the script for free on the it-script GitH
 | QbCore (qb-target) | https://github.com/qbcore-framework/qb-target *(Currently not supported!)*|
 
 <Callout type="error">
-  You can also you ox_target on your QbCore Server but only if you are using ox_target with version 1.16.0 or older!
+  You can also use ox_target on your QbCore Server but only if you are using ox_target with version 1.16.0 or older!
 </Callout>
 
 ## Asset positioning
@@ -208,7 +208,7 @@ You can configure everything int the it-crafting config file.
       weight = 2000,
       type = 'item',
       image = "simple_crafting_table.png",
-      unique = false,
+      unique = true,
       useable = false,
       shouldClose = true,
       combinable = nil,
@@ -221,7 +221,7 @@ You can configure everything int the it-crafting config file.
     ["scrapmetal"] = {
     label = "Scrap Metal",
     weight = 500,
-    stack = false,
+    stack = true,
     close = false,
     description = "Scrap Metal",
     client = {
@@ -232,7 +232,7 @@ You can configure everything int the it-crafting config file.
   ["lockpick"] = {
     label = "Lockpick",
     weight = 100,
-    stack = false,
+    stack = true,
     close = false,
     description = "A tool for picking locks",
     client = {
@@ -243,7 +243,7 @@ You can configure everything int the it-crafting config file.
   ["cloth"] = {
     label = "Cloth",
     weight = 200,
-    stack = false,
+    stack = true,
     close = false,
     description = "A piece of cloth",
     client = {
@@ -254,7 +254,7 @@ You can configure everything int the it-crafting config file.
   ["scissors"] = {
     label = "Scissors",
     weight = 250,
-    stack = false,
+    stack = true,
     close = false,
     description = "A tool for cutting",
     client = {
@@ -265,7 +265,7 @@ You can configure everything int the it-crafting config file.
   ["bandage"] = {
     label = "Bandage",
     weight = 50,
-    stack = false,
+    stack = true,
     close = false,
     description = "A bandage for wounds",
     client = {
@@ -287,6 +287,75 @@ You can configure everything int the it-crafting config file.
     }
   }
   ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```lua copy
+    ["scrapmetal"] = {
+      name = "scrapmetal",
+      label = "Scrap Metal",
+      type = "item",
+      weight = 500,
+      unique = false,
+      shouldClose = false,
+      description = "Scrap Metal",
+      image = "scrapmetal.png",
+    },
+
+    ["lockpick"] = {
+        name = "lockpick",
+        label = "Lockpick",
+        type = "item",
+        weight = 100,
+        unique = false,
+        shouldClose = false,
+        description = "A tool for picking locks",
+        image = "lockpick.png",
+    },
+
+    ["cloth"] = {
+        name = "cloth",
+        label = "Cloth",
+        type = "item",
+        weight = 200,
+        unique = false,
+        shouldClose = false,
+        description = "A piece of cloth",
+        image = "cloth.png",
+    },
+
+    ["scissors"] = {
+        name = "scissors",
+        label = "Scissors",
+        type = "item",
+        weight = 250,
+        unique = false,
+        shouldClose = false,
+        description = "A tool for cutting",
+        image = "scissors.png",
+    },
+
+    ["bandage"] = {
+        name = "bandage",
+        label = "Bandage",
+        type = "item",
+        weight = 50,
+        unique = false,
+        shouldClose = false,
+        description = "A bandage for wounds",
+        image = "bandage.png",
+    },
+
+    ["simple_crafting_table"] = {
+        name = "simple_crafting_table",
+        label = "Simple Crafting Table",
+        type = "item",
+        weight = 2000,
+        unique = true,
+        shouldClose = true,
+        description = "A simple crafting table",
+        image = "simple_crafting_table.png",
+    }
+    ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```lua copy
