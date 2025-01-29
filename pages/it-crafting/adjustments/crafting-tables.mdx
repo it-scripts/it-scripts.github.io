@@ -64,6 +64,13 @@ Here you can change some settings for the target zone.
 
 `*` All these values are optional and can be removed if you dont want to use them. But please do not remove the target table.
 
+<Callout type="info">
+If you are using a model the script will automatically set the size and rotation of the target zone.
+So you dont need to set the size and rotation if you are using a model. You can just keep the default values.
+
+In some cases the rotation of the target zone is not correct. In this case you can set the rotation manually.
+</Callout>
+
 ---
 
 ```lua
@@ -129,7 +136,7 @@ If you use the ox_inventory, please use the following template to add the tables
 		close = true,
 		description = "Item Description",
 		server = {
-			export = "it-drugs.placeProcessingTable"
+			export = "it-drugs.placeCraftingTable",
 		},
 		client = {
 			image = "item_name.png",
@@ -143,13 +150,13 @@ If you use the ox_inventory, please use the following template to add the tables
     <Accordion title="Processin table configuration template">
     ```lua copy
         ['simple_crafting_table'] = {
+            label = 'Simple Crafting Table', -- Label for the table
             target = {
                 size = vector3(1.0, 1.0, 1.0),
                 rotation = 0.0,
                 drawSprite = true,
                 interactDistance = 1.5,
             },
-            label = 'Weed Processing Table', -- Label for the table
             model = 'v_res_tre_table2', -- Exanples: freeze_it-scripts_empty_table, freeze_it-scripts_weed_table, freeze_it-scripts_coke_table, freeze_it-scripts_meth_table
             restricCrafting = {
                 ['onlyOnePlayer'] = true, -- Only one player can use the table at a time
