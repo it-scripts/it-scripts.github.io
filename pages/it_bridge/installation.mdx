@@ -1,0 +1,76 @@
+---
+title: it-crafting - Installation
+description: Welcome to the it-crafting installation guide, here you can learn how to completely install our asset, following each step we will achieve a clean and fluid installation where you will not find any problems, as long as the documentation has been completed in full.
+---
+
+import { Cards, Card, Tabs} from 'nextra/components'
+import { Callout } from '@components/Callout'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+import { IconShoppingBag } from '@tabler/icons-react';
+
+# Installation
+Welcome to the **it_bridge** installation guide, here you can learn how to completely install our asset, 
+following each step we will achieve a clean and fluid installation where you will not find any problems, 
+as long as the documentation has been completed in full.
+
+<Callout type="error">
+  If you do not have programming experience, we recommend that you read each step completely without skipping any lines, since all documentation is important and should not be ignored under any circumstances. 
+  If you have a trusted developer, you can install this quickly, easily and safely if you complete this documentation step by step.
+</Callout>
+
+<Callout type="info">
+  If at the end of this documentation you still have any problems, review each step again, after having checked that everything is correct, 
+  you can obtain more information about common errors in the Common Problems section within this same documentation to seek help independently.
+</Callout>
+
+<Callout type="warning">
+    When installing the script make sure to **not** rename the script folder, this can cause errors in the script. The name of the script folder should always be **it-crafting**.
+</Callout>
+
+## Asset download
+You can get the lates version of the it_bridge script fo free on our tebex store
+<Cards>
+  <Card icon={<IconShoppingBag />} title="Tebex" href="https://it-scripts.tebex.io" />
+</Cards>
+
+<Callout type="warning">
+  If you have downloaded the script from another site, there is no guarantee that the script will actually work. Please download it again from the it-scripts tebex page.
+</Callout>
+
+<Callout type="error">
+  If you have paid money for this script, it is a **SCAM**. The **it_bridge** script is and will always remain free. Please report the page to us on the Discord server.
+</Callout>
+
+## Asset dependencies
+| Dependencies | Links |
+| --- | --- |
+| ox_lib | https://github.com/overextended/ox_lib/releases |
+
+## Asset positioning
+<Callout type="error">
+  Correctly position the assets by following this step, if something goes wrong you will probably get errors about exports not found, do not skip this step.
+</Callout>
+
+For the execution of this asset, we will respect the respective order mentioned below.
+
+```lua
+-- First we will start the Database
+ensure oxmysql
+
+-- Then we will start the cores, never below
+ensure es_extended or qb-core
+
+-- Your inventory system, always on top
+ensure inventory
+
+--Then we start all the dependencies
+ensure ox_lib
+
+-- Then you need to start all system you selected in the config file
+
+-- Now you can start the it_bridge script
+ensure it_bridge
+
+-- After that you can start any other it script you want to use
+```

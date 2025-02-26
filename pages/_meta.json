@@ -25,6 +25,12 @@
         "type": "separator",
         "title": "Scripts"
     },
+    "it_bridge": {
+        "title": "⚙️・it_bridge",
+        "theme": {
+            "footer": false
+        }
+    },
     "it-drugs": {
         "title": "🌱・it-drugs",
         "theme": {

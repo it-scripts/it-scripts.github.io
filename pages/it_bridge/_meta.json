@@ -1,0 +1,16 @@
+{
+  "config-preview": {
+    "title": "👀・Config Preview",
+    "theme": {
+      "footer": false
+    }
+  },
+  "installation": {
+    "title": "📥・Installation",
+    "theme": {
+      "footer": false
+    }
+  },
+  "exports": "⚙️・Exports"
+}
+  

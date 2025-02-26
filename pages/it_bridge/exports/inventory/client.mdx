@@ -1,0 +1,117 @@
+---
+title: it_bridge | Client Exports - Inventory
+description: Learn how to use the client Inventory exports for the it_bridge resource.
+---
+
+import { Callout } from '@components/Callout'
+
+# Client
+<Callout type="warning">
+  These exports can only be used on the client-side. Make sure to use them in your client-side script files.
+</Callout>
+
+<Callout type="error">
+ I do not recommend using these exports on the client-side. Most of the time these exports just trigger a callback with the server exports.
+ You make your script more vulnerable if you are using these exports.
+ They are intended for server-side use only. 
+</Callout>
+
+## CanCarryItem
+```lua
+exports.it_bridge:CanCarryItem(item, amount)
+```
+- item: `string`: The item name.
+- count: `number`: The amount of items.
+
+Checks if the player can carry the specified amount of items. Returns `true` if the player can carry the items, `false` otherwise.
+
+### Example
+```lua
+local canCarry = exports.it_bridge:CanCarryItem('paper', 10)
+print(canCarry)
+```
+
+## GetItemCount
+```lua
+exports.it_bridge:GetItemCount(item, metadata)
+```
+- item: `string`: The item name.
+- metadata?: `table | nil` (optional): The item metadata.
+
+Returns the amount of the specified item the player has in their inventory.
+
+### Example
+```lua
+local itemCount = exports.it_bridge:GetItemCount('paper')
+print(itemCount)
+```
+
+## HasItem
+```lua
+exports.it_bridge:HasItem(item, amount, metadata)
+```
+- item: `string`: The item name.
+- count: `number`: The amount of items.
+- metadata?: `table | nil` (optional): The item metadata.
+
+Checks if the player has the specified amount of items. Returns `true` if the player has the items, `false` otherwise.
+
+### Example
+```lua
+local hasItem = exports.it_bridge:HasItem('paper', 10)
+print(hasItem)
+```
+
+## GiveItem
+```lua
+exports.it_bridge:GiveItem(item, amount, metadata)
+```
+
+- item: `string`: The item name.
+- count: `number`: The amount of items.
+- metadata?: `table | nil` (optional): The item metadata.
+
+Gives the player the specified amount of items. Returns `true` if the items were successfully given, `false` otherwise.
+
+<Callout type="warning">
+  This function will not check if the player can carry the items. Make sure to use the `CanCarryItem` function before giving items if you want this check.
+</Callout>
+
+
+### Example
+```lua
+local success = exports.it_bridge:GiveItem('paper', 10)
+print(success)
+```
+
+## RemoveItem
+```lua
+exports.it_bridge:RemoveItem(item, amount, metadata)
+```
+
+- item: `string`: The item name.
+- count: `number`: The amount of items.
+- metadata?: `table | nil` (optional): The item metadata.
+
+emoves the specified amount of items from the player's inventory. Returns `true` if the items were successfully removed, `false` otherwise.
+
+### Example
+```lua
+local removed = exports.it_bridge:RemoveItem('paper', 10)
+print(removed)
+```
+
+## GetItemLabel
+```lua
+exports.it_bridge:GetItemLabel(item)
+```
+
+- item: `string`: The item name.
+
+Returns the label of the specified item.
+
+### Example
+```lua
+local label = exports.it_bridge:GetItemLabel('paper')
+print(label)
+```

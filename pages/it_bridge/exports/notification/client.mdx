@@ -1,0 +1,28 @@
+---
+title: it_bridge | Client Exports - Notification
+description: Learn how to use the client Notification exports for the it_bridge resource.
+---
+
+import { Callout } from '@components/Callout'
+
+# Client
+<Callout type="warning">
+  These exports can only be used on the client-side. Make sure to use them in your client-side script files.
+</Callout>
+
+## SendNotification
+```lua
+exports.it_bridge:SendNotification(title. message, time, type, sound)
+```
+- title: `string`: The notification title.
+- message: `string`: The notification message.
+- time: `number`: The notification display time in milliseconds.
+- type: `string`: The notification type. Can be `Success`, `Info`, `Warning`, or `Error`.
+- sound: `boolean`: If the notification should play a sound.
+
+Sends a notification with the specified data.
+
+### Example
+```lua
+exports.it_bridge:SendNotification('Title', 'Message', 5000, 'Info', true)
+```

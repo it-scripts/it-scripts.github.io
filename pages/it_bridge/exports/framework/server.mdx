@@ -1,0 +1,165 @@
+---
+title: it_bridge | Server Exports - Framework
+description: Learn how to use the server framework exports for the it_bridge resource.
+---
+
+import { Callout } from '@components/Callout'
+
+# Server
+<Callout type="warning">
+  These exports can only be used on the server-side. Make sure to use them in your server-side script files.
+</Callout>
+
+## GetPlayer
+```lua
+exports.it_bridge:GetPlayer(source)
+```
+- source: `number`: The player's server ID.
+
+Returns the framework player object from the source.
+You can execute any framework player function using this object.
+
+## GetPlayerByCitizenId
+```lua
+exports.it_bridge:GetPlayerByCitizenId(citizenId)
+```
+- citizenId: `string`: The player's citizen ID.
+
+Returns the framework player object from the citizen ID.
+You can execute any framework player function using this object.
+
+## GetPlayers
+```lua
+exports.it_bridge:GetPlayers()
+```
+Returns a table containing all the players on the server.
+
+### Example
+```lua
+local players = exports.it_bridge:GetPlayers()
+for _, player in ipairs(players) do
+    print(player.source)
+end
+```
+
+## GetPlayerName
+```lua
+exports.it_bridge:GetPlayerName(player)
+```
+- player: `object`: The player object.
+
+Returns the the player's ingame name.
+
+### Example
+```lua
+local player = exports.it_bridge:GetPlayer(source)
+local playerName = exports.it_bridge:GetPlayerName(player)
+print(playerName)
+```
+
+## GetPlayerCitizenId
+```lua
+exports.it_bridge:GetPlayerCitizenId(player)
+```
+- player: `object`: The player object.
+
+Returns the the player's citizen ID. For every framework, the citizen ID is unique.
+
+### Example
+```lua
+local player = exports.it_bridge:GetPlayer(source)
+local citizenId = exports.it_bridge:GetPlayerCitizenId(player)
+print(citizenId)
+```
+
+## GetPlayerJob
+```lua
+exports.it_bridge:GetPlayerJob(player)
+```
+- player: `object`: The player object.
+
+Returns table containing the player's job information.
+```lua
+{
+    grade: 0, -- number
+    grade_label: "Unemployed", -- string
+    grade_salary: 0, -- number
+    isBoss: false, -- boolean
+    label: "Unemployed", -- string
+    name: "unemployed", -- string
+    onDuty: true, -- boolean
+}
+```
+
+### Example
+```lua
+local player = exports.it_bridge:GetPlayer(source)
+local job = exports.it_bridge:GetPlayerJob(player)
+print(job.label) -- Unemployed
+```
+
+## GetMoney
+```lua
+exports.it_bridge:GetMoney(source, moneyType)
+```
+- source: `number`: The player's server ID.
+- moneyType: `string`: The money type. (cash, bank, black_money)
+
+Returns the player's money amount.
+
+### Example
+```lua
+local cash = exports.it_bridge:GetMoney(source, 'cash')
+print(cash)
+```
+
+## AddMoney
+```lua
+exports.it_bridge:AddMoney(source, moneyType, amount, reason)
+```
+- source: `number`: The player's server ID.
+- moneyType: `string`: The money type. (cash, bank, black_money)
+- amount: `number`: The amount to add.
+- reason: `string | nil`: The reason for adding money.
+
+Adds money to the player's account. Will return `true` if the money was added successfully.
+
+### Example
+```lua
+local success = exports.it_bridge:AddMoney(source, 'cash', 1000, 'Reward')
+print(success)
+```
+
+## RemoveMoney
+```lua
+exports.it_bridge:RemoveMoney(source, moneyType, amount, reason)
+```
+- source: `number`: The player's server ID.
+- moneyType: `string`: The money type. (cash, bank, black_money)
+- amount: `number`: The amount to remove.
+- reason: `string | nil`: The reason for removing money.
+
+Removes money from the player's account. Will return `true` if the money was removed successfully.
+
+### Example
+```lua
+local success = exports.it_bridge:RemoveMoney(source, 'cash', 1000, 'Fine')
+print(success)
+```
+
+## SetMoney
+```lua
+exports.it_bridge:SetMoney(source, moneyType, amount, reason)
+```
+- source: `number`: The player's server ID.
+- moneyType: `string`: The money type. (cash, bank, black_money)
+- amount: `number`: The amount to set.
+- reason: `string | nil`: The reason for setting money.
+
+Sets the player's money amount. Will return `true` if the money was set successfully.
+
+### Example
+```lua
+local success = exports.it_bridge:SetMoney(source, 'cash', 1000, 'Set')
+print(success)
+```

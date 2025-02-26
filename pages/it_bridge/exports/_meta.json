@@ -1,0 +1,23 @@
+{
+  "disptach": {
+    "title": "⛑・Disptach System"
+  },
+  "framework": {
+    "title": "💾・Framework"
+  },
+  "interaction": {
+    "title": "👀・Interaction"
+  },
+  "inventory": {
+    "title": "🛒・Inventory"
+  },
+  "menus": {
+    "title": "🗂️・Menus"
+  },
+  "notification": {
+    "title": "📨・Notification"
+  },
+  "textui": {
+    "title": "📋・Text UI"
+  }
+}

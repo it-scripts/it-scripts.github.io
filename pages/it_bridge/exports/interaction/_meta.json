@@ -1,0 +1,15 @@
+{
+  "client": {
+    "title": "Client",
+    "theme": {
+      "footer": false
+    }
+  },
+  "server": {
+    "title": "Server",
+    "theme": {
+      "footer": false
+    }
+  }
+}
+  

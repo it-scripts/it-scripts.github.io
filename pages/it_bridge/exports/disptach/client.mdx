@@ -1,0 +1,51 @@
+---
+title: it_bridge | Client Exports - Disptach
+description: Learn how to use the client Dispatch exports for the it_bridge resource.
+---
+
+import { Callout } from '@components/Callout'
+
+# Client
+<Callout type="warning">
+  These exports can only be used on the server-side. Make sure to use them in your server-side script files.
+</Callout>
+
+<Callout type="error">
+Due to the fact that there are so many disptach system avaliable for Fivem, I've only added the most used systems to the bridge by default.
+You can add your own dispatch system to the bridge by editing the `disptach/server.lua` and `disptach/client.lua` file.
+</Callout>
+
+### Disptach Data
+```lua
+{
+    job = 'police', -- The job that should receive the disptach.
+    jobs = {'police', 'ambulance'}, -- The jobs that should receive the disptach.
+    title = 'Robbery', -- The disptach title.
+    message = 'A robbery has been reported at the bank.', -- The disptach description.
+    coords = {x = 0.0, y = 0.0, z = 0.0}, -- The disptach location.
+    callCode = {
+        code = '10-31', -- The disptach code.
+        snippet = '10-31' -- The disptach priority.
+    },
+    flashes = true, -- If the disptach should flash on the map.
+    image = 'https://i.imgur.com/0J2QX1E.png', -- The disptach image.
+    blip = {
+        sprite = 1, -- The disptach blip sprite.
+        colour = 1, -- The disptach blip color.
+        scale = 1.0, -- The disptach blip scale.
+        text = 'Robbery', -- The disptach blip label.
+        time = 30000 -- The disptach blip time.
+        flashes = true -- If the disptach blip should flash.
+    }
+}
+```
+If you want your script to work with all Disptach systems that are integrated in it-brige please make sure that you enter all these data
+
+## SendDisptach
+```lua
+exports.it_bridge:SendDispatch(disptachData)
+```
+
+- disptachData: `table`: The disptach data.
+
+Sends a disptach with the specified data.

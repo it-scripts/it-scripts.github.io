@@ -1,0 +1,29 @@
+---
+title: it_bridge | Server Exports - Notification
+description: Learn how to use the server Notification exports for the it_bridge resource.
+---
+
+import { Callout } from '@components/Callout'
+
+# Server
+<Callout type="warning">
+  These exports can only be used on the server-side. Make sure to use them in your server-side script files.
+</Callout>
+
+## SendNotification
+```lua
+exports.it_bridge:SendNotification(source, title, message, time, type, sound)
+```
+- source: `number`: The player's server ID.
+- title: `string`: The notification title.
+- message: `string`: The notification message.
+- time: `number`: The notification display time in milliseconds.
+- type: `string`: The notification type. Can be `Success`, `Info`, `Warning`, or `Error`.
+- sound: `boolean`: If the notification should play a sound.
+
+Sends a notification with the specified data.
+
+### Example
+```lua
+exports.it_bridge:SendNotification(source, 'Title', 'Message', 5000, 'Info', true)
+```
