@@ -1,5 +1,92 @@
+---
+title: it_bridge | Client Exports - Menus
+description: Learn how to use the client Menus exports for the it_bridge resource.
+---
+
 import { Callout } from '@components/Callout'
 
-<Callout type="waring">
-  Currently not available.
+# Client
+<Callout type="warning">
+  These exports can only be used on the client-side. Make sure to use them in your client-side script files.
 </Callout>
+
+
+### Menu Data
+```lua
+{
+  id = 'string', -- The unique identifier of the menu.
+  title = 'string', -- The title of the menu.
+  menu = 'string', -- The menu to open when the menu is closed. (Only ox_lib)
+  onBack = function, -- The function to execute when the back button is pressed. (Only ox_lib)
+  options = {optionData}, -- The options of the menu.
+}
+```
+
+### Menu optionData
+```lua
+{
+    title = 'string', -- The title of the option.
+    description = 'string', -- The description of the option.
+    disabled = boolean, -- If the option is disabled.
+    readOnly = boolean, -- If the option is read-only.
+    onSelect = function, -- The function to execute when the option is selected.
+    icon = 'string', -- The icon name. (From FontAwesome)
+    progress = number, -- The progress amount of the option. (Only ox_lib)
+    colorScheme = 'string', -- The color scheme of the option. (Only ox_lib)
+    image = 'string', -- The image URL of the option. (Only ox_lib)
+    metadata = 'table', -- The metadata of the option. (Only ox_lib)
+    params = {
+      event = 'string', -- The event to trigger when the option is selected. (Only qb-menu)
+      args = 'table', -- The arguments to pass to the event. (Only qb-menu)
+    }
+}
+```
+
+If you want your script to work with all Disptach systems that are integrated in it-brige please make sure that you enter all these data
+
+## OpenMenu
+```lua
+exports.it_bridge:OpenMenu(menuData)
+```
+
+- menuData: `table`: The menu data.
+
+Opens a menu with the specified data.
+
+### Example
+```lua
+exports.it_bridge:OpenMenu({
+  id = 'example',
+  title = 'Example Menu',
+  options = {
+    {
+      title = 'Option 1',
+      description = 'This is option 1',
+      onSelect = function()
+        print('Option 1 selected')
+      end,
+      params = {
+        event = 'example:event',
+        args = { 'arg1', 'arg2' },
+      },
+    },
+    {
+      title = 'Option 2',
+      description = 'This is option 2',
+      onSelect = function()
+        print('Option 2 selected')
+      end,
+      params = {
+        event = 'example:event',
+        args = { 'arg1', 'arg2' },
+      },
+    },
+    {
+      title = 'Disabled Button',
+      description = 'This button is disabled',
+      icon = 'fas fa-ban',
+      disabled = true,
+    }
+  },
+})
+```

@@ -1,0 +1,135 @@
+---
+title: it_bridge | Shared Exports
+description: Learn how to use the shared exports for the it_bridge resource.
+---
+
+import { Callout } from '@components/Callout'
+import Accordion from '@components/Accordion'
+
+# Shared
+<Callout type="info">
+    These exports can be used on both the client and server-side. Make sure to use them in your script files.
+</Callout>
+
+## GetServerFramework
+```lua
+exports.it_bridge:GetServerFramework()
+```
+
+- Returns: `string`: The server framework.
+
+Returns the server framework that is currently being used.
+<Accordion title="Possible frameworks">
+    - `es_extended`
+    - `qb-core`
+    - `qbx_core`
+    - `ND_Core` 
+</Accordion>
+
+## GetServerFrameworkObject
+```lua
+exports.it_bridge:GetServerFrameworkObject()
+```
+
+- Returns: `table`: The server framework object.
+
+Returns the server framework object that is currently being used. You can execute functions from the server framework object.
+
+## GetServerInventory
+```lua
+exports.it_bridge:GetServerInventory()
+```
+
+- Returns: `string`: The server inventory.
+
+Returns the server inventory that is currently being used.
+<Accordion title="Possible inventories">
+    - `es_extended`
+    - `qb-inventory`
+    - `ps-inventory`
+    - `qs-inventory`
+    - `ox_inventory`
+    - `codem-inventory`
+    - `origen-inventory`
+</Accordion>
+
+## GetServerInteraction
+```lua
+exports.it_bridge:GetServerInteraction()
+```
+
+- Returns: `string | nil`: The server interaction.
+
+Returns the server interaction that is currently being used.
+<Accordion title="Possible interactions">
+    - `ox_target`
+    - `qb-target`
+    - `nil`
+</Accordion>
+
+## GetServerNotify
+```lua
+exports.it_bridge:GetServerNotify()
+```
+
+- Returns: `string`: The server notify.
+
+Returns the server notify that is currently being used.
+<Accordion title="Possible notifiers">
+    - `brutal_notify`
+    - `ox_lib`
+    - `esx_notify`
+    - `qb-core`
+    - `es_extended`
+    - `mythic_notify`
+    - `okokNotify`
+</Accordion>
+
+## GetServerTextUI
+```lua
+exports.it_bridge:GetServerTextUI()
+```
+
+- Returns: `string | nil`: The server text UI.
+
+Returns the server text UI that is currently being used.
+<Accordion title="Possible text UIs">
+    - `esx_textUI`
+    - `ox_lib`
+    - `qb-core`
+    - `okokTextUI`
+    - `nil`
+</Accordion>
+
+## GetServerMenu
+```lua
+exports.it_bridge:GetServerMenu()
+```
+
+- Returns: `string | nil`: The server menu.
+
+Returns the server menu that is currently being used.
+<Accordion title="Possible menus">
+    - `esx_context`
+    - `ox_lib`
+    - `qb-menu`
+</Accordion>
+
+## GetServerDisptach
+```lua
+exports.it_bridge:GetServerDisptach()
+```
+
+- Returns: `string | nil`: The server disptach.
+
+Returns the server disptach that is currently being used.
+<Accordion title="Possible menus">
+    - `qs-dispatch`
+    - `ps-dispatch`
+    - `cd_disaptch`
+    - `core_dispatch`
+    - `codem_dispatch`
+    - `emergency_dispatch`
+    - `origen_police`
+    - `nil`
+</Accordion>

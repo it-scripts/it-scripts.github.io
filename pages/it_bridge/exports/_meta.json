@@ -1,23 +1,29 @@
 {
-  "disptach": {
-    "title": "⛑・Disptach System"
+  "shared": {
+    "title": "🔄・Shared", 
+    "theme": {
+      "footer": false
+    }
   },
   "framework": {
     "title": "💾・Framework"
   },
-  "interaction": {
-    "title": "👀・Interaction"
-  },
   "inventory": {
     "title": "🛒・Inventory"
-  },
-  "menus": {
-    "title": "🗂️・Menus"
   },
   "notification": {
     "title": "📨・Notification"
   },
+  "interaction": {
+    "title": "👀・Interaction"
+  },
   "textui": {
     "title": "📋・Text UI"
+  },
+  "menus": {
+    "title": "🗂️・Menus"
+  },
+  "disptach": {
+    "title": "⛑・Disptach System"
   }
 }

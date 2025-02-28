@@ -1,5 +1,56 @@
-import { Callout } from '@components/Callout'
+---
+title: it_bridge | Client Exports - Text UI
+description: Learn how to use the client Text UI exports for the it_bridge resource.
+---
 
-<Callout type="waring">
-  Currently not available.
+import { Callout } from '@components/Callout'
+import Accordion from '@components/Accordion'
+
+# Client
+<Callout type="warning">
+  These exports can only be used on the client-side. Make sure to use them in your client-side script files.
 </Callout>
+
+## TextUIData
+```lua
+{
+  position: 'string', -- The position of the text UI. Can be 'left', 'right'.
+  icon = 'string', -- The icon name. (From FontAwesome)
+  iconAnimation = 'string', -- The icon animation. (From ox_lib)
+  color = 'string', -- The type of the text UI. Can be 'success', 'info', 'error'.
+  playSound = boolean, -- If the text UI should play a sound.
+}
+```
+
+## ShowTextUI
+```lua
+exports.it_bridge:ShowTextUI(text, data)
+```
+- text: `string`: The text to display.
+- data: `TextUIData`: The text UI data.
+
+Shows a text UI with the specified text and data.
+
+### Example
+```lua
+exports.it_bridge:ShowTextUI('Hello World!', {
+  position = 'left',
+  icon = 'fa-info',
+  iconAnimation = 'shake',
+  color = 'info',
+  playSound = true,
+})
+```
+
+## HideTextUI
+```lua
+exports.it_bridge:HideTextUI(text)
+```
+- text?: `string | nil`: The text to hide. *(Only works with ox_lib)*
+
+Hides the text UI with the specified text. If no text is specified, it will hide the current text UIs.
+
+### Example
+```lua
+exports.it_bridge:HideTextUI('Hello World!')
+```
