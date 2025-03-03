@@ -1,5 +1,5 @@
 ---
-title: it-crafting - Installation
+title: it_bridge - Installation
 description: Welcome to the it-crafting installation guide, here you can learn how to completely install our asset, following each step we will achieve a clean and fluid installation where you will not find any problems, as long as the documentation has been completed in full.
 ---
 
@@ -7,7 +7,7 @@ import { Cards, Card, Tabs} from 'nextra/components'
 import { Callout } from '@components/Callout'
 import Accordion from '@components/Accordion'
 import AccordionGroup from '@components/AccordionGroup'
-import { IconShoppingBag } from '@tabler/icons-react';
+import { IconShoppingBag, IconApps} from '@tabler/icons-react';
 
 # Installation
 Welcome to the **it_bridge** installation guide, here you can learn how to completely install our asset, 
@@ -24,22 +24,15 @@ as long as the documentation has been completed in full.
   you can obtain more information about common errors in the Common Problems section within this same documentation to seek help independently.
 </Callout>
 
-<Callout type="warning">
-    When installing the script make sure to **not** rename the script folder, this can cause errors in the script. The name of the script folder should always be **it-crafting**.
-</Callout>
-
 ## Asset download
-You can get the lates version of the it_bridge script fo free on our tebex store
+You can get the lates version of the it_bridge script fo free on our tebex store if you want to update the script you have to visit your keymaster.
 <Cards>
   <Card icon={<IconShoppingBag />} title="Tebex" href="https://it-scripts.tebex.io/package/6706602" />
+  <Card icon={<IconApps />} title="Cfx.re Portal" href="https://portal.cfx.re/assets/granted-assets?page=1&sort=asset.updated_at&direction=asc&search=allroundjonu" />
 </Cards>
 
 <Callout type="warning">
-  If you have downloaded the script from another site, there is no guarantee that the script will actually work. Please download it again from the it-scripts tebex page.
-</Callout>
-
-<Callout type="error">
-  If you have paid money for this script, it is a **SCAM**. The **it_bridge** script is and will always remain free. Please report the page to us on the Discord server.
+  If you have downloaded the script from another site, there is no guarantee that the script will actually work. Please download it again from the the Cfx.re Portal.
 </Callout>
 
 ## Asset dependencies
@@ -47,13 +40,33 @@ You can get the lates version of the it_bridge script fo free on our tebex store
 | --- | --- |
 | ox_lib | https://github.com/overextended/ox_lib/releases |
 
+<Callout type="info">
+  If you have not installed the dependencies, you will not be able to use the asset correctly, please install them before continuing with the installation.
+</Callout>
+
 ## Asset positioning
 <Callout type="error">
   Correctly position the assets by following this step, if something goes wrong you will probably get errors about exports not found, do not skip this step.
 </Callout>
 
-For the execution of this asset, we will respect the respective order mentioned below.
+When you have downloaded the asset, you will have a folder with the name of the asset, inside you will find to seperate folders, each folder is on asset.
 
+We recommend to create a folder with the name `[it-scripts]` in your resources folder, and then move the asset folders inside the `[it-scripts]` folder.
+
+After you added both assets you have to add the `it_bridge` resource to your `server.cfg` file.
+
+<Callout type="warning">
+  In your `server.cfg` file you have to add the `it_bridge` resource after any script the bridge needs to work for most servers that will be
+  - Your Framework
+  - Your Inventory Script
+  - Your Notification Script *(If you have one on your server)*
+  - Your TextUI Script *(If you have one on your server)*
+  - Your Target Script *(If you have one on your server)*
+  - Your Disptach Script *(If you have one on your server)*
+  - ox_lib
+</Callout>
+
+**Example:**
 ```lua
 -- First we will start the Database
 ensure oxmysql
@@ -74,3 +87,7 @@ ensure it_bridge
 
 -- After that you can start any other it script you want to use
 ```
+
+<Callout type="error">
+Do not add the `bridge_tester` resource to your `server.cfg` file, this resource is only for testing purposes and should not be used on a live server.
+</Callout>

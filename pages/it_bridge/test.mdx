@@ -1,0 +1,232 @@
+---
+title: it_bridge - How to test?
+description: Welcome to the it_bridge test guide, here you can learn how to completely test our asset, following each step we will achieve a clean and fluid test where you will not find any problems, as long as the documentation has been completed in full.
+---
+
+import { Callout } from '@components/Callout'
+import { Steps } from 'nextra/components'
+
+# How to test?
+Welcome to the **it_bridge** test guide, where you can learn how to completely test the our asset on your server, following each step we will achieve a clean and fluid test where you will find any problems with the bridge on your server, as long as the documentation has been completed.
+
+<Callout type="warning">
+    Before you start testing the script, make sure that you have followed the installation guide and that the script is correctly installed on your server.
+</Callout>
+
+<Steps>
+### Configuration of the script
+First you have to configure the **it_bridge** script, you can do this in the `config.lua` file.
+On most servers you can leave the default settings, but if you want to change something you can do this.
+
+### Start the it_bridge script
+After you have configured the script, you can start the script on your server.
+If you followed the install guide correctly, the script should start aumaotically when you start your server.
+If the script does not start automatically, you can start it manually with the following command in your txAdmin Console:
+```lua
+start it_bridge
+```
+
+After starting the script, you should see a message in your server console after a few seconds, that the script has started successfully.
+The script will also tell you which settings are currently active. Please make sure these settings are correct.
+
+**Example Message:**
+[![Example Message](https://i.imgur.com/gyQOv2X.png)](https:/i.imgur.com/gyQOv2X.png "Open Image")
+
+### Start the bridge_tester script
+After you started the **it_bridge** script, you can start the **bridge_tester** script.
+This script is used to test the **it_bridge** script and to make sure that everything is working correctly.
+You can start the **bridge_tester** script with the following command in your txAdmin console:
+```lua
+start bridge_tester
+```
+
+### Test the script
+After you have started the **bridge_tester** script, you can test the **it_bridge** script.
+
+<Steps>
+#### 1. Test your Framework
+To test if the it_brige script is working correctly, with your framework, you can use the following command in your txAdmin console:
+```lua
+bridgeTestFramework id money bank blackMoney
+```
+- **id**: The player ID you want to test the script with.
+- **money**: The amount of money (cash) the player currently has.
+- **bank**: The amount of money the player currently has in the bank.
+- **blackMoney**: The amount of black money the player currently has.
+
+<Callout type="info">
+    If you are using **qb-core**, **qBox** as your framework set the amount for **blackMoney** to the amount of crypto the player has.
+    If you are using **ND_Core** set the amount for **blackMoney** to 0.
+</Callout>
+
+After you issued the command, you should see some messages in your server console, 
+the script will automatically test the **it_bridge** script with the given values.
+
+The script will print the result of every test in the server console. 
+If you encounter any errors, please report them in the [Discord](https://discord.it-scripts.com).
+
+##### Example input
+```lua
+bridgeTestFramework 1 1000 500 0
+```
+
+##### Example output
+[![Example Output](https://i.imgur.com/X4SPCCK.png)](https:/i.imgur.com/X4SPCCK.png "Open Image")
+
+#### 2. Test your Inventory Script
+To test if the **it_bridge** script is working correctly with your inventory script, you can use the following command in your txAdmin console:
+```lua
+bridgeTestInventory id item
+```
+
+- **id**: The player ID you want to test the script with.
+- **item**: The item you want to test the script with.
+
+<Callout type="info">
+    For the item parameter, you can use any item that is in your inventory **except** for the money items.
+</Callout>
+
+After you issued the command, you should see some messages in your server console,
+the script will automatically test the **it_bridge** script with the given values.
+
+The script will print the result of every test in the server console.
+If you encounter any errors, please report them in the [Discord](https://discord.it-scripts.com).
+
+##### Example input
+```lua
+bridgeTestInventory 1 bread
+```
+
+##### Example output
+[![Example Output](https://i.imgur.com/OIiB92j.png)](https:/i.imgur.com/OIiB92j.png "Open Image")
+#### 3. Test your Notification Script
+To test if the **it_bridge** script is working correctly with your notification script, you can use the following command in your txAdmin console:
+```lua
+bridgeTestNotify id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, the targeted player should receive 4 notifications (every notification type for 5 Seconds) on the screen.
+
+If the player does not receive the notifications, please report this in the [Discord](https://discord.it-scripts.com).
+
+##### Example input
+```lua
+bridgeTestNotify 1
+```
+
+#### 4. Test your TextUI Script
+To test if the **it_bridge** script is working correctly with your TextUI script, you can use the following command in your txAdmin console:
+```lua
+bridgeTestTextUI id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, the targeted player should receive a TextUI on the screen. On some TextUI scripts, you will recive TextUIs with a different design and on others you will recive a TextUI with the default design.
+This is normal and should not be a problem.
+
+If the player does not receive the TextUI, please report this in the [Discord](https://discord.it-scripts.com).
+
+##### Example input
+```lua
+bridgeTestTextUI 1
+```
+
+#### 5. Test your Menu Script
+
+<Callout type="warning">
+    Before testing the Menu, please make sure you have tested the Notification script.
+</Callout>
+
+To test if the **it_bridge** script is working correctly with your Menu script, you can use the following command in your txAdmin console:
+```lua
+bridgeTestMenu id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, the targeted player should receive a Menu on the screen. If you press any button on the menu, the script will show a notification.
+
+If the player does not receive the Menu, please report this in the [Discord](https://discord.it-scripts.com).
+
+
+#### 6. Test your Target Script
+
+<Callout type="info">
+    To test your Target script, you need more than one command to test it, because you have to test every target type separately.
+</Callout>
+
+To test if the **it_bridge** script is working correctly with your Target script, you can use the following commands in your txAdmin console:
+
+```lua
+bridgeBoxZone id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, in front of the targeted player should appear a prop with a box zone around. If the player tries to target the zone there should be two options.
+The prop and the box zone should disappear after 15 seconds.
+
+```lua
+bridgeTargetEntity id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, in front of the targeted player should appear a prop. If the player tries to target the entity there should be two options.
+The prop should disappear after 15 seconds.
+
+```lua
+bridgeGlobalPedTest id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, the targeted player should have two target options on every ped in the server. **The script will not spawn a ped!**
+After 15 seconds the target options should disappear.
+
+```lua
+bridgeGlobalVehicle id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, the targeted player should have two target options on every vehicle in the server. **The script will not spawn a vehicle!**
+After 15 seconds the target options should disappear.
+
+```lua
+bridgeGlobalPlayer id
+```
+- **id**: The player ID you want to test the script with.
+
+<Callout type="warning">
+    To test the globalPlayer command there should be at least one other player in the server.
+</Callout>
+
+After you issued the command, the targeted player should have two target options on every player in the server.
+After 15 seconds the target options should disappear.
+
+```lua
+bridgeModel id
+```
+- **id**: The player ID you want to test the script with.
+
+After you issued the command, in front of the targeted player should appear a prop. If the player tries to target the prop there should be two options.
+The prop should disappear after 15 seconds.
+
+
+If there any problems with the target script, please report this in the [Discord](https://discord.it-scripts.com).
+</Steps>
+
+### Report your results
+After you have tested the **it_bridge** script, you should report your results in the [Discord](https://discord.it-scripts.com).
+Please report your results regardless of whether there were errors or not, this will help us to improve the script and to fix any errors that may occur.
+
+For reporting, please join the Discord and go to the `📑・tickets` channel and open a `Bridge Results` Ticket.
+In this ticket, please provide the following information:
+- Image of the startup message of the **it_bridge** script.
+- Results of the tests.
+    - *If you do not have any errors you can just send a short message like `No errors found!`*
+    - **If you have any errors, please provide the error message and a description of what you did before the error occurred. And an image of you txAdmin and F8 Console.**
+
+### Stop the bridge_tester script
+After you have tested the **it_bridge** script, you can stop the **bridge_tester** script with the following command in your txAdmin console:
+```lua
+stop bridge_tester
+```
+</Steps>

@@ -11,6 +11,12 @@
       "footer": false
     }
   },
+  "test": {
+    "title": "❓・How to test?",
+    "theme": {
+      "footer": false
+    }
+  },
   "exports": "⚙️・Exports"
 }
   
