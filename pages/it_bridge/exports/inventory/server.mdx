@@ -21,7 +21,7 @@ exports.it_bridge:CanCarryItem(source, item, amount)
 Checks if the player can carry the specified amount of items. Returns `true` if the player can carry the items, `false` otherwise.
 If the server uses codem_inventory the function will allways return `true`.
 
-### Example
+**Example**
 ```lua
 local canCarry = exports.it_bridge:CanCarryItem(source, 'paper', 10)
 print(canCarry)
@@ -37,7 +37,7 @@ exports.it_bridge:GetItemCount(source, item, metadata)
 
 Returns the amount of the specified item the player has in their inventory.
 
-### Example
+**Example**
 ```lua
 local itemCount = exports.it_bridge:GetItemCount(source, 'paper')
 print(itemCount)
@@ -54,7 +54,7 @@ exports.it_bridge:HasItem(source, item, amount, metadata)
 
 Checks if the player has the specified amount of items. Returns `true` if the player has the items, `false` otherwise.
 
-### Example
+**Example**
 ```lua
 local hasItem = exports.it_bridge:HasItem(source, 'paper', 10)
 print(hasItem)
@@ -75,7 +75,7 @@ Gives the player the specified amount of items. Returns `true` if the items were
   This function will not check if the player can carry the items. Make sure to use the `CanCarryItem` function before giving items if you want this check.
 </Callout>
 
-### Example
+**Example**
 ```lua
 local success = exports.it_bridge:GiveItem(source, 'paper', 10)
 print(success)
@@ -92,7 +92,7 @@ exports.it_bridge:RemoveItem(source, item, amount, metadata)
 
 Removes the specified amount of items from the player's inventory. Returns `true` if the items were successfully removed, `false` otherwise.
 
-### Example
+**Example**
 ```lua
 local success = exports.it_bridge:RemoveItem(source, 'paper', 10)
 print(success)
@@ -106,7 +106,7 @@ exports.it_bridge:GetItemLabel(item)
 
 Returns the label of the specified item. Wil return the given value and an error if the item does not exist.
 
-### Example
+**Example**
 ```lua
 local label = exports.it_bridge:GetItemLabel('paper')
 print(label)
@@ -121,7 +121,7 @@ exports.it_bridge:CreateUsableItem(item, cb)
 
 Creates a usable item that can be used by players. The function will be called when the item is used.
 
-### Example
+**Example**
 ```lua
 exports.it_bridge:CreateUsableItem('paper', function(source)
   print('Paper was used by player ' .. source)

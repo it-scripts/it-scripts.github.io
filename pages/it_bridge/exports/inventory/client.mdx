@@ -25,7 +25,7 @@ exports.it_bridge:CanCarryItem(item, amount)
 
 Checks if the player can carry the specified amount of items. Returns `true` if the player can carry the items, `false` otherwise.
 
-### Example
+**Example**
 ```lua
 local canCarry = exports.it_bridge:CanCarryItem('paper', 10)
 print(canCarry)
@@ -40,7 +40,7 @@ exports.it_bridge:GetItemCount(item, metadata)
 
 Returns the amount of the specified item the player has in their inventory.
 
-### Example
+**Example**
 ```lua
 local itemCount = exports.it_bridge:GetItemCount('paper')
 print(itemCount)
@@ -56,7 +56,7 @@ exports.it_bridge:HasItem(item, amount, metadata)
 
 Checks if the player has the specified amount of items. Returns `true` if the player has the items, `false` otherwise.
 
-### Example
+**Example**
 ```lua
 local hasItem = exports.it_bridge:HasItem('paper', 10)
 print(hasItem)
@@ -78,7 +78,7 @@ Gives the player the specified amount of items. Returns `true` if the items were
 </Callout>
 
 
-### Example
+**Example**
 ```lua
 local success = exports.it_bridge:GiveItem('paper', 10)
 print(success)
@@ -95,7 +95,7 @@ exports.it_bridge:RemoveItem(item, amount, metadata)
 
 emoves the specified amount of items from the player's inventory. Returns `true` if the items were successfully removed, `false` otherwise.
 
-### Example
+**Example**
 ```lua
 local removed = exports.it_bridge:RemoveItem('paper', 10)
 print(removed)
@@ -110,7 +110,7 @@ exports.it_bridge:GetItemLabel(item)
 
 Returns the label of the specified item.
 
-### Example
+**Example**
 ```lua
 local label = exports.it_bridge:GetItemLabel('paper')
 print(label)

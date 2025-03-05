@@ -1,5 +1,282 @@
+---
+title: it_bridge | Client Exports - Interactions
+description: Learn how to use the client Interactions exports for the it_bridge resource.
+---
+
 import { Callout } from '@components/Callout'
 
-<Callout type="waring">
-  Currently not available.
+# Client
+<Callout type="warning">
+  These exports can only be used on the client-side. Make sure to use them in your client-side script files.
 </Callout>
+
+
+### Interactions Options
+```lua
+{
+  label = 'string', -- The label of the interaction.
+  name = 'string', -- The name of the interaction.
+  icon = 'string', -- The icon of the interaction.
+  item = {}, -- List of item you need to have to use the interaction.
+  groups = {}, -- List of groups you need to have to use the interaction.
+  canInteract = function(entity, distance), -- Function to check if the player can interact with the entity.
+  onSelect = function(entity), -- Function to execute when the player selects the interaction.
+  distance = number, -- The distance the player needs to be to interact with the entity.
+}
+```
+
+If you want your script to work with all Disptach systems that are integrated in it-brige please make sure that you enter all these data
+
+## CreateBoxZone
+```lua
+exports.it_bridge:CreateBoxZone(options, boxData)
+```
+
+- options: `table`: The options of the box zone.
+- boxData: `table`: The data of the box zone.
+
+Creates a box zone with the specified data.
+
+### BoxData
+```lua
+{
+  coords = vector3, -- The coordinates of the box zone.
+  size = vector3, -- The size of the box zone.
+  rotation = number, -- The rotation of the box zone.
+  debug = boolean, -- If the box zone should be debugged.
+  drawSprite = boolean, -- If the box zone should draw a sprite.
+  minZ = number, -- The minimum Z value of the box zone.
+  maxZ = number, -- The maximum Z value of the box zone.
+  interactDistance = number, -- The distance the player needs to be to interact with the box zone.
+}
+```
+
+**Example**
+```lua
+exports.it_bridge:CreateBoxZone({
+  label = 'Example Box Zone',
+  name = 'example_box_zone',
+  icon = 'fas fa-box',
+  canInteract = function(entity, distance)
+    return distance < 2.5
+  end,
+  onSelect = function(entity)
+    print('You have interacted with the box zone.')
+  end,
+  distance = 2.5,
+}, {
+  coords = vector3(0.0, 0.0, 0.0),
+  size = vector3(2.5, 2.5, 2.5),
+  rotation = 0.0,
+  debug = true,
+  drawSprite = true,
+  minZ = 0.0,
+  maxZ = 3.0,
+  interactDistance = 2.5,
+  })
+```
+
+## AddTargetEntity
+```lua
+exports.it_bridge:AddTargetEntity(entities, options)
+```
+
+- entities: `table | number`: The entities to add as target entities.
+- options: `table`: The options of the target entities.
+
+Return all options that where added to the entities.
+
+Adds the specified entities as target entities.
+
+**Example**
+```lua
+local targetData = exports.it_bridge:AddTargetEntity(netId, {
+  label = 'Example Entity',
+  icon = 'fas fa-user',
+  canInteract = function(entity, distance)
+    return distance < 2.5
+  end,
+  onSelect = function(entity)
+    print('You have interacted with the entity.')
+  end,
+  distance = 2.5,
+})
+```
+
+## RemoveTargetEntity
+```lua
+exports.it_bridge:RemoveTargetEntity(entities, options)
+```
+
+- entities: `table | number`: The entities to remove as target entities.
+- options: `table`: The options of the target entities.
+
+Return all options that where removed from the entities.
+Removes the specified entities as target entities.
+
+**Example**
+```lua
+local removed = exports.it_bridge:RemoveTargetEntity(netId, targetData)
+```
+
+## AddGlobalPed
+```lua
+exports.it_bridge:AddGlobalPed(options)
+```
+
+- options: `table`: The options of the global ped.
+
+Return all options that where added to the peds.
+Adds a interaction for all peds in the world.
+
+**Example**
+```lua
+local pedData = exports.it_bridge:AddGlobalPed({
+  label = 'Example Ped',
+  icon = 'fas fa-user',
+  canInteract = function(entity, distance)
+    return distance < 2.5
+  end,
+  onSelect = function(entity)
+    print('You have interacted with the ped.')
+  end,
+  distance = 2.5,
+})
+```
+
+## RemoveGlobalPed
+```lua
+exports.it_bridge:RemoveGlobalPed(options)
+```
+
+- options: `table`: The options of the global ped.
+
+Return `true` if the interactions was removed.
+Removes the interaction for all peds in the world.
+
+**Example**
+```lua
+local removed = exports.it_bridge:RemoveGlobalPed(pedData)
+```
+
+## AddGlobalPlayer
+```lua
+exports.it_bridge:AddGlobalPlayer(options)
+```
+
+- options: `table`: The options of the global player.
+
+Return all options that where added to the players.
+Adds a interaction for all players in the world.
+
+**Example**
+```lua
+local playerData = exports.it_bridge:AddGlobalPlayer({
+  label = 'Example Player',
+  icon = 'fas fa-user',
+  canInteract = function(entity, distance)
+    return distance < 2.5
+  end,
+  onSelect = function(entity)
+    print('You have interacted with the player.')
+  end,
+  distance = 2.5,
+})
+```
+
+## RemoveGlobalPlayer
+```lua
+exports.it_bridge:RemoveGlobalPlayer(options)
+```
+
+- options: `table`: The options of the global player.
+
+Return `true` if the interactions was removed.
+Removes the interaction for all players in the world.
+
+**Example**
+```lua
+local removed = exports.it_bridge:RemoveGlobalPlayer(playerData)
+```
+
+## AddGlobalVehicle
+```lua
+exports.it_bridge:AddGlobalVehicle(options)
+```
+
+- options: `table`: The options of the global vehicle.
+
+Return all options that where added to the vehicles.
+Adds a interaction for all vehicles in the world.
+
+**Example**
+```lua
+local vehicleData = exports.it_bridge:AddGlobalVehicle({
+  label = 'Example Vehicle',
+  icon = 'fas fa-car',
+  canInteract = function(entity, distance)
+    return distance < 2.5
+  end,
+  onSelect = function(entity)
+    print('You have interacted with the vehicle.')
+  end,
+  distance = 2.5,
+})
+```
+
+## RemoveGlobalVehicle
+```lua
+exports.it_bridge:RemoveGlobalVehicle(options)
+```
+
+- options: `table`: The options of the global vehicle.
+
+Return `true` if the interactions was removed.
+Removes the interaction for all vehicles in the world.
+
+**Example**
+```lua
+local removed = exports.it_bridge:RemoveGlobalVehicle(vehicleData)
+```
+
+## AddTargetModel
+```lua
+exports.it_bridge:AddTargetModel(models, options)
+```
+
+- models: `table | string`: The models to add as target models.
+- options: `table`: The options of the target models.
+
+Return all options that where added to the models.
+Adds the specified models as target models.
+
+**Example**
+```lua
+local modelData = exports.it_bridge:AddTargetModel('a_m_m_skater_01', {
+  label = 'Example Model',
+  icon = 'fas fa-user',
+  canInteract = function(entity, distance)
+    return distance < 2.5
+  end,
+  onSelect = function(entity)
+    print('You have interacted with the model.')
+  end,
+  distance = 2.5,
+})
+```
+
+## RemoveTargetModel
+```lua
+exports.it_bridge:RemoveTargetModel(models, options)
+```
+
+- models: `table | string`: The models to remove as target models.
+- options: `table`: The options of the target models.
+
+Return all options that where removed from the models.
+Removes the specified models as target models.
+
+**Example**
+```lua
+local removed = exports.it_bridge:RemoveTargetModel('a_m_m_skater_01', modelData)
+```
