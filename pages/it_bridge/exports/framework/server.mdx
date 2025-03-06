@@ -57,18 +57,17 @@ local playerName = exports.it_bridge:GetPlayerName(player)
 print(playerName)
 ```
 
-## GetPlayerCitizenId
+## GetCitizenId
 ```lua
-exports.it_bridge:GetPlayerCitizenId(player)
+exports.it_bridge:GetCitizenId(source)
 ```
-- player: `object`: The player object.
+- source: `number`: The player's server ID.
 
 Returns the the player's citizen ID. For every framework, the citizen ID is unique.
 
 **Example**
 ```lua
-local player = exports.it_bridge:GetPlayer(source)
-local citizenId = exports.it_bridge:GetPlayerCitizenId(player)
+local citizenId = exports.it_bridge:GetCitizenId(source)
 print(citizenId)
 ```
 
