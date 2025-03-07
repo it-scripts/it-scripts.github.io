@@ -48,14 +48,15 @@ You can download the latest version of the script for free on the it-script GitH
 </Callout>
 
 ## Asset dependencies
-| Dependencies | Links |
-| --- | --- |
-| ox_lib | https://github.com/overextended/ox_lib/releases |
-| oxmysql | https://github.com/overextended/oxmysql |
-| **Target System** |  |
-| ESX (ox_target) | https://github.com/overextended/ox_target |
-| QbCore (qb-target) | https://github.com/qbcore-framework/qb-target |
-
+| Scripts | REQUIRED VERSION | Download |
+| --- | ---  | --- |
+| ox_lib | **Minimal:** `3.25.0` **Recommended:** `latest` | https://github.com/overextended/ox_lib/releases |
+| oxmysql | **Minimal:** `latest` **Recommended:** `latest` | https://github.com/overextended/oxmysql |
+| it_bridge | **Minimal:** `1.0.1` **Recommended:** `latest` | https://it-scripts.tebex.io/package/6706602 |
+| **Target System*** |  |
+| ESX (ox_target) | **Minimal:** `latest` **Recommended:** `latest` | https://github.com/overextended/ox_target |
+| QbCore (qb-target) | **Minimal:** `latest` **Recommended:** `latest` | https://github.com/qbcore-framework/qb-target |
+* You do not need to install a target system if you are using the script without the target system.
 <Callout type="error">
   You can also use ox_target on your QbCore Server but only if you are using ox_target with version 1.16.0 or older!
 </Callout>
@@ -138,8 +139,9 @@ DROP TABLE IF EXISTS `drug_processing`;
 </Callout>
 Here you will find a series of selected items in different extensions for different inventories, select the option that suits your server, remember to check if your inventory works with this script!
 
-<Tabs items={["es_extended", "qb-inventory", "ox_inventory", "qs-inventory", "codem-inventory", "origen_inventory"]}>
+<Tabs items={["esx_extended", "qb-inventory", "ps_inventory", "qs-inventory", "ox_inventory", "codem-inventory", "origen_inventory"]}>
   <Tabs.Tab>
+  **You have to add these item to your item database.**
   ```sql copy
       INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
         ('watering_can', 'Watering Can', 500, 0, 1),
@@ -168,572 +170,61 @@ Here you will find a series of selected items in different extensions for differ
   ```
   </Tabs.Tab>
   <Tabs.Tab>
+  **You have to add these item to `qb-core/shared/items.lua`.**
   ```lua copy
-      watering_can = {
-      name = "watering_can",
-      label = 'Watering can',
-      weight = 500,
-      type = 'item',
-      image = "watering_can.png",
-      unique = false,
-      useable = false,
-      shouldClose = false,
-      combinable = nil,
-      description = 'simple watering can'
-    },
-
-    fertilizer = {
-        name = 'fertilizer',
-        label = 'fertilizer',
-        weight = 500,
-        type = 'item',
-        image = 'fertilizer.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'fertilizer'
-    },
-
-    advanced_fertilizer = {
-        name = 'advanced_fertilizer',
-        label = 'Advanced Fertilizer',
-        weight = 500,
-        type = 'item',
-        image = 'advanced_fertilizer.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Fertilizer with the litte extra'
-    },
-
-    liquid_fertilizer = {
-        name = "liquid_fertilizer",
-        label = 'Liquid Fertilizer',
-        weight = 200,
-        type = 'item',
-        image = "liquid_fertilizer.png",
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Basicly Water with nutrations'
-    },
-
-    weed_lemonhaze_seed = {
-        name = 'weed_lemonhaze_seed',
-        label = 'Weed Lemonhaze Seed',
-        weight = 20,
-        type = 'item', 		
-        image = 'weed_lemonhaze_seed.png', 		
-        unique = false, 	
-        useable = true, 	
-        shouldClose = true,	    
-        combinable = nil,   
-        description = 'Weed Lemonhaze Seed'
-    },
-
-    weed_lemonhaze = {
-        name = 'weed_lemonhaze',
-        label = 'weed lemonhaze',
-        weight = 20,
-        type = 'item',
-        image = 'weed_lemonhaze.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Weed Lemonhaze'
-    },
-
-    weed_og_seed = {
-        name = 'weed_og_seed',
-        label = 'Weed Og Seed',
-        weight = 20,
-        type = 'item', 		
-        image = 'weed_og_seed.png', 		
-        unique = false, 	
-        useable = true, 	
-        shouldClose = true,	    
-        combinable = nil,   
-        description = 'Weed Og Seed'
-    },
-
-    weed_og = {
-        name = 'weed_og',
-        label = 'weed Og',
-        weight = 20,
-        type = 'item',
-        image = 'weed_og.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Weed Og'
-    },
-
-    weed_purple_haze_seed = {
-        name = 'weed_purple_haze_seed',
-        label = 'Weed Purple Haze Seed',
-        weight = 20,
-        type = 'item', 		
-        image = 'weed_purple_haze_seed.png', 		
-        unique = false, 	
-        useable = true, 	
-        shouldClose = true,	    
-        combinable = nil,   
-        description = 'Weed Purple Haze Seed'
-    },
-
-    weed_purple_haze = {
-        name = 'weed_purple_haze',
-        label = 'weed Purple Haze',
-        weight = 20,
-        type = 'item',
-        image = 'weed_purple_haze.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Weed Purple Haze'
-    },
-
-    weed_white_widow_seed = {
-        name = 'weed_white_widow_seed',
-        label = 'Weed White Widow Seed',
-        weight = 20,
-        type = 'item', 		
-        image = 'weed_white_widow_seed.png', 		
-        unique = false, 	
-        useable = true, 	
-        shouldClose = true,	    
-        combinable = nil,   
-        description = 'Weed White Widow Seed'
-    },
-
-    weed_white_widow = {
-        name = 'weed_white_widow',
-        label = 'weed White Widow',
-        weight = 20,
-        type = 'item',
-        image = 'weed_white_widow.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Weed white Widow'
-    },
-
-    weed_blueberry_seed = {
-        name = 'weed_blueberry_seed',
-        label = 'Weed Blueberry Seed',
-        weight = 20,
-        type = 'item', 		
-        image = 'weed_blueberry_seed.png', 		
-        unique = false, 	
-        useable = true, 	
-        shouldClose = true,	    
-        combinable = nil,   
-        description = 'Weed Blueberry Seed'
-    },
-
-    weed_blueberry = {
-        name = 'weed_blueberry',
-        label = 'weed Blueberry',
-        weight = 20,
-        type = 'item',
-        image = 'weed_blueberry.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Weed Blueberry'
-    },
-
-    coca_seed = {
-        name = 'coca_seed',
-        label = 'coca seed',
-        weight = 20,
-        type = 'item',
-        image = 'coca_seed.png',
-        unique = false,
-        useable = true,
-        shouldClose = true,
-        combinable = nil,
-        description = 'Coca Seed'
-    },
-
-    coca = {
-        name = 'coca',
-        label = 'coca',
-        weight = 20,
-        type = 'item',
-        image = 'coca.png',
-        unique = false,
-        useable = false,
-        shouldClose = true,
-        combinable = nil,
-        description = 'Coca'
-    },
-
-    paper = {
-        name = 'paper',
-        label = 'paper',
-        weight = 50,
-        type = 'item',
-        image = 'paper.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Paper'
-    },
-
-    nitrous = {
-        name = 'nitrous',
-        label = 'nitrous',
-        weight = 500,
-        type = 'item',
-        image = 'nitrous.png',
-        unique = false,
-        useable = false,
-        shouldClose = false,
-        combinable = nil,
-        description = 'nitrous'
-        },
-
-    cocaine = {
-        name = 'cocaine',
-        label = 'cocaine',
-        weight = 20,
-        type = 'item',
-        image = 'cocaine.png',
-        unique = false,
-        useable = true,
-        shouldClose = false,
-        combinable = nil,
-        description = 'Small bag of cocaine'
-        },
-
-    joint = {
-        name = 'joint',
-        label = 'joint',
-        weight = 10,
-        type = 'item',
-        image = 'joint.png',
-        unique = false,
-        useable = true,
-        shouldClose = true,
-        combinable = nil,
-        description = 'joint'
-    },
-
-    weed_processing_table = {
-        name = 'weed_processing_table',
-        label = 'Weed processing table',
-        weight = 1000,
-        type = 'item',
-        image = 'weed_processing_table.png',
-        unique = false,
-        useable = true,
-        shouldClose = true,
-        combinable = nil,
-        description = 'Process some weed'
-    },
-
-    cocaine_processing_table = {
-        name = 'cocaine_processing_table',
-        label = 'cocaine processing table',
-        weight = 1000,
-        type = 'item',
-        image = 'cocaine_processing_table.png',
-        unique = false,
-        useable = true,
-        shouldClose = true,
-        combinable = nil,
-        description = 'Process some cocaine'
-    },
+      watering_can = { name = "watering_can", label = 'Watering can', weight = 500, type = 'item', image = "watering_can.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = 'simple watering can' },
+      fertilizer = { name = 'fertilizer', label = 'fertilizer', weight = 500, type = 'item', image = 'fertilizer.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'fertilizer' },
+      advanced_fertilizer = { name = 'advanced_fertilizer', label = 'Advanced Fertilizer', weight = 500, type = 'item', image = 'advanced_fertilizer.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Fertilizer with the litte extra' },
+      liquid_fertilizer = { name = "liquid_fertilizer", label = 'Liquid Fertilizer', weight = 200, type = 'item', image = "liquid_fertilizer.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Basicly Water with nutrations' },
+      weed_lemonhaze_seed = { name = 'weed_lemonhaze_seed', label = 'Weed Lemonhaze Seed', weight = 20, type = 'item', image = 'weed_lemonhaze_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Lemonhaze Seed' },
+      weed_lemonhaze = { name = 'weed_lemonhaze', label = 'weed lemonhaze', weight = 20, type = 'item', image = 'weed_lemonhaze.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Lemonhaze' },
+      weed_og_seed = { name = 'weed_og_seed', label = 'Weed Og Seed', weight = 20, type = 'item', image = 'weed_og_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Og Seed' },
+      weed_og = { name = 'weed_og', label = 'weed Og', weight = 20, type = 'item', image = 'weed_og.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Og' },
+      weed_purple_haze_seed = { name = 'weed_purple_haze_seed', label = 'Weed Purple Haze Seed', weight = 20, type = 'item', image = 'weed_purple_haze_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Purple Haze Seed' },
+      weed_purple_haze = { name = 'weed_purple_haze', label = 'weed Purple Haze', weight = 20, type = 'item', image = 'weed_purple_haze.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Purple Haze' },
+      weed_white_widow_seed = { name = 'weed_white_widow_seed', label = 'Weed White Widow Seed', weight = 20, type = 'item', image = 'weed_white_widow_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed White Widow Seed' },
+      weed_white_widow = { name = 'weed_white_widow', label = 'weed White Widow', weight = 20, type = 'item', image = 'weed_white_widow.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed white Widow' },
+      weed_blueberry_seed = { name = 'weed_blueberry_seed', label = 'Weed Blueberry Seed', weight = 20, type = 'item', image = 'weed_blueberry_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Blueberry Seed' },
+      weed_blueberry = { name = 'weed_blueberry', label = 'weed Blueberry', weight = 20, type = 'item', image = 'weed_blueberry.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Blueberry' },
+      coca_seed = { name = 'coca_seed', label = 'coca seed', weight = 20, type = 'item', image = 'coca_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Coca Seed' },
+      coca = { name = 'coca', label = 'coca', weight = 20, type = 'item', image = 'coca.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Coca' },
+      paper = { name = 'paper', label = 'paper', weight = 50, type = 'item', image = 'paper.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Paper' },
+      nitrous = { name = 'nitrous', label = 'nitrous', weight = 500, type = 'item', image = 'nitrous.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'nitrous' },
+      cocaine = { name = 'cocaine', label = 'cocaine', weight = 20, type = 'item', image = 'cocaine.png', unique = false, useable = true, shouldClose = false, combinable = nil, description = 'Small bag of cocaine' },
+      joint = { name = 'joint', label = 'joint', weight = 10, type = 'item', image = 'joint.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'joint' },
+      weed_processing_table = { name = 'weed_processing_table', label = 'Weed processing table', weight = 1000, type = 'item', image = 'weed_processing_table.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Process some weed' },
+      cocaine_processing_table = { name = 'cocaine_processing_table', label = 'cocaine processing table', weight = 1000, type = 'item', image = 'cocaine_processing_table.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Process some cocaine' }
   ```
   </Tabs.Tab>
   <Tabs.Tab>
+  **You have to add these item to `qb-core/shared/items.lua`.**
   ```lua copy
-    ["watering_can"] = {
-		label = "Watering can",
-		weight = 500,
-		stack = false,
-		close = false,
-		description = "Simple watering can",
-		client = {
-			image = "watering_can.png",
-		}
-	},
-	
-	["fertilizer"] = {
-		label = "Fertilizer",
-		weight = 500,
-		stack = false,
-		close = false,
-		description = "Fertilizer",
-		client = {
-			image = "fertilizer.png",
-		}
-	},
-	
-	["advanced_fertilizer"] = {
-		label = "Advanced fertilizer",
-		weight = 500,
-		stack = false,
-		close = false,
-		description = "Fertilizer with the litte extra",
-		client = {
-			image = "advanced_fertilizer.png",
-		}
-	},
-	
-	["liquid_fertilizer"] = {
-		label = "Liquid Fertilizer",
-		weight = 200,
-		stack = false,
-		close = false,
-		description = "Basicly Water with nutrations",
-		client = {
-			image = "liquid_fertilizer.png",
-		}
-	},
-	
-	["weed_lemonhaze_seed"] = {
-		label = "Weed Lemonhaze Seed",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "Weed Lemonhaze Seed",
-		client = {
-			image = "weed_lemonhaze_seed.png",
-		},
-		server = {
-			export = "it-drugs.useSeed"
-		}
-	},
-	
-	["weed_lemonhaze"] = {
-		label = "Weed Lemonhaze",
-		weight = 20,
-		stack = true,
-		close = false,
-		description = "Weed Lemonhaze",
-		client = {
-			image = "weed_lemonhaze.png",
-		},
-	},
-	
-	["weed_og_seed"] = {
-		label = "Weed Og Seed",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "Weed Og Seed",
-		client = {
-			image = "weed_og_seed.png",
-		},
-		server = {
-			export = "it-drugs.useSeed"
-		}
-	},
-	
-	["weed_og"] = {
-		label = "weed Og",
-		weight = 20,
-		stack = true,
-		close = false,
-		description = "weed Og",
-		client = {
-			image = "weed_og.png",
-		},
-	},
-	
-	["weed_purple_haze_seed"] = {
-		label = "Weed Purple Haze Seed",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "Weed Purple Haze Seed",
-		client = {
-			image = "weed_purple_haze_seed.png",
-		},
-		server = {
-			export = "it-drugs.useSeed"
-		}
-	},
-	
-	["weed_purple_haze"] = {
-		label = "weed Purple Haze",
-		weight = 20,
-		stack = true,
-		close = false,
-		description = "weed Purple Haze",
-		client = {
-			image = "weed_purple_haze.png",
-		},
-	},
-	
-	["weed_white_widow_seed"] = {
-		label = "Weed White Widow Seed",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "Weed White Widow Seed",
-		client = {
-			image = "weed_white_widow_seed.png",
-		},
-		server = {
-			export = "it-drugs.useSeed"
-		}
-	},
-	
-	["weed_white_widow"] = {
-		label = "weed White Widow",
-		weight = 20,
-		stack = true,
-		close = false,
-		description = "weed White Widow",
-		client = {
-			image = "weed_white_widow.png",
-		}
-	},
-	
-	["weed_blueberry_seed"] = {
-		label = "Weed Blueberry Seed",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "Weed Blueberry Seed",
-		client = {
-			image = "weed_blueberry_seed.png",
-		},
-		server = {
-			export = "it-drugs.useSeed"
-		}
-	},
-	
-	["weed_blueberry"] = {
-		label = "weed Blueberry",
-		weight = 20,
-		stack = true,
-		close = false,
-		description = "weed Blueberry",
-		client = {
-			image = "weed_blueberry.png",
-		}
-	},
-	
-	["coca_seed"] = {
-		label = "Coca Seed",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "Coca Seed",
-		client = {
-			image = "coca_seed.png",
-		},
-		server = {
-			export = "it-drugs.useSeed"
-		}
-	},
-	
-	["coca"] = {
-		label = "Coca",
-		weight = 20,
-		stack = true,
-		close = false,
-		description = "Coca",
-		client = {
-			image = "coca.png",
-		}
-	},
-	
-	["paper"] = {
-		label = "Paper",
-		weight = 50,
-		stack = true,
-		close = false,
-		description = "Paper",
-		client = {
-			image = "paper.png",
-		}
-	},
-	
-	["nitrous"] = {
-		label = "Nitrous",
-		weight = 500,
-		stack = false,
-		close = false,
-		description = "Nitrous",
-		client = {
-			image = "nitrous.png",
-		}
-	},
-	
-	["weed_processing_table"] = {
-		label = "Weed Processing Table",
-		weight = 1000,
-		stack = false,
-		close = true,
-		description = "Process some weed",
-		client = {
-			image = "weed_processing_table.png",
-		},
-		server = {
-			export = "it-drugs.placeProcessingTable"
-		}
-	},
-	
-	["cocaine_processing_table"] = {
-		label = "Cocaine Processing Table",
-		weight = 1000,
-		stack = false,
-		close = true,
-		description = "Process some cocaine",
-		client = {
-			image = "cocaine_processing_table.png",
-		},
-		server = {
-			export = "it-drugs.placeProcessingTable"
-		}
-	},
-	
-	["cocaine"] = {
-		label = "Cocaine",
-		weight = 20,
-		stack = true,
-		close = true,
-		description = "A little bag of cocaine",
-		consume = 0, -- ADDED
-		server = {
-			export = "it-drugs.takeDrug"
-		},
-		client = {
-			image = "cocaine.png",
-		},
-	},
-	
-	["joint"] = {
-		label = "Joint",
-		weight = 10,
-		stack = true,
-		close = true,
-		description = "Joint",
-		consume = 0, -- ADDED
-		server = {
-			export = "it-drugs.takeDrug"
-		},
-		client = {
-			image = "joint.png",
-		}
-	},
+      watering_can = { name = "watering_can", label = 'Watering can', weight = 500, type = 'item', image = "watering_can.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = 'simple watering can' },
+      fertilizer = { name = 'fertilizer', label = 'fertilizer', weight = 500, type = 'item', image = 'fertilizer.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'fertilizer' },
+      advanced_fertilizer = { name = 'advanced_fertilizer', label = 'Advanced Fertilizer', weight = 500, type = 'item', image = 'advanced_fertilizer.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Fertilizer with the litte extra' },
+      liquid_fertilizer = { name = "liquid_fertilizer", label = 'Liquid Fertilizer', weight = 200, type = 'item', image = "liquid_fertilizer.png", unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Basicly Water with nutrations' },
+      weed_lemonhaze_seed = { name = 'weed_lemonhaze_seed', label = 'Weed Lemonhaze Seed', weight = 20, type = 'item', image = 'weed_lemonhaze_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Lemonhaze Seed' },
+      weed_lemonhaze = { name = 'weed_lemonhaze', label = 'weed lemonhaze', weight = 20, type = 'item', image = 'weed_lemonhaze.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Lemonhaze' },
+      weed_og_seed = { name = 'weed_og_seed', label = 'Weed Og Seed', weight = 20, type = 'item', image = 'weed_og_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Og Seed' },
+      weed_og = { name = 'weed_og', label = 'weed Og', weight = 20, type = 'item', image = 'weed_og.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Og' },
+      weed_purple_haze_seed = { name = 'weed_purple_haze_seed', label = 'Weed Purple Haze Seed', weight = 20, type = 'item', image = 'weed_purple_haze_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Purple Haze Seed' },
+      weed_purple_haze = { name = 'weed_purple_haze', label = 'weed Purple Haze', weight = 20, type = 'item', image = 'weed_purple_haze.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Purple Haze' },
+      weed_white_widow_seed = { name = 'weed_white_widow_seed', label = 'Weed White Widow Seed', weight = 20, type = 'item', image = 'weed_white_widow_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed White Widow Seed' },
+      weed_white_widow = { name = 'weed_white_widow', label = 'weed White Widow', weight = 20, type = 'item', image = 'weed_white_widow.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed white Widow' },
+      weed_blueberry_seed = { name = 'weed_blueberry_seed', label = 'Weed Blueberry Seed', weight = 20, type = 'item', image = 'weed_blueberry_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Weed Blueberry Seed' },
+      weed_blueberry = { name = 'weed_blueberry', label = 'weed Blueberry', weight = 20, type = 'item', image = 'weed_blueberry.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Weed Blueberry' },
+      coca_seed = { name = 'coca_seed', label = 'coca seed', weight = 20, type = 'item', image = 'coca_seed.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Coca Seed' },
+      coca = { name = 'coca', label = 'coca', weight = 20, type = 'item', image = 'coca.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Coca' },
+      paper = { name = 'paper', label = 'paper', weight = 50, type = 'item', image = 'paper.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Paper' },
+      nitrous = { name = 'nitrous', label = 'nitrous', weight = 500, type = 'item', image = 'nitrous.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'nitrous' },
+      cocaine = { name = 'cocaine', label = 'cocaine', weight = 20, type = 'item', image = 'cocaine.png', unique = false, useable = true, shouldClose = false, combinable = nil, description = 'Small bag of cocaine' },
+      joint = { name = 'joint', label = 'joint', weight = 10, type = 'item', image = 'joint.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'joint' },
+      weed_processing_table = { name = 'weed_processing_table', label = 'Weed processing table', weight = 1000, type = 'item', image = 'weed_processing_table.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Process some weed' },
+      cocaine_processing_table = { name = 'cocaine_processing_table', label = 'cocaine processing table', weight = 1000, type = 'item', image = 'cocaine_processing_table.png', unique = false, useable = true, shouldClose = true, combinable = nil, description = 'Process some cocaine' }
   ```
   </Tabs.Tab>
   <Tabs.Tab>
+  **If you are using esx add these item so `qs-inventory/shared/items.lua`. If you are using QBCore use the qb-inventory items!**
   ```lua copy
     ["watering_can"] = {
     name = "watering_can",
@@ -989,6 +480,293 @@ Here you will find a series of selected items in different extensions for differ
   ```
   </Tabs.Tab>
   <Tabs.Tab>
+  *You have to add these item to `ox_inventory/data/items.lua`**
+  ```lua copy
+    ["watering_can"] = {
+		label = "Watering can",
+		weight = 500,
+		stack = false,
+		close = false,
+		description = "Simple watering can",
+		client = {
+			image = "watering_can.png",
+		}
+	},
+	
+	["fertilizer"] = {
+		label = "Fertilizer",
+		weight = 500,
+		stack = false,
+		close = false,
+		description = "Fertilizer",
+		client = {
+			image = "fertilizer.png",
+		}
+	},
+	
+	["advanced_fertilizer"] = {
+		label = "Advanced fertilizer",
+		weight = 500,
+		stack = false,
+		close = false,
+		description = "Fertilizer with the litte extra",
+		client = {
+			image = "advanced_fertilizer.png",
+		}
+	},
+	
+	["liquid_fertilizer"] = {
+		label = "Liquid Fertilizer",
+		weight = 200,
+		stack = false,
+		close = false,
+		description = "Basicly Water with nutrations",
+		client = {
+			image = "liquid_fertilizer.png",
+		}
+	},
+	
+	["weed_lemonhaze_seed"] = {
+		label = "Weed Lemonhaze Seed",
+		weight = 20,
+		stack = true,
+		close = true,
+    consume = 0,
+		description = "Weed Lemonhaze Seed",
+		client = {
+			image = "weed_lemonhaze_seed.png",
+		},
+		server = {
+			export = "it-drugs.useSeed"
+		}
+	},
+	
+	["weed_lemonhaze"] = {
+		label = "Weed Lemonhaze",
+		weight = 20,
+		stack = true,
+		close = false,
+		description = "Weed Lemonhaze",
+		client = {
+			image = "weed_lemonhaze.png",
+		},
+	},
+	
+	["weed_og_seed"] = {
+		label = "Weed Og Seed",
+		weight = 20,
+		stack = true,
+		close = true,
+    consume = 0,
+		description = "Weed Og Seed",
+		client = {
+			image = "weed_og_seed.png",
+		},
+		server = {
+			export = "it-drugs.useSeed"
+		}
+	},
+	
+	["weed_og"] = {
+		label = "weed Og",
+		weight = 20,
+		stack = true,
+		close = false,
+		description = "weed Og",
+		client = {
+			image = "weed_og.png",
+		},
+	},
+	
+	["weed_purple_haze_seed"] = {
+		label = "Weed Purple Haze Seed",
+		weight = 20,
+		stack = true,
+		close = true,
+    consume = 0,
+		description = "Weed Purple Haze Seed",
+		client = {
+			image = "weed_purple_haze_seed.png",
+		},
+		server = {
+			export = "it-drugs.useSeed"
+		}
+	},
+	
+	["weed_purple_haze"] = {
+		label = "weed Purple Haze",
+		weight = 20,
+		stack = true,
+		close = false,
+		description = "weed Purple Haze",
+		client = {
+			image = "weed_purple_haze.png",
+		},
+	},
+	
+	["weed_white_widow_seed"] = {
+		label = "Weed White Widow Seed",
+		weight = 20,
+		stack = true,
+		close = true,
+    consume = 0,
+		description = "Weed White Widow Seed",
+		client = {
+			image = "weed_white_widow_seed.png",
+		},
+		server = {
+			export = "it-drugs.useSeed"
+		}
+	},
+	
+	["weed_white_widow"] = {
+		label = "weed White Widow",
+		weight = 20,
+		stack = true,
+		close = false,
+		description = "weed White Widow",
+		client = {
+			image = "weed_white_widow.png",
+		}
+	},
+	
+	["weed_blueberry_seed"] = {
+		label = "Weed Blueberry Seed",
+		weight = 20,
+		stack = true,
+		close = true,
+    consume = 0,
+		description = "Weed Blueberry Seed",
+		client = {
+			image = "weed_blueberry_seed.png",
+		},
+		server = {
+			export = "it-drugs.useSeed"
+		}
+	},
+	
+	["weed_blueberry"] = {
+		label = "weed Blueberry",
+		weight = 20,
+		stack = true,
+		close = false,
+		description = "weed Blueberry",
+		client = {
+			image = "weed_blueberry.png",
+		}
+	},
+	
+	["coca_seed"] = {
+		label = "Coca Seed",
+		weight = 20,
+		stack = true,
+		close = true,
+    consume = 0,
+		description = "Coca Seed",
+		client = {
+			image = "coca_seed.png",
+		},
+		server = {
+			export = "it-drugs.useSeed"
+		}
+	},
+	
+	["coca"] = {
+		label = "Coca",
+		weight = 20,
+		stack = true,
+		close = false,
+		description = "Coca",
+		client = {
+			image = "coca.png",
+		}
+	},
+	
+	["paper"] = {
+		label = "Paper",
+		weight = 50,
+		stack = true,
+		close = false,
+		description = "Paper",
+		client = {
+			image = "paper.png",
+		}
+	},
+	
+	["nitrous"] = {
+		label = "Nitrous",
+		weight = 500,
+		stack = false,
+		close = false,
+		description = "Nitrous",
+		client = {
+			image = "nitrous.png",
+		}
+	},
+	
+	["weed_processing_table"] = {
+		label = "Weed Processing Table",
+		weight = 1000,
+		stack = false,
+		close = true,
+    consume = 0,
+		description = "Process some weed",
+		client = {
+			image = "weed_processing_table.png",
+		},
+		server = {
+			export = "it-drugs.placeProcessingTable"
+		}
+	},
+	
+	["cocaine_processing_table"] = {
+		label = "Cocaine Processing Table",
+		weight = 1000,
+		stack = false,
+		close = true,
+		description = "Process some cocaine",
+    consume = 0,
+		client = {
+			image = "cocaine_processing_table.png",
+		},
+		server = {
+			export = "it-drugs.placeProcessingTable"
+		}
+	},
+	
+	["cocaine"] = {
+		label = "Cocaine",
+		weight = 20,
+		stack = true,
+		close = true,
+		description = "A little bag of cocaine",
+		consume = 0,
+		server = {
+			export = "it-drugs.takeDrug"
+		},
+		client = {
+			image = "cocaine.png",
+		},
+	},
+	
+	["joint"] = {
+		label = "Joint",
+		weight = 10,
+		stack = true,
+		close = true,
+		description = "Joint",
+		consume = 0,
+		server = {
+			export = "it-drugs.takeDrug"
+		},
+		client = {
+			image = "joint.png",
+		}
+	},
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  **You have to add these item to `codem-inventory/config/itemlist.lua`**
     ```lua copy
       watering_can                  = { name = 'watering_can', label = 'Watering Can', weight = 100, type = 'item', image = 'watering_can.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Simple watering can' },
       fertilizer                      = { name = 'fertilizer', label = 'Fertilizer', weight = 100, type = 'item', image = 'fertilizer.png', unique = false, useable = false, shouldClose = true, combinable = nil, description = 'Fertilizer' },
@@ -1015,7 +793,30 @@ Here you will find a series of selected items in different extensions for differ
     ```
   </Tabs.Tab>
   <Tabs.Tab>
-    Soon...
+    ```lua
+    ['watering_can'] = {['name'] = 'watering_can', ['label'] = 'Watering Can', ['weight'] = 100, ['type'] = 'item', ['image'] = 'watering_can.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil, ['description'] = 'Simple watering can'},
+    ['fertilizer'] = {['name'] = 'fertilizer', ['label'] = 'Fertilizer', ['weight'] = 100, ['type'] = 'item', ['image'] = 'fertilizer.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Fertilizer'},
+    ['advanced_fertilizer'] = {['name'] = 'advanced_fertilizer', ['label'] = 'Advanced Fertilizer', ['weight'] = 100, ['type'] = 'item', ['image'] = 'advanced_fertilizer.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Fertilizer with the little extra'},
+    ['liquid_fertilizer'] = {['name'] = 'liquid_fertilizer', ['label'] = 'Liquid Fertilizer', ['weight'] = 100, ['type'] = 'item', ['image'] = 'liquid_fertilizer.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Basically water with nutrients'},
+    ['weed_lemonhaze_seed'] = {['name'] = 'weed_lemonhaze_seed', ['label'] = 'Weed Lemonhaze Seed', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_lemonhaze_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed Lemonhaze Seed'},
+    ['weed_lemonhaze'] = {['name'] = 'weed_lemonhaze', ['label'] = 'Weed Lemonhaze', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_lemonhaze.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed Lemonhaze'},
+    ['weed_og_seed'] = {['name'] = 'weed_og_seed', ['label'] = 'Weed OG Seed', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_og_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed OG Seed'},
+    ['weed_og'] = {['name'] = 'weed_og', ['label'] = 'Weed OG', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_og.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed OG'},
+    ['weed_purple_haze_seed'] = {['name'] = 'weed_purple_haze_seed', ['label'] = 'Weed Purple Haze Seed', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_purple_haze_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed Purple Haze Seed'},
+    ['weed_purple_haze'] = {['name'] = 'weed_purple_haze', ['label'] = 'Weed Purple Haze', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_purple_haze.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed Purple Haze'},
+    ['weed_white_widow_seed'] = {['name'] = 'weed_white_widow_seed', ['label'] = 'Weed White Widow Seed', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_white_widow_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed White Widow Seed'},
+    ['weed_white_widow'] = {['name'] = 'weed_white_widow', ['label'] = 'Weed White Widow', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_white_widow.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed White Widow'},
+    ['weed_blueberry_seed'] = {['name'] = 'weed_blueberry_seed', ['label'] = 'Weed Blueberry Seed', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_blueberry_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed Blueberry Seed'},
+    ['weed_blueberry'] = {['name'] = 'weed_blueberry', ['label'] = 'Weed Blueberry', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_blueberry.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weed Blueberry'},
+    ['coca_seed'] = {['name'] = 'coca_seed', ['label'] = 'Coca Seed', ['weight'] = 100, ['type'] = 'item', ['image'] = 'coca_seed.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Coca Seed'},
+    ['coca'] = {['name'] = 'coca', ['label'] = 'Coca', ['weight'] = 100, ['type'] = 'item', ['image'] = 'coca.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Coca'},
+    ['paper'] = {['name'] = 'paper', ['label'] = 'Paper', ['weight'] = 100, ['type'] = 'item', ['image'] = 'paper.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Use to roll some good stuff'},
+    ['nitrous'] = {['name'] = 'nitrous', ['label'] = 'Nitrous', ['weight'] = 100, ['type'] = 'item', ['image'] = 'nitrous.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Nitrous'},
+    ['cocaine'] = {['name'] = 'cocaine', ['label'] = 'Cocaine', ['weight'] = 100, ['type'] = 'item', ['image'] = 'cocaine.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Small bag of cocaine'},
+    ['joint'] = {['name'] = 'joint', ['label'] = 'Joint', ['weight'] = 100, ['type'] = 'item', ['image'] = 'joint.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'High on life'},
+    ['weed_processing_table'] = {['name'] = 'weed_processing_table', ['label'] = 'Weed Processing Table', ['weight'] = 100, ['type'] = 'item', ['image'] = 'weed_processing_table.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Process some weed'},
+    ['cocaine_processing_table'] = {['name'] = 'cocaine_processing_table', ['label'] = 'Cocaine Processing Table', ['weight'] = 100, ['type'] = 'item', ['image'] = 'cocaine_processing_table.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Process some cocaine'},
+    ```
   </Tabs.Tab>
 </Tabs>
 
@@ -1035,12 +836,7 @@ Please expand each part to see information about the configuration of the asset,
 
 <AccordionGroup>
   <Accordion title="Basic framework configuration">
-    The asset will work automatically if your framework is called es_extended or qb-core, it will automatically detect if any of them are started.
-  </Accordion>
-
-  <Accordion title="Advanced framework configuration">
-   If your framework is completely modified, both in events and name, you should access the bridge folder to adapt the native events of your framework to the codes you have created. 
-   If this step doesn't work, we ask that you ask your framework modifier or trusted developer for help.
+    The asset will work automatically if your framework is supported by the asset. If you have a modified framework please contact the support team or a developer to help you.
   </Accordion>
 
   <Accordion title="Edit the Script">
