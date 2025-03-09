@@ -31,9 +31,9 @@ The individual zones can be created and edited here. We will now take a closer l
     },
     thickness = 27,
     drugs = {
-        { item = 'cocaine', price = math.random(100, 200), moneyType = 'cash'},
-        { item = 'joint', price = math.random(50, 100) = moneyType = 'bank'},
-        { item = 'weed_lemonhaze', price = math.random(50, 100), = 'black_money'}
+        ['cocaine'] = {price = math.random(100, 200), moneyType = 'cash'},
+        ['joint'] = {price = math.random(50, 100), moneyType = 'bank'},
+        ['weed_lemonhaze'] = {price = math.random(50, 100), moneyType = 'black_money'}
     }
 },
 ```
@@ -77,9 +77,9 @@ As soon as a player enters this zone he has the possibility to sell items to the
 
 ```lua
 drugs = {
-    { item = 'cocaine', price = math.random(100, 200), moneyType = 'cash'},
-    { item = 'joint', price = math.random(50, 100) = moneyType = 'bank'},
-    { item = 'weed_lemonhaze', price = math.random(50, 100), = 'black_money'}
+    ['cocaine'] = {price = math.random(100, 200), moneyType = 'cash'},
+    ['joint'] = {price = math.random(50, 100), moneyType = 'bank'},
+    ['weed_lemonhaze'] = {price = math.random(50, 100), moneyType = 'black_money'}
 }
 ```
 
@@ -88,7 +88,7 @@ Theoretically, an infinite number of items can be added. For many items it is re
 
 **Schemata for new items:**
 ```lua copy
-{ item = 'item_name', price = math.random(min_price, max_price), moneyType = 'cash/bank/black_money'},
+['item_name'] = {price = math.random(min_price, max_price), moneyType = 'cash/bank/black_money'},
 ```
 
 <AccordionGroup>
@@ -99,22 +99,27 @@ Theoretically, an infinite number of items can be added. For many items it is re
 
     **Please keep in mind `black_money` is no default account on qb-core!**
 
-    ```lua
-    ['cash'] = {
-        ['qbcore'] = 'cash',
-        ['esx'] = 'money',
-        ['ND_Core'] = 'cash'
-    },
-    ['bank'] = {
-        ['qbcore'] = 'bank',
-        ['esx'] = 'bank',
-        ['ND_Core'] = 'bank'
-    },
-    ['black_money'] = {
-        ['qbcore'] = 'black_money',
-        ['esx'] = 'black_money',
-        ['ND_Core'] = nil -- Will be added soon
+```lua
+    MoneyTypes = {
+        ['cash'] = {
+            [Framework.ESX] = 'money',
+            [Framework.QBCore] = 'cash',
+            [Framework.QBOX] = 'cash',
+            [Framework.NDCore] = 'cash'
+        },
+        ['bank'] = {
+            [Framework.ESX] = 'bank',
+            [Framework.QBCore] = 'bank',
+            [Framework.QBOX] = 'bank',
+            [Framework.NDCore] = 'bank'
+        },
+        ['black_money'] = {
+            [Framework.ESX] = 'black_money',
+            [Framework.QBCore] = 'crypto',
+            [Framework.QBOX] = 'crypto',
+            [Framework.NDCore] = nil
+        }
     }
-    ```
+```
   </Accordion>
 </AccordionGroup>
