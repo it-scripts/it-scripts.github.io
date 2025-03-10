@@ -1,0 +1,40 @@
+---
+title: it-drugs - Additional Sell Settings
+description: How to add additional settings to the sell system.
+---
+
+import { Steps } from 'nextra/components'
+import ExternLink from '@components/ExternLink'
+import { IconExternalLink } from '@tabler/icons-react'
+import Accordion from '@components/Accordion'
+import AccordionGroup from '@components/AccordionGroup'
+
+# Additional Sell Settings
+
+## Items as a reward
+With version **1.4.1** of the script, it is now possible to reward the player with items instead of money. This can be useful if you want to reward the player with items for selling drugs.
+To add the feature simple add the following code to the regarding item:
+
+```lua copy
+rewardItems = {{name = 'paper', amount = 1}},
+```
+
+**Full item exampel:**
+```lua
+['joint'] = {price = math.random(50, 100), moneyType = 'bank', rewardItems = {{name = 'paper', amount = 1}}},
+```
+
+You can also add multiple items as a reward:
+
+```lua
+rewardItems = {{name = 'paper', amount = 1}, {name = 'weed_lemonhaze', amount = 1}},
+
+-- Full item example
+['joint'] = {price = math.random(50, 100), moneyType = 'bank', rewardItems = {{name = 'paper', amount = 1}, {name = 'weed_lemonhaze', amount = 1}}},
+```
+
+Also if you want to reward the player only with items and no money you can set the price to 0 and the moneyType to 'none':
+
+```lua
+['joint'] = {price = 0, moneyType = 'none', rewardItems = {{name = 'paper', amount = 1}}},
+```

@@ -17,6 +17,12 @@
         "footer": false
         }
     },
+    "additional-sell-settings": {
+        "title": "Additional Sell Settings",
+        "theme": {
+        "footer": false
+        }
+    },
     "add-custom-dispatch": {
         "title": "Change Dispatch",
         "theme": {
