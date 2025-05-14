@@ -1,0 +1,64 @@
+---
+title: it-scripts - How to install HeidiSQL
+description: Here’s a step-by-step guide to downloading and installing MariaDB and HeidiSQL.
+---
+
+import { Steps } from 'nextra/components'
+import YouTube from '@components/YouTube'
+
+# How to install HeidiSQL
+HeidiSQL is a powerful and user-friendly tool for managing databases. 
+It’s particularly useful for working with MariaDB, which is the database system used by many of our assets. 
+Here’s a step-by-step guide to downloading and installing MariaDB and HeidiSQL.
+
+## Download and Install MariaDB
+<Steps>
+### Donwload MariaDB
+- Visit the official [MariaDB website](https://mariadb.org/download/).
+- Select your operating system (Windows, macOS, Linux)
+- Download the latest stable version of MariaDB.
+
+### Run the Installer
+- Open the downloaded installer file and start the installation process.
+- Follow the on-screen instructions to complete the installation.
+
+### Configuration During Installation
+- **Select Components**: Ensure "MariaDB Server" and "Command Line Tools" are selected for installation.
+- **User Setup**: Set a password for the `root` user (administrator). Save this password securely.
+- **Connection Port**: The default port for MariaDB is `3306`. Keep this default unless another service is using the same port.
+
+### Complete the Installation
+- Follow the remaining prompts to finish the installation.
+- MariaDB will be installed as a service, which means it will run in the background automatically.
+
+</Steps>
+
+## Download and Install HeidiSQL
+<Steps>
+### Download HeidiSQL
+- Visit the official [HeidiSQL website](https://www.heidisql.com/download.php).
+- Click on the "Download" button to get the latest version of HeidiSQL.
+
+### Run the Installer
+- Open the downloaded installer file and start the installation process.
+- Follow the on-screen instructions to complete the installation.
+
+### Set Up a Connection in HeidiSQL
+- Open HeidiSQL after installation.
+- Click **"New"** to create a new connection.
+- Fill in the fields as follows:
+    - **Network Type**: MySQL (TCP/IP).
+    - **Hostname/IP**: `localhost` (or your server's IP).
+    - **User**: `root`.
+    - **Password**: Use the password you set during the MariaDB installation.
+    - **Port**: `3306` (or the port you configured for MariaDB).
+- Click **"Save"** and then **"Open"** to connect.
+
+</Steps>
+
+## Visual Guide With Video
+If you haven't done it yet, here is a short installation guide for MariaDB and HeidiSQL.
+
+<YouTube
+  id="6QCx0ayBLUQ"
+/>

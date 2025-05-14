@@ -1,0 +1,83 @@
+---
+title: it-scripts - How to update my server
+description: Here’s a step-by-step guide to updating your server.
+---
+
+import { Steps } from 'nextra/components'
+
+# How to update my server
+To ensure your FiveM server runs smoothly and avoids critical issues, it’s essential to keep your framework, artifacts, and gamebuild up to date. Here's a detailed guide:
+
+<Steps>
+### Framework
+Your server framework is the most important thing, we will always recommend the great ESX, but here is a small guide on how to update it correctly.
+
+### Artifacts
+Artifacts are everything on our server, they are the brain of it.
+
+### Gamebuild
+The gamebuild is the version of the game or DLC that we will run, we always recommend the latest version.
+
+</Steps>
+
+## Framework Update
+Updating your framework is a crucial step before proceeding with artifacts and gamebuild updates. Follow these steps carefully:
+
+<Steps>
+### Download the Official Framework
+- For **es_extebded (ESX)**, visit the official [**ESX GitHub repository**]()
+- For **QBCore**, visit the official [**QBCore GitHub repository**]()
+- For **Obox Framework**, visit the official [**Obox GitHub repository**]()
+- For **ND_Core**, visit the official [**ND_Core GitHub repository**]()
+
+### Replace Your Current Framework Folder
+Completely remove your existing framework folder and replace it with the latest version from GitHub. Avoid merging files as this may cause unexpected issues.
+
+### Do Not Rename the Framework Folder
+Keep the folder name exactly as provided by the official repository (e.g., qb-core or es_extended). 
+Renaming it can lead to severe compatibility problems with scripts, as they rely on specific folder names for proper integration. 
+Renaming your framework does not make it "custom"—it makes it dysfunctional. 
+
+</Steps>
+
+### Update Artifacts
+Artifacts are the core files needed to run your server. Keeping them updated is essential for compatibility with the latest FiveM features.
+
+<Steps>
+
+### Remove Old Artifacts
+Delete the current `artifacts` folder from your server directory. This ensures that no outdated files remain that could cause conflicts.
+
+### Download Latest Artifacts
+Get the latest version of artifacts for your operating system from the official FiveM links:
+- [Windows Artifacts](https://runtime.fivem.net/artifacts/fivem/build_proot_win64/master/)
+- [Linux Artifacts](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)
+
+### Extract and Replace
+Extract the downloaded artifacts and replace your old artifacts folder completely.
+
+</Steps>
+
+## Update Gamebuild
+Updating the gamebuild is the final step in ensuring your server is running the latest version of FiveM. Follow these steps:
+
+<Steps>
+### Open Your server.cfg File
+Find the `server.cfg` file in your server directory. This file contains all the configuration settings for your server.
+
+### Edit Your Server Configuration
+Open the `server.cfg` file in a text editor and locate the line that specifies the gamebuild. It should look something like this:
+```plaintext
+set sv_enforceGameBuild "3258"
+```
+
+Replace the number with the latest gamebuild version. You can find the latest gamebuild version on the official [FiveM website](https://runtime.fivem.net/artifacts/fivem/build_proot_win64/master/).
+
+</Steps>
+
+## Why Is This Important?
+- Keeping your framework, artifacts, and gamebuild updated ensures your server is compatible with the latest scripts and features.
+- Not updating can lead to crashes, bugs, or incomplete functionality.
+- Avoid renaming folders or using unofficial versions of frameworks, as this often causes critical errors.
+
+By following these steps, you ensure a stable, well-functioning server that minimizes common issues.

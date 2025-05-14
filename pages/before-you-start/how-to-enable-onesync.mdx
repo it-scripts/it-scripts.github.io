@@ -1,0 +1,35 @@
+---
+title: it-scripts - How to enable OneSync
+description: Here’s a step-by-step guide to enable OneSync.
+---
+
+import { Steps } from 'nextra/components'
+
+# How to enable OneSync
+OneSync is a feature in FiveM that allows for larger server capacities and improved synchronization of entities and players. 
+Enabling OneSync is a straightforward process that requires a simple edit to your server.cfg file.
+
+### Steps to Enable OneSync
+<Steps>
+### Open Your Server.cfg File
+- Navigate to your server directory and locate the `server.cfg` file.
+- Open the `server.cfg` file using a text editor (e.g., Notepad, Visual Studio Code).
+
+### Add the OneSync Command
+Add the following line to your `server.cfg` file to enable OneSync:
+```plaintext
+onesync on
+```
+
+### Optional: Enable OneSync Infinity
+If your server needs support for more than 64 players (up to 1024), enable OneSync Infinity by adding this line:
+```plaintext
+onesync_enableInfinity 1
+```
+Infinity mode is designed for large-scale servers and requires proper resource optimization.
+
+## Save and Restart
+- Save the changes to your `server.cfg` file.
+- Restart your server for the changes to take effect.
+
+</Steps>

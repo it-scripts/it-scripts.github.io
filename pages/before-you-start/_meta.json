@@ -1,0 +1,21 @@
+{
+  "how-to-install-heidisql": {
+    "title": "How to install HeidiSQL",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-update-my-server": {
+    "title": "How to update my server",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-enable-onesync": {
+    "title": "How to enable OneSync",
+    "theme": {
+      "footer": false
+    }
+  }
+}
+  
