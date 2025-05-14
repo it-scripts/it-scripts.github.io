@@ -4,24 +4,56 @@
         "theme": {
             "footer": false
         }
-    },    
+    },
     "--": {
         "type": "separator",
-        "title": "General Information"
+        "title": "CFX Auth (Escrow)"
     },
-    "how-to-update": {
-        "title": "How to update your asset",
-        "theme": {
-            "footer": false
-        }
-    },
-    "fivem-escrow-system": {
-        "title": "FiveM Escrow System",
+    "understanding-cfx-auth": {
+        "title": "Understanding CFX Auth",
         "theme": {
             "footer": false
         }
     },
     "---": {
+        "type": "separator",
+        "title": "General Information"
+    },
+    "updating-your-assests": {
+        "title": "Updating your assets",
+        "theme": {
+            "footer": false
+        }
+    },
+    "how-support-works": {
+        "title": "How support works",
+        "theme": {
+            "footer": false
+        }
+    },
+    "----": {
+        "type": "separator",
+        "title": "Development Guids"
+    },
+    "before-you-start": {
+        "title": "Before you start",
+        "theme": {
+            "footer": false
+        }
+    },
+    "configure_your_script": {
+        "title": "Configure your script",
+        "theme": {
+            "footer": false
+        }
+    },
+    "common-errors": {
+        "title": "Common Errors",
+        "theme": {
+            "footer": false
+        }
+    },
+    "-----": {
         "type": "separator",
         "title": "Scripts"
     },
