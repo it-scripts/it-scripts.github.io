@@ -19,10 +19,12 @@ First, let's take a look at zone management.
 Here, it is possible to create zones that can have an effect on the growth speed of certain plants.
 
 ## Config.GlobalGrowTime
+```lua
+Config.GlobalGrowTime = 10 -- Time in minutes for a plant to grow
+```
 This variable defines the growth rate in minutes for the plants and is taken as the base value for all future modifications.
 
-To use the different zone settings, this variable must be set to true. 
-As long as it is set to false, any modification in the zones will not be used.
+Later in the configuration, you can change the growth rate of individual plants or zones.
 
 ## Config.Zones
 The individual zones can be created and edited here. 
@@ -56,7 +58,7 @@ We will now take a closer look at one zone and explain what the individual value
 ['weed_zone_one']
 ```
 We start with the zone id, this specifies the name of the zone, the name is only relevant for the script. 
-The zone id must not contain any special characters or spaces and must be unique.
+**The zone id must not contain any special characters or spaces and must be unique.**
 
 ---
 

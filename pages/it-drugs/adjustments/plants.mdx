@@ -17,25 +17,55 @@ import AccordionGroup from '@components/AccordionGroup'
 </Callout>
 Now we can look at the configuration of the individual plants.
 
+### Config.PlantDistance
+```lua
+Config.PlantDistance = 1.5 -- minimum Distance between two plants
+```
+This value is used to determine the minimum distance between two plants.
+If the distance is smaller, the player will not be able to plant a new plant.
+
 ## Allowed Grounds
 ### Config.OnlyAllowedGrounds
+```lua
+Config.OnlyAllowedGrounds = false -- Only allowed grounds
+```
 
-Config.OnlyAllowedGrounds is used to set whether a plant may only be planted on permitted grounds. 
-If Config.OnlyAllowedGrounds is set to true, the player can only plant on grounds set in Config.AllowedGrounds.
+**Config.OnlyAllowedGrounds** is used to set whether a plant may only be planted on permitted grounds. 
+If **Config.OnlyAllowedGrounds** is set to true, the player can only plant on grounds set in **Config.AllowedGrounds**.
 
-### Config.AllowedGrounds
+## Config.AllowedGrounds
 A list of ground hashes, if a desired ground is not included, the ground hash can be displayed when planting if Config.Debug is true, this can then simply be added to the list.
 
 ## Decay
+```lua
+Config.WaterDecay = 1 -- Percent of water that decays every minute
+Config.FertilizerDecay = 0.7 -- Percent of fertilizers that decays every minute
+```
 The decay settings can be used to set how many percent of water or fertilizer a plant should lose per minute.
 
 ## Threshold
-The threshold value is the percentage value at which a plant begins to lose life. 
-As soon as the values of the plant are below Config.FertilizerThreshold or Config.WaterThreshold, the plant starts to lose life.
+```lua
+Config.FertilizerThreshold = 10
+Config.WaterThreshold = 10
+Config.HealthBaseDecay = {7, 10} -- Min/Max Amount of health decay when the plant is below the above thresholds for water and nutrition
+```
 
-The rate at which the plant should lose life can be set with Config.HealthBaseDecay. 
+The threshold value is the percentage value at which a plant begins to lose life. 
+As soon as the values of the plant are below **Config.FertilizerThreshold or Config.WaterThreshold**, the plant starts to lose life.
+
+The rate at which the plant should lose life can be set with **Config.HealthBaseDecay**. 
 The first value is the minimum and the second value is the maximum. 
 A value between these two values is determined every minute. The plant loses this value of life.
+
+## Destroy Plant
+```lua
+Config.ItemToDestroyPlant = false -- true to need an item to destroy a plant
+Config.DestroyItemName = "lighter"
+```
+
+If **Config.ItemToDestroyPlant** is set to true, the player needs an item to destroy a plant.
+The item name must be set in **Config.DestroyItemName**.
+*Make sure that the item exists on your server!*
 
 ## Config.Items
 ```lua
@@ -65,7 +95,7 @@ Here you can set the items that can be used to fertilize and/or water the plant.
 ```
 This is the unique name of the plant type. The name must not contain any special characters or spaces. 
 
-This will be used later to give a plant a type.
+This will be used later to give a plant a type. **The name must be unique.**
 
 ---
 
@@ -107,7 +137,7 @@ This value is then subtracted from or added to the z-coordinate of the plant.
 ['weed_lemonhaze_seed']
 ```
 We start with the plant id, this specifies the name of the plant, the name is only relevant for the script.
-The plant id must not contain any special characters or spaces and must be unique.
+**The plant id must not contain any special characters or spaces and must be unique.**
 
 ---
 

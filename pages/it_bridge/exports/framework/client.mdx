@@ -1,7 +1,74 @@
+---
+title: it_bridge | Client Exports - Framework
+description: Learn how to use the client framework exports for the it_bridge resource.
+---
+
 import { Callout } from '@components/Callout'
 
 # Client
-
-<Callout type="error">
-  Currently there are no client exports available for the framework. If you want to use the framework exports please use the server exports.
+<Callout type="warning">
+  These exports can only be used on the client-side. Make sure to use them in your client-side script files.
 </Callout>
+
+## GetPlayerName
+```lua
+exports.it_bridge:GetPlayerName()
+```
+Returns the current player's ingame name.
+
+**Example**
+```lua
+local playerName = exports.it_bridge:GetPlayerName()
+print(playerName)
+```
+
+## GetCitizenId
+```lua
+exports.it_bridge:GetCitizenId()
+```
+
+Returns the current player's citizen ID. For every framework, the citizen ID is unique.
+
+**Example**
+```lua
+local citizenId = exports.it_bridge:GetCitizenId()
+print(citizenId)
+```
+
+## GetPlayerJob
+```lua
+exports.it_bridge:GetPlayerJob()
+```
+
+Returns table containing the current player's job information.
+```lua
+{
+    grade: 0, -- number
+    grade_label: "Unemployed", -- string
+    grade_salary: 0, -- number
+    isBoss: false, -- boolean
+    label: "Unemployed", -- string
+    name: "unemployed", -- string
+    onDuty: true, -- boolean
+}
+```
+
+**Example**
+```lua
+local job = exports.it_bridge:GetPlayerJob()
+print(job.label) -- Unemployed
+```
+
+## GetMoney
+```lua
+exports.it_bridge:GetMoney(moneyType)
+```
+- moneyType: `string`: The money type. (cash, bank, black_money)
+
+Returns the current player's money amount.
+
+**Example**
+```lua
+local cash = exports.it_bridge:GetMoney('cash')
+print(cash)
+```

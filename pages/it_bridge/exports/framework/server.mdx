@@ -44,16 +44,15 @@ end
 
 ## GetPlayerName
 ```lua
-exports.it_bridge:GetPlayerName(player)
+exports.it_bridge:GetPlayerName(source)
 ```
-- player: `object`: The player object.
+- source: `number`: The player's server ID.
 
 Returns the the player's ingame name.
 
 **Example**
 ```lua
-local player = exports.it_bridge:GetPlayer(source)
-local playerName = exports.it_bridge:GetPlayerName(player)
+local playerName = exports.it_bridge:GetPlayerName(source)
 print(playerName)
 ```
 
@@ -73,9 +72,9 @@ print(citizenId)
 
 ## GetPlayerJob
 ```lua
-exports.it_bridge:GetPlayerJob(player)
+exports.it_bridge:GetPlayerJob(source)
 ```
-- player: `object`: The player object.
+- source: `number`: The player's server ID.
 
 Returns table containing the player's job information.
 ```lua
@@ -92,8 +91,7 @@ Returns table containing the player's job information.
 
 **Example**
 ```lua
-local player = exports.it_bridge:GetPlayer(source)
-local job = exports.it_bridge:GetPlayerJob(player)
+local job = exports.it_bridge:GetPlayerJob(source)
 print(job.label) -- Unemployed
 ```
 

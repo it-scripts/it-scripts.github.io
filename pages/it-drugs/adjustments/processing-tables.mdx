@@ -40,14 +40,15 @@ The individual processing tables can now be configured here:
             label = 'Joint',
             showIngrediants = true,
             ingrediants = {
-                ['weed_lemonhaze'] = 3,
-                ['paper'] = 1
+                ['weed_lemonhaze'] = {amount = 3, remove = true},
+                ['paper'] = {amount = 1, remove = true}
             },
             outputs = {
                 ['joint'] = 2
             },
             processTime = 5,
             failChance = 15,
+            showIngrediants = true,
             animation = {
                 dict = 'anim@gangops@facility@servers@bodysearch@',
                 anim = 'player_search',
@@ -76,14 +77,15 @@ Each table can theoretically have an infinite number of recipes, how exactly a r
     label = 'Joint', -- name of the recipe in the menu
     showIngrediants = true,
     ingrediants = {
-        ['weed_lemonhaze'] = 3,
-        ['paper'] = 1
+        ['weed_lemonhaze'] = {amount = 3, remove = true},
+        ['paper'] = {amount = 1, remove = true}
     },
     outputs = {
         ['joint'] = 2
     },
     processTime = 5,
     failChance = 15,
+    showIngrediants = true,
     animation = {
         dict = 'anim@gangops@facility@servers@bodysearch@',
         anim = 'player_search',
@@ -95,15 +97,15 @@ Each table can theoretically have an infinite number of recipes, how exactly a r
 ['joint']
 ```
 We start with the recipe id, this specifies the name of the recipe, the name is only relevant for the script.
-The recipe id must not contain any special characters or spaces and must be unique.
+**The recipe id must not contain any special characters or spaces and must be unique.**
 
 ---
 
 ```lua
 showIngrediants = true,
 ingrediants = {
-    ['weed_lemonhaze'] = 3,
-    ['paper'] = 1
+    ['item_name'] = {amount = 3, remove = true},
+    ['second_item_name'] = {amount = 1, remove = true}
 },
 ```
 For each recipe you can set whether the player should see which ingredients he needs for this recipe.
@@ -119,6 +121,12 @@ In addition, as many ingredients can be added for each recipe as you like. simpl
 ```lua copy
 ['item_name'] = amount_you_need,
 ```
+
+```lua
+{amount = 3, remove = true}
+```
+This is the amount of the item you need for the recipe and whether the item should be removed from the inventory after crafting. 
+If `remove` is set to **false**, the item will not be removed from the inventory.
 
 ---
 
@@ -177,6 +185,28 @@ If you use the ox_inventory, please use the following template to add the tables
 </Callout>
 
 <AccordionGroup>
+    <Accordion title="Recipe configuration template">
+    ```lua copy
+        ['uniqe_table_id'] = {
+        label = 'item_label', -- name of the recipe in the menu
+        showIngrediants = true,
+        ingrediants = {
+            ['item_one'] = {amount = 3, remove = true},
+            ['item_two'] = {amount = 1, remove = true}
+        },
+        outputs = {
+            ['output_item'] = 2
+        },
+        processTime = 5,
+        failChance = 15,
+        showIngrediants = true,
+        animation = {
+            dict = 'anim@gangops@facility@servers@bodysearch@',
+            anim = 'player_search',
+        }
+    },
+    ```
+    </Accordion>
     <Accordion title="Processin table configuration template">
     ```lua copy
         ['uniqe_table_id'] = {

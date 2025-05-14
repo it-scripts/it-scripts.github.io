@@ -3,12 +3,13 @@ title: it-drugs - Installation
 description: Welcome to the it-drugs installation guide, here you can learn how to completely install our asset, following each step we will achieve a clean and fluid installation where you will not find any problems, as long as the documentation has been completed in full.
 ---
 
-import { Cards, Card, Tabs} from 'nextra/components'
+import { Cards, Card, Tabs, Steps} from 'nextra/components'
 import { Callout } from '@components/Callout'
 import Accordion from '@components/Accordion'
 import AccordionGroup from '@components/AccordionGroup'
-import { IconBrandGithub, IconBrandDiscord, IconCode, IconTag } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandDiscord, IconCode, IconTag} from '@tabler/icons-react';
 import YouTube from '@components/YouTube'
+import ExternLink from '@components/ExternLink'
 
 # Installation
 Welcome to the **it-drugs** installation guide, here you can learn how to completely install our asset, 
@@ -32,79 +33,111 @@ as long as the documentation has been completed in full.
 ## Need help? Watch the Video!
 <YouTube id="IAJpXrLT1Uw"/>
 
-## Asset download
-You can download the latest version of the script for free on the it-script GitHub Account.
+## Script Download
+Before starting, you must open the scripts GitHub page to download the asset.  
+Just as you download it the first time, you will also download it multiple times in the future to get updates.
+
 <Cards>
   <Card icon={<IconBrandGithub />} title="GitHub" href="https://github.com/it-scripts/it-drugs" />
   <Card icon={<IconTag />} title="Releases" href="https://github.com/it-scripts/it-drugs/releases" />
 </Cards>
 
+# Downloading Dependencies
+The dependencies for this asset are mandatory, so please follow the dependency guide completely and use all required files.
+
+<Steps>
+### ox_lib
+  <ExternLink 
+      href="https://github.com/overextended/ox_lib/releases"
+      icon ={<IconBrandGithub size={16} />}
+      manualTitle="Releases · overextended/ox_lib"
+      manualDescript="Version: Minimal: 3.25.0 Recommended: latest"
+  ></ExternLink>
+
+### oxmysql
+  
+    <ExternLink 
+        href="https://github.com/overextended/oxmysql/releases"
+        icon ={<IconBrandGithub size={16} />}
+        manualTitle="Releases · overextended/oxmysql"
+        manualDescript="Version: latest"
+    ></ExternLink>
+
+### it_bridge
+  <ExternLink 
+      href="https://it-scripts.tebex.io/package/6706602"
+      icon ={<IconTag size={16} />}
+      manualTitle="it_bridge - Tebex Store"
+      manualDescript="Version: Minimal: 1.0.1 Recommended: latest"
+  ></ExternLink>
+  <ExternLink 
+      href="https://docs.it-scripts.com/it_bridge/installation"
+  ></ExternLink>
+</Steps>
+
+This script has dependencies depending on its framework, even if it says optional we recommend having them for correct use.
+<Steps>
+### Optional for ESX, ND_Core, QBox
+
+  <ExternLink 
+      href="https://github.com/overextended/ox_target/releases"
+      icon ={<IconBrandGithub size={16} />}
+      manualTitle="Releases · overextended/ox_target"
+      manualDescript="Version: Minimal: latest Recommended: latest"
+  ></ExternLink>
+
+### Optional for QbCore
+
+  <ExternLink 
+      href="https://github.com/qbcore-framework/qb-target/releases"
+      icon ={<IconBrandGithub size={16} />}
+      manualTitle="Releases · qbcore-framework/qb-target"
+      manualDescript="Version: Minimal: latest Recommended: latest"
+  ></ExternLink>
+</Steps>
+
 <Callout type="warning">
-  If you have downloaded the script from another site, there is no guarantee that the script will actually work. Please download it again from the it-scripts GitHub page.
-</Callout>
-
-<Callout type="error">
-  If you have paid money for this script, it is a **SCAM**. The **it-drugs** script is and will always remain free. Please report the page to us on the Discord server.
-</Callout>
-
-## Asset dependencies
-| Scripts | REQUIRED VERSION | Download |
-| --- | ---  | --- |
-| ox_lib | **Minimal:** `3.25.0` **Recommended:** `latest` | https://github.com/overextended/ox_lib/releases |
-| oxmysql | **Minimal:** `latest` **Recommended:** `latest` | https://github.com/overextended/oxmysql |
-| it_bridge | **Minimal:** `1.0.1` **Recommended:** `latest` | https://it-scripts.tebex.io/package/6706602 |
-| **Target System*** |  |
-| ESX (ox_target) | **Minimal:** `latest` **Recommended:** `latest` | https://github.com/overextended/ox_target |
-| QbCore (qb-target) | **Minimal:** `latest` **Recommended:** `latest` | https://github.com/qbcore-framework/qb-target |
-* You do not need to install a target system if you are using the script without the target system.
-<Callout type="error">
   You can also use ox_target on your QbCore Server but only if you are using ox_target with version 1.16.0 or older!
 </Callout>
 
-## Asset positioning
-<Callout type="error">
-  Correctly position the assets by following this step, if something goes wrong you will probably get errors about exports not found, do not skip this step.
-</Callout>
-
-For the execution of this asset, we will respect the respective order mentioned below.
+## Server.cfg Positioning
+For best results, start the dependencies before the it-drugs script. 
+This script should always be started under your framework and inventory systems and the it_bridge script for seamless integration.
+For the best result add it_bridge and it-drugs at the end of your server.cfg file.
 
 ```lua
 -- First we will start the Database
 ensure oxmysql
 
--- Then we will start the cores, never below
-ensure es_extended or qb-core
+ensure framework -- Your framework, always on top [This has to be an actual script name]
+ensure inventory -- Your inventory system, [This has to be an actual script name]
 
--- Your inventory system, always on top
-ensure [inventory]
+ensure ox_lib -- The library for the script
+ensure [other-dependencies] -- Other dependencies that you may have and need for it_bridge
 
-Then we start all the dependencies
-ensure [dependencies]
-
--- Run it-drugs here along with its dependencies
-ensure [it-drugs] 
+ensure it_bridge -- The bridge for all it-scripts
+ensure it-drugs
 ```
 
-## Database
+## Database Installation
+
 <Callout type="info">
-  Our drug script includes two databases, befor the first start of the script you should check if the tables allready exists in your Database and delete them if they exists. 
-  If you just update the script you dont have to do this.
-</Callout>
-
-```sql copy
--- Check for the drug_plants table
-DROP TABLE IF EXISTS `drug_plants`;
--- Check for the drug
-DROP TABLE IF EXISTS `drug_processing`;
-```
-
-<Callout type="success">
   The Script will automaticly install and update the database but if you want you still can intall the database manually with this commands:
 </Callout>
+
+
+For this step, we highly recommend using **HeidiSQL** to avoid issues, as it provides an updated version of MariaDB. 
+We have a guide that explains step-by-step how to use HeidiSQL. 
+If you choose to use phpMyAdmin, we will not be responsible for any errors that may occur in your database.
+
+<ExternLink 
+    href="https://docs.it-scripts.com/before-you-start/how-to-install-heidisql"
+></ExternLink>
 
 <AccordionGroup>
   <Accordion title="Install Database manually">
     ```sql copy
+      DROP TABLE IF EXISTS drug_plants;
       -- Install the drug_plants table
       CREATE TABLE IF NOT EXISTS drug_plants (
           id VARCHAR(11) NOT NULL, PRIMARY KEY(id),
@@ -119,6 +152,7 @@ DROP TABLE IF EXISTS `drug_processing`;
           growtime INT(11) NOT NULL
       );
 
+      DROP TABLE IF EXISTS drug_processing;
       -- Install the drug_processing table
       CREATE TABLE IF NOT EXISTS drug_processing (
           id VARCHAR(11) NOT NULL, PRIMARY KEY(id),
@@ -140,6 +174,9 @@ DROP TABLE IF EXISTS `drug_processing`;
   If you use qbcore + ox_inventory, you must add the items inside ox_inventory for the items using to work.
 </Callout>
 Here you will find a series of selected items in different extensions for different inventories, select the option that suits your server, remember to check if your inventory works with this script!
+
+The images for these items can always be found in a folder named **items/img** within the previously downloaded script. 
+Make sure to use these images to ensure consistency and a seamless experience for players on your server.
 
 <Tabs items={["esx_extended", "qb-inventory", "ps_inventory", "qs-inventory", "ox_inventory", "codem-inventory", "origen_inventory"]}>
   <Tabs.Tab>
@@ -824,24 +861,6 @@ Here you will find a series of selected items in different extensions for differ
 
 ## Use Webhooks
 You want to log the different actions of the script on your discord server? Then take a look at this.
-<Cards>
-  <Card icon={<IconBrandDiscord />} title="Setup Webhook" href="https://github.com/it-scripts/it-drugs" />
-</Cards>
-
-## Basic asset configuration
-<Callout type="info">
-  We do not recommend editing frameworks unnecessarily, since almost all assets depend exclusively on your framework and exports on the name of your framework. 
-  Otherwise and if you edited your framework, read these steps carefully.
-</Callout>
-
-Please expand each part to see information about the configuration of the asset, this way you will understand the general operation of the asset on the framework and editable files side.
-
-<AccordionGroup>
-  <Accordion title="Basic framework configuration">
-    The asset will work automatically if your framework is supported by the asset. If you have a modified framework please contact the support team or a developer to help you.
-  </Accordion>
-
-  <Accordion title="Edit the Script">
-    Fell free to edit the complete. If you made some changes and think others can use them, feel free to open a pull request on GitHub, and we maybe adapt your changes to the script.
-  </Accordion>
-</AccordionGroup>
+<ExternLink 
+    href="https://docs.it-scripts.com/configure_your_script/how-to-set-webhook-system"
+></ExternLink>

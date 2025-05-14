@@ -62,45 +62,6 @@ local hasItem = exports.it_bridge:HasItem('paper', 10)
 print(hasItem)
 ```
 
-## GiveItem
-```lua
-exports.it_bridge:GiveItem(item, amount, metadata)
-```
-
-- item: `string`: The item name.
-- count: `number`: The amount of items.
-- metadata?: `table | nil` (optional): The item metadata.
-
-Gives the player the specified amount of items. Returns `true` if the items were successfully given, `false` otherwise.
-
-<Callout type="warning">
-  This function will not check if the player can carry the items. Make sure to use the `CanCarryItem` function before giving items if you want this check.
-</Callout>
-
-
-**Example**
-```lua
-local success = exports.it_bridge:GiveItem('paper', 10)
-print(success)
-```
-
-## RemoveItem
-```lua
-exports.it_bridge:RemoveItem(item, amount, metadata)
-```
-
-- item: `string`: The item name.
-- count: `number`: The amount of items.
-- metadata?: `table | nil` (optional): The item metadata.
-
-emoves the specified amount of items from the player's inventory. Returns `true` if the items were successfully removed, `false` otherwise.
-
-**Example**
-```lua
-local removed = exports.it_bridge:RemoveItem('paper', 10)
-print(removed)
-```
-
 ## GetItemLabel
 ```lua
 exports.it_bridge:GetItemLabel(item)
