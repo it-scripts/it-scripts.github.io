@@ -1,0 +1,54 @@
+---
+title: it-scripts - Updating your assets
+description: General guide on how to update your assets
+---
+
+import { Steps } from 'nextra/components'
+import { Callout } from '@components/Callout';
+import ExternLink from '@components/ExternLink'
+import { IconBrandDiscord } from '@tabler/icons-react'
+
+# Updating your assets
+
+<Callout type="info">
+  When updating your assets, make sure to always replace the `fxmanifest.lua` file
+  and if the script is from github also replace the `version` file
+  to make sure the version checker works properly.
+</Callout>
+
+## Staying Updated
+Join our Discord community to access changelogs. These logs provide details about recent updates, fixes, and new features for your assets.
+
+<ExternLink 
+  href="https://discord.gg/invite/dRfAPVBM82"
+  icon={<IconBrandDiscord />}
+  manualTitle="Discord | Join our community"
+  manualDescript="Join our community to stay updated with the latest changes and improvements."
+/>
+
+## Avoiding update errors
+If you experience errors after updating, it’s often better to re-download and replace the entire asset. 
+Remember to make a backup of your old files before doing this, as partial updates or incorrectly applied patches can break multiple parts of the asset.
+
+<Steps>
+### Full Replacement
+If errors occur after an update, it’s best to **re-download and replace the entire asset** rather than attempting partial updates.
+
+### Backup Your Files
+Always make a backup of your old files before replacing them. This ensures you can revert to a working version if needed.
+</Steps>
+
+## Where to find updates
+In our Discord community, you can find all changelogs and download patches as needed.
+Simply log in to Keymaster and re-download the updated version of the asset or get it from GitHub. 
+
+<Steps>
+### Discord Community
+Join our [**Discord**](https://discord.it-scripts.com) community to access changelogs and download patches as needed.
+
+### Keymaster
+Log in to [**Keymaster**](https://portal.cfx.re/assets/granted-assets?page=1&sort=asset.updated_at&direction=asc) and re-download the updated version of the asset.
+
+### GitHub
+Download the updated version of the asset from [**GitHub**](https://github.it-scripts.com).
+</Steps>
