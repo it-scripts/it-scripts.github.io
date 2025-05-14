@@ -1,0 +1,53 @@
+---
+title: it-scripts - How to change notifications
+description: This guide will help you change notifications for your it-scripts assets.
+---
+
+import { Steps } from 'nextra/components'
+
+# How to change notifications
+## Change Notifications
+
+Configuring notifications in it-scripts assets is simple and straightforward.
+Notifications are used to display information, successes, and errors in-game.
+All it-scripts assets share the same notification system, ensuring consistency across different scripts.
+
+<Steps>
+### Delete notifications
+Delete the current notification logic inside the **ShowNotification** function.
+
+### Add your own notification logic
+Manually add your desired notification export or method.
+
+### Always test with backups
+Always test your changes with backups to ensure everything works as expected.
+</Steps>
+
+### Editing Notifications
+All configurable notifications are located in `shared/functions.lua` in this file, you’ll find the ShowNotification function, which controls how notifications are displayed.
+
+If you want to customize the notification system or integrate a new one, you can do so by editing the ShowNotification function. Below is an example of how to modify it for a new system:
+```lua
+function ShowNotification(source, message, type)
+    -- Bridge.Functions.Notify(message, type) are the default Framework notifications
+    -- You can change this to your own notification systems
+    if source ~= nil then -- Server Messages
+        if type == 'Error' then
+            exports.it_bridge:SendNotification(source, 'it-drugs', message, 5000, "Error", true)
+        elseif type == 'Success' then
+            exports.it_bridge:SendNotification(source, 'it-drugs', message, 5000, "Success", true)
+        else
+            exports.it_bridge:SendNotification(source, 'it-drugs', message, 5000, "Info", false)
+        end
+    else -- Client Messages
+        if type == 'Error' then
+            exports.it_bridge:SendNotification('it-drugs', message, 5000, "Error", true)
+        elseif type == 'Success' then
+            exports.it_bridge:SendNotification('it-drugs', message, 5000, "Success", true)
+        else
+            exports.it_bridge:SendNotification('it-drugs', message, 5000, "Info", false)
+        end
+    end
+end
+```
+This example uses the `it_bridge` notification system, but you can replace it with any other notification system you prefer.

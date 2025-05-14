@@ -1,0 +1,71 @@
+---
+title: it-scripts - How to enable target system
+description: This guide will help you enable the target system for your it-scripts assets.
+---
+
+import { Steps } from 'nextra/components'
+import ExternLink from '@components/ExternLink'
+import {IconBrandGithub} from '@tabler/icons-react'
+
+# How to enable target system
+
+## Target System
+All it-scripts assets use the same target system for consistency and ease of use. 
+To prevent errors, we have standardized the configuration and provided clear options for supported systems.
+
+## Supported Target Systems
+We are compatible with the following target systems:
+
+<Steps>
+    ### ox_target
+    The most stable and reliable target system currently available.
+    <ExternLink 
+        href="https://github.com/overextended/ox_target"
+        icon ={<IconBrandGithub size={16} />}
+        manualTitle="ox_target GitHub Repository"
+    ></ExternLink>
+
+    ### qb-target
+    Another widely used and supported system.
+    <ExternLink 
+        href="https://github.com/qbcore-framework/qb-target"
+        icon ={<IconBrandGithub size={16} />}
+        manualTitle="qb-target GitHub Repository"
+    ></ExternLink>
+</Steps>
+
+Please always keep your targets updated to the latest available version.
+
+## How To Enable The Target System
+All it-scripts assets come with built-in support for target systems, allowing for seamless interaction with entities, objects, and more within your server. 
+This configuration provides flexibility by supporting the two most popular target systems in FiveM: ox_target and qb-target.
+
+<Steps>
+    ### Find the it_bridge asset
+    - Locate the **it_bridge** asset in your server's resources folder.
+    - This asset serves as a bridge for all it-scripts and is essential for enabling the target system.
+
+    ### Locate the config.lua file
+    - Inside the **it_bridge** asset, find the **config.lua** file.
+    - This file contains the configuration settings for the target system.
+
+    ### Enable the Target System
+    Look for the following configuration line in config.lua:
+    ```lua
+    --[[
+    Supported interactions:
+        * AUTO_DETECT: auto-detect interactions [Only detecting supported interactions below]
+        * Interactions.OX: ox_target,
+        * Interactions.QB: qb-target,
+        * Interactions.NONE, distance interaction - press [E]
+    ]]
+    Config.Interactions = AUTO_DETECT
+    ```
+    By default, the target system is set to **AUTO_DETECT**, which automatically detects the available target system on your server.
+    - If you want to use **ox_target**, set the value to **Interactions.OX**.
+    - If you want to use **qb-target**, set the value to **Interactions.QB**.
+    - If you want to use the distance interaction (press [E]), set the value to **Interactions.NONE**.
+
+    ### Restart the server
+    After making changes to the config.lua file, restart your server to apply the new target system settings.
+</Steps>

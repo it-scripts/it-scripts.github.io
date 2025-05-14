@@ -1,0 +1,39 @@
+{
+  "how-to-set-webhook-system": {
+    "title": "Hot to set webhook system",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-enable-target-system": {
+    "title": "Hot to enable target system",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-anaging-translations": {
+    "title": "How to manage translations",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-change-notifications": {
+    "title": "Hot to change notifications",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-change-keybinds": {
+    "title": "How to change keybinds",
+    "theme": {
+      "footer": false
+    }
+  },
+  "how-to-execute-commands": {
+    "title": "How to execute commands",
+    "theme": {
+      "footer": false
+    }
+  }
+}
+  

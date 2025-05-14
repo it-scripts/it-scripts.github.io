@@ -1,0 +1,83 @@
+---
+title: it-scripts - How to set webhook system
+description: This article explains how to set up webhooks for your server and how to configure them for different actions.
+---
+
+import { Steps, Tabs } from 'nextra/components'
+import YouTube from '@components/YouTube'
+
+# How to set webhook system
+## Webhook System
+Webhooks are an essential feature for many it-scripts assets, enabling seamless communication between your server and Discord.
+They are primarily used to send logs, updates, and other useful information to specific channels in your Discord server.
+
+## Fivemanager Integration
+**Comming Soon** *(Currently there is no script from us that uses Fivmanager)*
+
+## Discord Webhooks
+Discord webhooks are ideal for logging information, such as:
+<Steps>
+    ### Player Logs
+    - Track player actions, such as joining or leaving the server.
+    - Monitor player interactions with specific assets or features.
+    
+    ### Custom Notifications
+    - Send custom messages or alerts to your Discord server.
+    - Notify users about important events or updates.
+</Steps>
+
+## How to set up webhooks
+<Steps>
+    ### Create a Discord Webhook
+    <YouTube id="fKksxz2Gdnc" />
+
+    ### Locate the Webhook Configuration
+    - To make ours scripts more secure the webhook system is located in a sperate file that is only loaded on the server.
+    - The file is located in `server/sv_webhooks.lua`.
+    - This file contains the configuration settings for the webhook system.
+
+    ### Configure the Webhook
+    - Open the `sv_webhooks.lua` file in a text editor.
+    - Find the following configuration section:
+    <Tabs items={['One webhook', 'Multiple webhooks']}>
+       <Tabs.Tab>
+        ```lua
+        local webhookSettings = {
+            ['active'] = false, -- Set to true to enable the webhook
+            ['name'] = 'it_referral', -- Name for the webhook
+            ['avatar'] = 'https://i.imgur.com/mbM87BJ.png', -- Avatar for the webhook
+            ['url'] = 'YOUR_WEBHOOK_URL', -- Webhook URL
+        }
+        ```
+        If you want to activate the webhook system, set the `active` attribute to `true`.
+        - Replace `YOUR_WEBHOOK_URL` with the actual webhook URL you created in Discord.
+        - You can also customize the `name` and `avatar` attributes to personalize the webhook.
+        </Tabs.Tab>
+       <Tabs.Tab>
+        ```lua
+        local webhookSettings = {
+            ['active'] = false, -- Set to true to enable the webhook
+            ['name'] = 'it-drugs', -- Name for the webhook
+            ['avatar'] = 'https://i.imgur.com/KvZZn88.png', -- Avatar for the webhook
+            ['urls'] = {
+                ['plant'] = 'https://discord.com/api/webhooks/**************/*************************', -- Webhook URL for plant actions
+                ['table'] = nil, --'', -- Webhook URL for table actions
+                ['sell'] = nil, --'', -- Webhook URL for sell actions
+                ['message'] = nil, --'', -- Webhook URL for messages
+            }
+        }
+        ```
+        If you want to activate the webhook system, set the `active` attribute to `true`.
+        Now you can set multiple webhooks for different actions.
+        - Replace `nil` with the actual webhook URL you created in Discord. Example:
+        ```lua
+        ['plant'] = 'https://discord.com/api/webhooks/**************/*************************', -- Webhook URL for plant actions
+        ```
+        - You can also customize the `name` and `avatar` attributes to personalize the webhook.
+        </Tabs.Tab>
+    </Tabs>
+    ### Save and Restart
+    - Save the changes to the `sv_webhooks.lua` file.
+    - Restart the script or the server to apply the changes.
+    - The webhook system is now active and will send logs to the specified Discord channel.
+</Steps>

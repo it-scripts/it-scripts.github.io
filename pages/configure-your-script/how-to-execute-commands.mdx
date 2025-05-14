@@ -1,0 +1,36 @@
+---
+title: it-scripts - How to execute commands
+description: This guide will help you execute commands on your FiveM Server.
+---
+
+
+import { Steps } from 'nextra/components'
+
+# How to execute commands
+The ExecuteCommand() function lets you run any FiveM command directly from a script. 
+It’s useful for automating tasks or triggering commands programmatically.
+
+## How It Works
+Simply call the function with the command you want to execute as a string:
+
+<Steps>
+### Run a Chat Command
+This sends "Hello, world!" to the chat.
+```lua
+ExecuteCommand("say Hello, world!")
+```
+### Trigger a Custom Command
+This runs a custom /heal command for the player ID 1.
+```lua
+ExecuteCommand("heal 1")
+```
+### Create a Shortcut Command
+This makes a /healMe command that heals the player who runs it.
+```lua
+RegisterCommand("healMe", function()
+    ExecuteCommand("heal " .. GetPlayerServerId(PlayerId()))
+end, false)
+```
+That’s it! ExecuteCommand is a simple and powerful way to run commands directly from your scripts.
+
+</Steps>

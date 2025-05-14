@@ -1,0 +1,57 @@
+---
+title: it-scripts - How to change key bindings
+description: This guide will help you change key bindings for your it-scripts assets.
+---
+
+import { Steps } from 'nextra/components'
+import { Callout } from '@components/Callout'
+
+# How to change kay bindings
+
+## Register Key Mapping
+<Callout type="info">
+The new keybinds will apply only to new players or those who reset their keybinds manually.
+</Callout>
+To properly organize your keybinds and optimize your resource, we’ve adopted the FiveM native RegisterKeyMapping. 
+This eliminates the need for constant checks (while loops) for key presses, significantly improving performance. 
+This native works by triggering the associated chat command whenever the keybind is pressed.
+
+<Steps>
+### Optimized performance
+Reduces resource usage by removing frame-by-frame checks.
+
+### Client customization
+Players can now change their own keybinds directly in-game.
+</Steps>
+
+## How to Change Keys In-Game
+<Steps>
+### Open the Settings Menu
+Navigate to the **settings** menu in GTAV.
+
+### Go to Key Bindings
+Under **settings**, find and select **key bindings** section.
+
+### Select FiveM Key Bindings
+Scroll to the **FiveM** section where all FiveM-related keybinds are listed.
+
+## Adjust Key Bindings
+Select the desired keybind you want to change and press the new key you wish to assign.
+</Steps>
+
+## How to Reset Keybinds
+If you need to reset your keybinds, there are two options:
+
+<Steps>
+### Using Console
+Open the F8 console and type this, example: unbind keyboard f10.
+```
+unbind keyboard [key]
+```
+### Editing Configuration File
+- Press **WINDOWS + R** to open the Run dialog.
+- Type `%appdata%\CitizenFX` and press Enter.
+- Open the **fivem.cfg** file in a text editor.
+- Remove the lines related to the keybind you want to reset.
+- Save the file and restart FiveM.
+</Steps>
